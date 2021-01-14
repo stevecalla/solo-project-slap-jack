@@ -1,7 +1,7 @@
 ## **_PR TEMPLATE_**
 1. Is this a fix or a feature?
-- [ ] XXX
-- [ ] XXX
+- [ ] Feature
+- [ ] Fix
 
 2. Describe the feature?
 - [ ] XXX
