@@ -35,6 +35,8 @@ function randomizeDeck() {
 
 //3a) Assign initial cards to player #1
 function handForPlayerOne() {
+  playerOneDeck = [];
+  playerTwoDeck = [];
   var deck = randomizeDeck();
   for (var i = 0; i < (deck.length* 0.5); i++) {
     playerOneDeck.push(deck[i]);
@@ -50,3 +52,29 @@ handForPlayerOne();
 console.log('1=', playerOneDeck);
 console.log('2=', playerTwoDeck);
 console.log('3=', slapJackDeck);
+
+var listenOnBody = document.querySelector('body');
+var listenOnSlapJack = document.querySelector('.title');
+// listenOnSlapJack.addEventListener('click', handForPlayerOne);
+// listenOnBody.addEventListener('keydown', handForPlayerOne);
+// listenOnSlapJack.removeEventListener('click ', handForPlayerOne);
+document.querySelector(".title").style.cursor = "pointer";
+
+// const log = document.getElementById('body');
+
+// document.addEventListener('body', logKey);
+
+// function logKey(e) {
+//   listenOnSlapJack.textContent += ` ${e.code}`;
+//   console.log(`key=${event.key},code=${event.code}`);
+//   handForPlayerOne();
+// }
+
+// document.addEventListener("keydown", function(event) {
+//   console.log(event.which);
+//   if (event.which === 70) {
+//     console.log('yes')
+//   }
+// });
+
+
