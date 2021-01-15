@@ -3,11 +3,11 @@ class Game {
     this.playerOneDeck = [];
     this.playerTwoDeck = [];
     this.middleCardDeck = [];
-    this.allCards = ["A", "2", "3", "9", "10", "J"];
-    // this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    // this.allCards = ["A", "2", "3", "9", "10", "J"];
+    this.allCards = [{a: "J", b: "spades"}, {a: "A", b: "diamonds"}, {a: "1", b: "clubs"}, {a: "1", b: "diamonds"}, {a: "J", b: "spades"}, {a: "A", b: "diamonds"}, {a: "1", b: "clubs"}, {a: "1", b: "diamonds"}];
     // this.allCards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    this.allCards = ["A", "2", "3", "9", "10", "J"];//jack
-    // this.allCards = ["7", "7", "8", "9", "8", "J", "Q", "K"];//double
+    // this.allCards = ["A", "2", "3", "9", "10", "J", "1"];//jack
+    // this.allCards = ["A", "2", "2", "9", "9", "J"];//double
     // this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];//sandwich
     this.allCards2 = [
       {value: "A", suit: "spades"},
@@ -114,37 +114,27 @@ class Game {
 
   //7) Deal Into Middle Deck
   playerOneDealIntoMiddleDeck() {
-    // happens upon click of the players respective keystroke
-    // if keystroke === XXX then deal card to middle deck
-    // console.log('7a=', this.middleCardDeck)
     this.middleCardDeck.unshift(this.playerOneDeck[0])
     this.playerOneDeck.splice(0, 1);
     console.log('7 Middle=', this.middleCardDeck)
     console.log('7 One', this.playerOneDeck)
     // console.log(this)
-    // return(this)
   }
 
   //7a) Deal Into Middle Deck
   playerTwoDealIntoMiddleDeck() {
-    // happens upon click of the players respective keystroke
-    // if keystroke === XXX then deal card to middle deck
-    // console.log('7a=', this.middleCardDeck)
     this.middleCardDeck.unshift(this.playerTwoDeck[0])
     this.playerTwoDeck.splice(0, 1);
     console.log('7a Middle=', this.middleCardDeck)
     console.log('7a Two=', this.playerTwoDeck)
     // console.log(this)
-    // return(this)
   }
 
   //8a) Attempt Slapping
-  //Jack
+  //Jack & Double ONE
   slapOnJackOne() {
-    //create for player2
-    //create === jack not 10
     console.log('slap')
-    if (this.middleCardDeck[0] === "J") {
+    if (this.middleCardDeck[0] === "J" || this.middleCardDeck[0] === this.middleCardDeck[1]) {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
         // console.log()
         this.playerOneDeck.push(this.middleCardDeck[i]);
@@ -157,10 +147,10 @@ class Game {
     }
   }
 
-  //8a) JackTwo() {
+  //8a) Jack & Double TWO {
   slapOnJackTwo() {
-    console.log('slap')
-    if (this.middleCardDeck[0] === "A") {
+    console.log('slap2')
+    if (this.middleCardDeck[0] === "A" || this.middleCardDeck[0] === this.middleCardDeck[1]) {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
         // console.log()
         this.playerTwoDeck.push(this.middleCardDeck[i]);
@@ -170,37 +160,6 @@ class Game {
       console.log('jack2 Middle=', this.middleCardDeck)
       console.log('jack2 One', this.playerOneDeck)
       console.log('jack2 Two=', this.playerTwoDeck)
-    }
-  }
-
-//8b) Double
-  slapOnDoubleOne() {
-    console.log('double')
-    if (this.middleCardDeck[0] === this.middleCardDeck[1]) {
-      for (var i = 0; i < this.middleCardDeck.length; i++) {
-        // console.log()
-        this.playerOneDeck.push(this.middleCardDeck[i]);
-      }
-      this.middleCardDeck = [];
-      this.playerOneDeck = this.randomizeDeck(this.playeOneDeck);
-      console.log('double2 Middle=', this.middleCardDeck)
-      console.log('double2 One', this.playerOneDeck)
-      console.log('double2 Two=', this.playerTwoDeck)
-    }
-  }
-
-  slapOnDoubleTwo() {
-    console.log('double')
-    if (this.middleCardDeck[0] === this.middleCardDeck[1]) {
-      for (var i = 0; i < this.middleCardDeck.length; i++) {
-        // console.log()
-        this.playerTwoDeck.push(this.middleCardDeck[i]);
-      }
-      this.middleCardDeck = [];
-      this.playerTwoDeck = this.randomizeDeck(this.playerTwoDeck);
-      console.log('double2 Middle=', this.middleCardDeck)
-      console.log('double2 One', this.playerOneDeck)
-      console.log('double2 Two=', this.playerTwoDeck)
     }
   }
 

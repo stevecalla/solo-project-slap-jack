@@ -1,35 +1,37 @@
-//Variables
+// //Variables
 var newGame = document.querySelector('.title');
 var playerOne = document.querySelector('.one');
 var playerTwo = document.querySelector('.two');
 var middleDeck = document.querySelector('.middle');
 
-//Event Listeners
-//window.OnLoad
+// //Event Listeners
+// //window.OnLoad
 newGame.addEventListener('click', currentGame);
 playerOne.addEventListener('click', playerOneDeal);
 playerTwo.addEventListener('click', playerTwoDeal);
 middleDeck.addEventListener('click', slapMiddleDeckOne);
 
 //Functions
+console.log('hello')
 var currentGame = new Game();
 
 function playerOneDeal() {
+  console.log('a')
   currentGame.playerOneDealIntoMiddleDeck();
-  middleDeck.innerText = `${currentGame.middleCardDeck}`
+  middleDeck.innerText = `${currentGame.middleCardDeck[0].a}`
 }
 
 function playerTwoDeal() {
   currentGame.playerTwoDealIntoMiddleDeck();
-  middleDeck.innerText = `${currentGame.middleCardDeck}`
+  middleDeck.innerText = `${currentGame.middleCardDeck[0].a}`
 }
 
 function slapMiddleDeckOne() {
   console.log('hello')
   currentGame.slapOnJackOne();
   currentGame.slapOnJackTwo();
-  currentGame.slapOnDoubleOne();
-  currentGame.slapOnDoubleTwo();
+  console.log(currentGame.middleCardDeck[1])
+  console.log(currentGame.middleCardDeck[1])
 }
 
 function currentGame() {
