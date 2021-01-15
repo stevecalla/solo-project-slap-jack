@@ -24,7 +24,7 @@ function randomizeDeck(randomDeck) {
     if (!holdCards.includes(index)) {
       holdCards.push(index);
       // console.log('yes')
-      // console.table(i, index, 'yes', hold)
+      // console.table(i, index, 'yes', holdCards)
     }
   }
   randomDeck = holdCards;

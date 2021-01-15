@@ -15,31 +15,34 @@ class Game {
   randomizeDeck(randomDeck) {
     var holdCards = []; //hold randomly generated cards
     var index; //hold index to grab random card
-    for (var i = 0; holdCards.length < randomDeck.length; i++) {
-      index =  randomIndex(randomDeck.length)
+    for (var i = 0; holdCards.length < this.allCards.length; i++) {
+      index =  this.randomIndex(this.allCards.length)
       if (!holdCards.includes(index)) {
         holdCards.push(index);
-        // console.log('yes')
-        // console.table(i, index, 'yes', hold)
+        // console.table(i, index, holdCards)
       }
     }
     randomDeck = holdCards;
     // allCards.sort()
+    // console.log('x=', randomDeck)
     return randomDeck
   }
 
-  //5) Assign initial cards to player #1
-  handForPlayerOne(unrandomizedDeck) {
-    playerOneDeck = [];
-    playerTwoDeck = [];
-    var playerDeck = randomizeDeck(unrandomizedDeck);
-    for (var i = 0; i < (playerDeck.length* 0.5); i++) {
-      playerOneDeck.push(playerDeck[i]);
+  //5) Assign initial cards to player #1 & 2
+  handForPlayers(unrandomizedDeck) {
+    this.playerOneDeck = [];
+    this.playerTwoDeck = [];
+    var playerDeck = this.randomizeDeck(unrandomizedDeck);
+    console.log('please=', playerDeck)
+    for (var i = 0; i < (playerDeck.length * 0.5); i++) {
+      this.playerOneDeck.push(playerDeck[i]);
+    } 
+    for (var i = 0; i < (playerDeck.length * 0.5); i++) {
+      this.playerTwoDeck.push((playerDeck[i + playerDeck.length * .5]));
     }
-    for (var i = 0; i < (playerDeck.length* 0.5); i++) {
-      playerTwoDeck.push(playerDeck[i + playerDeck.length * .5]);
-    }
-    console.table('2=', playerDeck, playerOneDeck, playerTwoDeck)
+    console.table('1=', this.playerDeck, this.playerOneDeck, this.playerTwoDeck)
+    console.log('1=', this)
+    return (this.playerOneDeck, this.playerTwoDeck)
   }
 
 }

@@ -1,15 +1,15 @@
 var startGame = new Game();
 
-console.log(startGame);
+
 
 var listenOnSlapJack = document.querySelector('.title');
 listenOnSlapJack.addEventListener('click', test);
 
 function test() {
-  console.log(startGame);
-  // console.log(start.handOne);
-  // console.log(startGame.allCards);
-  // console.log(startGame.randomIndex(10));
-  // console.log(startGame.randomizeDeck())
-  // console.log(startGame.handForPlayerOne())
+  console.log('a=', startGame);
+  console.log('b=', startGame.playerOneDeck);
+  console.log('c=', startGame.allCards);
+  console.log('d=', startGame.randomIndex(10));
+  console.log('e=', startGame.randomizeDeck(startGame.allCards))
+  console.log('f=', startGame.handForPlayers())
 }
