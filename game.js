@@ -2,8 +2,11 @@ class Game {
   constructor() {
     this.playerOneDeck = [];
     this.playerTwoDeck = [];
-    this.slapJackDeck = [];
-    this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    this.middleCardDeck = [];
+    this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    // this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];//jack
+    // this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];//double
+    // this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];//sandwich
     this.allCards2 = [
       {value: "A", suit: "spades"},
       {value: "2", suit: "spades"},
@@ -78,7 +81,7 @@ class Game {
       }
     }
     randomDeck = holdCards;
-    // allCards.sort()
+    // randomDeck.sort()
     console.log('x=', randomDeck)
     return randomDeck
   }
@@ -88,7 +91,7 @@ class Game {
     this.playerOneDeck = [];
     this.playerTwoDeck = [];
     var playerDeck = this.randomizeDeck(dealDeck);
-    console.log('please=', playerDeck)
+    console.log('randomDeck=', playerDeck)
     for (var i = 0; i < (Math.round(playerDeck.length * 0.5)); i++) {
       this.playerOneDeck.push(playerDeck[i]);
     } 
@@ -108,21 +111,33 @@ class Game {
   //6) Player turn - ?
 
   //7) Deal Into Middle Deck
-  dealintoMiddleDeck() {
-    // this.handForPlayers();
-    console.log('7a=', this.slapJackDeck)
-    // this.slapJackDeck.push(this.playerOneDeck[0])
-    console.log('7b=', this.slapJackDeck)
+  dealIntoMiddleDeck() {
+    // happens upon click of the players respective keystroke
+    // if keystroke === XXX then deal card to middle deck
+    console.log('7a=', this.middleCardDeck)
+    this.middleCardDeck.unshift(this.playerOneDeck[0])
+    this.playerOneDeck.splice(0, 1);
+    this.middleCardDeck.unshift(this.playerTwoDeck[0])
+    this.playerTwoDeck.splice(0, 1);
+    console.log('7b=', this.middleCardDeck)
     console.log('7=', this.playerOneDeck)
     console.log(this)
+    return(this)
   }
 
   //8) Attempt Slapping
+  //slapOnJack
+  //slapOnDouble
+  //slapOnSandwich
+  //badSlap
 
   //9) Update Wins
+  //Update wins logic
 
   //10) Player Wins
+  //What happens if player wins
 
   //11) Reset Deck
+  //Hwo to rest the deck
 
 }

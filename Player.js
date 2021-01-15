@@ -11,7 +11,7 @@ class Player {
   }
 
   saveWinsToStorage() {
-    // TBD
+    //save wins to storage
   }
 
 }

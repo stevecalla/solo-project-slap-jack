@@ -14,7 +14,7 @@ function test() {
   // console.log('e=', startGame.randomizeDeck(startGame.allCards));
   console.log('f=', startGame.handForPlayers());
   console.log('g=', startGame.playerOneDeck[0].value)
-  console.log('i=', startGame.dealintoMiddleDeck());
+  console.log('i=', startGame.dealIntoMiddleDeck());
   // if(startGame.playerOneDeck[0].value === startGame.playerOneDeck[0].value) {
   //   console.log(true);
   // } else {
@@ -31,3 +31,13 @@ function test() {
   //   console.log(false);
   // }
 }
+
+//eventlistener for each keystroke
+//player ONE keystroke or click
+// 1) player 1 event listener active
+// 2) player 2 event listener not active
+// 3) player 1 messege = please deal or something
+// 4) deal to (unshift) dealintoMiddleDeck
+// 5) splice from player one hand
+// 6) all for slaps to occur
+// 7) run slap logic
