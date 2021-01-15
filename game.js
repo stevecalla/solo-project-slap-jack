@@ -3,9 +3,11 @@ class Game {
     this.playerOneDeck = [];
     this.playerTwoDeck = [];
     this.middleCardDeck = [];
-    this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    // this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];//jack
-    // this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];//double
+    this.allCards = ["A", "2", "3", "9", "10", "J"];
+    // this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    // this.allCards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    this.allCards = ["A", "2", "3", "9", "10", "J"];//jack
+    // this.allCards = ["7", "7", "8", "9", "8", "J", "Q", "K"];//double
     // this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];//sandwich
     this.allCards2 = [
       {value: "A", suit: "spades"},
@@ -73,10 +75,10 @@ class Game {
   randomizeDeck(randomDeck) {
     var holdCards = []; //hold randomly generated cards
     var index; //hold index to grab random card
-    for (var i = 0; holdCards.length < this.allCards.length; i++) {
-      index =  this.randomIndex(this.allCards.length)
-      if (!holdCards.includes(this.allCards[index])) {
-        holdCards.push(this.allCards[index]);
+    for (var i = 0; holdCards.length < randomDeck.length; i++) {
+      index =  this.randomIndex(randomDeck.length)
+      if (!holdCards.includes(randomDeck[index])) {
+        holdCards.push(randomDeck[index]);
         // console.table(i, index, holdCards)
       }
     }
@@ -87,10 +89,10 @@ class Game {
   }
 
   //5) Assign initial cards to player #1 & 2
-  handForPlayers(dealDeck) {
+  handForPlayers() {
     this.playerOneDeck = [];
     this.playerTwoDeck = [];
-    var playerDeck = this.randomizeDeck(dealDeck);
+    var playerDeck = this.randomizeDeck(this.allCards);
     // console.log('randomDeck=', playerDeck)
     for (var i = 0; i < (Math.round(playerDeck.length * 0.5)); i++) {
       this.playerOneDeck.push(playerDeck[i]);
@@ -136,54 +138,74 @@ class Game {
     // return(this)
   }
 
-  //8) Attempt Slapping
-  //slapOnJack
+  //8a) Attempt Slapping
+  //Jack
   slapOnJackOne() {
     //create for player2
     //create === jack not 10
     console.log('slap')
-    if (this.middleCardDeck[0] === 10) {
+    if (this.middleCardDeck[0] === "J") {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
         // console.log()
         this.playerOneDeck.push(this.middleCardDeck[i]);
       }
       this.middleCardDeck = [];
-      console.log('8 Middle=', this.middleCardDeck)
-      console.log('8 One', this.playerOneDeck)
-      console.log('8 Two=', this.playerTwoDeck)
+      this.playerOneDeck = this.randomizeDeck(this.playerOneDeck);
+      console.log('jack1 Middle=', this.middleCardDeck)
+      console.log('jack1 One', this.playerOneDeck)
+      console.log('jack1 Two=', this.playerTwoDeck)
     }
   }
 
+  //8a) JackTwo() {
   slapOnJackTwo() {
-    //create for player2
-    //create === jack not 5
     console.log('slap')
-    if (this.middleCardDeck[0] === 5) {
+    if (this.middleCardDeck[0] === "A") {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
         // console.log()
         this.playerTwoDeck.push(this.middleCardDeck[i]);
       }
       this.middleCardDeck = [];
-      console.log('8 Middle=', this.middleCardDeck)
-      console.log('8 One', this.playerOneDeck)
-      console.log('8 Two=', this.playerTwoDeck)
+      this.playerTwoDeck = this.randomizeDeck(this.playerTwoDeck);
+      console.log('jack2 Middle=', this.middleCardDeck)
+      console.log('jack2 One', this.playerOneDeck)
+      console.log('jack2 Two=', this.playerTwoDeck)
     }
   }
-  //slapOnDouble
+
+//8b) Double
+  slapOnDoubleOne() {
+    console.log('double')
+    if (this.middleCardDeck[0] === this.middleCardDeck[1]) {
+      for (var i = 0; i < this.middleCardDeck.length; i++) {
+        // console.log()
+        this.playerOneDeck.push(this.middleCardDeck[i]);
+      }
+      this.middleCardDeck = [];
+      this.playerOneDeck = this.randomizeDeck(this.playeOneDeck);
+      console.log('double2 Middle=', this.middleCardDeck)
+      console.log('double2 One', this.playerOneDeck)
+      console.log('double2 Two=', this.playerTwoDeck)
+    }
+  }
+
+  slapOnDoubleTwo() {
+    console.log('double')
+    if (this.middleCardDeck[0] === this.middleCardDeck[1]) {
+      for (var i = 0; i < this.middleCardDeck.length; i++) {
+        // console.log()
+        this.playerTwoDeck.push(this.middleCardDeck[i]);
+      }
+      this.middleCardDeck = [];
+      this.playerTwoDeck = this.randomizeDeck(this.playerTwoDeck);
+      console.log('double2 Middle=', this.middleCardDeck)
+      console.log('double2 One', this.playerOneDeck)
+      console.log('double2 Two=', this.playerTwoDeck)
+    }
+  }
+
   //slapOnSandwich
   //badSlap
-  slapOnBad() {
-    console.log('slap')
-    if (this.middleCardDeck[0] !== 10) {
-      // for (var i = 0; i < this.middleCardDeck.length; i++) {
-      //   // console.log()
-        this.playerOneDeck.push(this.middleCardDeck[i]);
-      // }
-      console.log('8 Middle=', this.middleCardDeck)
-      console.log('8 One', this.playerOneDeck)
-      console.log('8 Two=', this.playerTwoDeck)
-    }
-  }
 
   //9) Update Wins
   //Update wins logic

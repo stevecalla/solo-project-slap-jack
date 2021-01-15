@@ -28,6 +28,8 @@ function slapMiddleDeckOne() {
   console.log('hello')
   currentGame.slapOnJackOne();
   currentGame.slapOnJackTwo();
+  currentGame.slapOnDoubleOne();
+  currentGame.slapOnDoubleTwo();
 }
 
 function currentGame() {
