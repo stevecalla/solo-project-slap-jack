@@ -9,7 +9,7 @@ var middleDeck = document.querySelector('.middle');
 newGame.addEventListener('click', currentGame);
 playerOne.addEventListener('click', playerOneDeal);
 playerTwo.addEventListener('click', playerTwoDeal);
-middleDeck.addEventListener('click', slapMiddleDeck);
+middleDeck.addEventListener('click', slapMiddleDeckOne);
 
 //Functions
 var currentGame = new Game();
@@ -24,9 +24,10 @@ function playerTwoDeal() {
   middleDeck.innerText = `${currentGame.middleCardDeck}`
 }
 
-function slapMiddleDeck() {
+function slapMiddleDeckOne() {
   console.log('hello')
-  currentGame.slapOnJack();
+  currentGame.slapOnJackOne();
+  currentGame.slapOnJackTwo();
 }
 
 function currentGame() {

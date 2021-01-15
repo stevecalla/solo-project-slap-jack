@@ -138,13 +138,32 @@ class Game {
 
   //8) Attempt Slapping
   //slapOnJack
-  slapOnJack() {
+  slapOnJackOne() {
+    //create for player2
+    //create === jack not 10
     console.log('slap')
     if (this.middleCardDeck[0] === 10) {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
         // console.log()
         this.playerOneDeck.push(this.middleCardDeck[i]);
       }
+      this.middleCardDeck = [];
+      console.log('8 Middle=', this.middleCardDeck)
+      console.log('8 One', this.playerOneDeck)
+      console.log('8 Two=', this.playerTwoDeck)
+    }
+  }
+
+  slapOnJackTwo() {
+    //create for player2
+    //create === jack not 5
+    console.log('slap')
+    if (this.middleCardDeck[0] === 5) {
+      for (var i = 0; i < this.middleCardDeck.length; i++) {
+        // console.log()
+        this.playerTwoDeck.push(this.middleCardDeck[i]);
+      }
+      this.middleCardDeck = [];
       console.log('8 Middle=', this.middleCardDeck)
       console.log('8 One', this.playerOneDeck)
       console.log('8 Two=', this.playerTwoDeck)
