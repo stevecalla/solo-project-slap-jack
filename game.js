@@ -114,32 +114,35 @@ class Game {
   playerOneDealIntoMiddleDeck() {
     // happens upon click of the players respective keystroke
     // if keystroke === XXX then deal card to middle deck
-    console.log('7a=', this.middleCardDeck)
+    // console.log('7a=', this.middleCardDeck)
     this.middleCardDeck.unshift(this.playerOneDeck[0])
     this.playerOneDeck.splice(0, 1);
-    // this.middleCardDeck.unshift(this.playerTwoDeck[0])
-    // this.playerTwoDeck.splice(0, 1);
-    console.log('7b=', this.middleCardDeck)
-    console.log('7=', this.playerOneDeck)
-    console.log(this)
-    return(this)
+    console.log('7 Middle=', this.middleCardDeck)
+    console.log('7 One', this.playerOneDeck)
+    // console.log(this)
+    // return(this)
   }
 
   //7a) Deal Into Middle Deck
   playerTwoDealIntoMiddleDeck() {
     // happens upon click of the players respective keystroke
     // if keystroke === XXX then deal card to middle deck
-    console.log('7a=', this.middleCardDeck)
+    // console.log('7a=', this.middleCardDeck)
     this.middleCardDeck.unshift(this.playerTwoDeck[0])
     this.playerTwoDeck.splice(0, 1);
-    console.log('7b=', this.middleCardDeck)
-    console.log('7=', this.playerOneDeck)
-    console.log(this)
-    return(this)
+    console.log('7a Middle=', this.middleCardDeck)
+    console.log('7a Two=', this.playerTwoDeck)
+    // console.log(this)
+    // return(this)
   }
 
   //8) Attempt Slapping
   //slapOnJack
+  slapOnJack() {
+    if (this.middleCardDeck[0] = 10) {
+      this.playerOneDeck.push(this.middleCardDeck)
+    }
+  }
   //slapOnDouble
   //slapOnSandwich
   //badSlap

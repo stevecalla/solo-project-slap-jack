@@ -6,46 +6,51 @@ var middleDeck = document.querySelector('.middle');
 
 //Event Listeners
 //window.OnLoad
-newGame.addEventListener('click', startGame);
+newGame.addEventListener('click', currentGame);
 playerOne.addEventListener('click', playerOneDeal);
-playerTwo.addEventListener('click', playerOneDeal);
+playerTwo.addEventListener('click', playerTwoDeal);
+middleDeck.addEventListener('click', middleDeckSlap);
 
 //Functions
-var startGame = new Game();
+var currentGame = new Game();
 
 function playerOneDeal() {
-  startGame.playerOneDealIntoMiddleDeck();
-  middleDeck.innerText = `${startGame.middleCardDeck}`
-  playerTwo.addEventListener('click', playerOneDeal);
+  currentGame.playerOneDealIntoMiddleDeck();
+  middleDeck.innerText = `${currentGame.middleCardDeck}`
 }
 
 function playerTwoDeal() {
-  startGame.playerTwoDealIntoMiddleDeck();
-  middleDeck.innerText = `${startGame.middleCardDeck}`
+  currentGame.playerTwoDealIntoMiddleDeck();
+  middleDeck.innerText = `${currentGame.middleCardDeck}`
 }
 
-function startGame() {
+function middleDeckSlap() {
+  console.log('hello')
+  currentGame.slapOnJack();
+}
+
+function currentGame() {
   // console.log('x')
-  // console.log('a=', startGame);
-  // console.log('b=', startGame.playerOneDeck);
-  // console.log('c=', startGame.allCards);
-  // console.log('d=', startGame.randomIndex(startGame.allCards.length));
-  // console.log('e=', startGame.randomizeDeck(startGame.allCards));
-  // console.log('startGame=', startGame.handForPlayers());
-  startGame.handForPlayers();
-  // console.log('g=', startGame.playerOneDeck[0].value)
-  // console.log('i=', startGame.dealIntoMiddleDeck());
-  // if(startGame.playerOneDeck[0].value === startGame.playerOneDeck[0].value) {
+  // console.log('a=', currentGame);
+  // console.log('b=', currentGame.playerOneDeck);
+  // console.log('c=', currentGame.allCards);
+  // console.log('d=', currentGame.randomIndex(currentGame.allCards.length));
+  // console.log('e=', currentGame.randomizeDeck(currentGame.allCards));
+  // console.log('currentGame=', currentGame.handForPlayers());
+  currentGame.handForPlayers();
+  // console.log('g=', currentGame.playerOneDeck[0].value)
+  // console.log('i=', currentGame.dealIntoMiddleDeck());
+  // if(currentGame.playerOneDeck[0].value === currentGame.playerOneDeck[0].value) {
   //   console.log(true);
   // } else {
   //   console.log(false);
   // }
-  // if(startGame.playerOneDeck[0].value === startGame.playerOneDeck[1].value) {
+  // if(currentGame.playerOneDeck[0].value === currentGame.playerOneDeck[1].value) {
   //   console.log(true);
   // } else {
   //   console.log(false);
   // }
-  // if(startGame.playerOneDeck[0] === startGame.playerOneDeck[14]) {
+  // if(currentGame.playerOneDeck[0] === currentGame.playerOneDeck[14]) {
   //   console.log(true);
   // } else {
   //   console.log(false);
