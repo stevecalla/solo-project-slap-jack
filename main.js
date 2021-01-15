@@ -18,12 +18,12 @@ var currentGame = new Game();
 function playerOneDeal() {
   console.log('a')
   currentGame.playerOneDealIntoMiddleDeck();
-  middleDeck.innerText = `${currentGame.middleCardDeck[0].a}`
+  middleDeck.innerText = `${currentGame.middleCardDeck[0].a}, ${currentGame.allCards.length}, ${currentGame.middleCardDeck.length}, ${currentGame.playerOneDeck.length}, ${currentGame.playerTwoDeck.length}`
 }
 
 function playerTwoDeal() {
   currentGame.playerTwoDealIntoMiddleDeck();
-  middleDeck.innerText = `${currentGame.middleCardDeck[0].a}`
+  middleDeck.innerText = `${currentGame.middleCardDeck[0].a}, ${currentGame.allCards.length}, ${currentGame.middleCardDeck.length}, ${currentGame.playerOneDeck.length}, ${currentGame.playerTwoDeck.length}`
 }
 
 function slapMiddleDeckOne() {

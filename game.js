@@ -131,10 +131,12 @@ class Game {
   }
 
   //8a) Attempt Slapping
-  //Jack & Double ONE
+  //Jack & Double & Sandwich ONE
   slapOnJackOne() {
     console.log('slap')
-    if (this.middleCardDeck[0] === "J" || this.middleCardDeck[0] === this.middleCardDeck[1]) {
+    if (this.playerOneCard >= 0 && (this.middleCardDeck[0] === "J" 
+        || this.middleCardDeck[0] === this.middleCardDeck[1] 
+        || this.middleCardDeck[0] === this.middleCardDeck[2])) {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
         // console.log()
         this.playerOneDeck.push(this.middleCardDeck[i]);
@@ -147,10 +149,13 @@ class Game {
     }
   }
 
-  //8a) Jack & Double TWO {
+  //8a) Jack & Double & Sandwich TWO {
   slapOnJackTwo() {
     console.log('slap2')
-    if (this.middleCardDeck[0] === "A" || this.middleCardDeck[0] === this.middleCardDeck[1]) {
+    if (this.playerTwoCard >= 0 
+          && (this.middleCardDeck[0] === "A" 
+          || this.middleCardDeck[0] === this.middleCardDeck[1] 
+          || this.middleCardDeck[0] === this.middleCardDeck[2])) {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
         // console.log()
         this.playerTwoDeck.push(this.middleCardDeck[i]);
@@ -161,10 +166,9 @@ class Game {
       console.log('jack2 One', this.playerOneDeck)
       console.log('jack2 Two=', this.playerTwoDeck)
     }
+      //turn off listener
   }
-
-  //slapOnSandwich
-  //badSlap
+}
 
   //9) Update Wins
   //Update wins logic
@@ -174,5 +178,3 @@ class Game {
 
   //11) Reset Deck
   //Hwo to rest the deck
-
-}

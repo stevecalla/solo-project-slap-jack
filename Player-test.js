@@ -70,11 +70,17 @@ listenOnSlapJack.addEventListener('click', handForPlayerOne);
 //   handForPlayerOne();
 // }
 
-// document.addEventListener("keydown", function(event) {
-//   console.log(event.which);
-//   if (event.which === 70) {
-//     console.log('yes')
-//   }
-// });
+document.addEventListener("keydown", function(event) {
+  console.log(event.which);
+  if (event.which === 81) {
+    console.log('Q')
+  } else if (event.which === 80) {
+    console.log('P')
+  } else if (event.which === 70) {
+    console.log('F');
+  } else if (event.which === 74) {
+    console.log('J')
+  }
+});
 
 
