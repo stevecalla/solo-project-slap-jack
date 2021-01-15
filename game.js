@@ -3,8 +3,8 @@ class Game {
     this.playerOneDeck = [];
     this.playerTwoDeck = [];
     this.slapJackDeck = [];
-    // this.allCards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    this.allCards = [
+    this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    this.allCards2 = [
       {value: "A", suit: "spades"},
       {value: "2", suit: "spades"},
       {value: "3", suit: "spades"},
@@ -89,12 +89,14 @@ class Game {
     this.playerTwoDeck = [];
     var playerDeck = this.randomizeDeck(dealDeck);
     console.log('please=', playerDeck)
-    for (var i = 0; i < (playerDeck.length * 0.5); i++) {
+    for (var i = 0; i < (Math.round(playerDeck.length * 0.5)); i++) {
       this.playerOneDeck.push(playerDeck[i]);
     } 
     console.log(Math.round(playerDeck.length * 0.5))
     for (var i = 0; i < (Math.round(playerDeck.length * 0.5)); i++) {
-      this.playerTwoDeck.push(playerDeck[i + (Math.round(playerDeck.length * 0.5)-1)]);
+      if ((this.playerOneDeck.length + this.playerTwoDeck.length < this.allCards.length)) {
+        this.playerTwoDeck.push(playerDeck[i + (Math.round(playerDeck.length * 0.5))]);
+      }
     }
     console.table('1=', this.playerDeck, this.playerOneDeck, this.playerTwoDeck)
     console.log('1=', this)
@@ -106,7 +108,7 @@ class Game {
   //6) Player turn - ?
 
   //7) Deal Into Middle Deck
-  dealtoSlapJackDeck() {
+  dealintoMiddleDeck() {
     // this.handForPlayers();
     console.log('7a=', this.slapJackDeck)
     // this.slapJackDeck.push(this.playerOneDeck[0])

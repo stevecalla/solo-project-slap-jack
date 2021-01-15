@@ -14,7 +14,7 @@ function test() {
   // console.log('e=', startGame.randomizeDeck(startGame.allCards));
   console.log('f=', startGame.handForPlayers());
   console.log('g=', startGame.playerOneDeck[0].value)
-  console.log('i=', startGame.dealtoSlapJackDeck());
+  console.log('i=', startGame.dealintoMiddleDeck());
   // if(startGame.playerOneDeck[0].value === startGame.playerOneDeck[0].value) {
   //   console.log(true);
   // } else {
