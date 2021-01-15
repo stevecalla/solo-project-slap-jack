@@ -139,13 +139,32 @@ class Game {
   //8) Attempt Slapping
   //slapOnJack
   slapOnJack() {
-    if (this.middleCardDeck[0] = 10) {
-      this.playerOneDeck.push(this.middleCardDeck)
+    console.log('slap')
+    if (this.middleCardDeck[0] === 10) {
+      for (var i = 0; i < this.middleCardDeck.length; i++) {
+        // console.log()
+        this.playerOneDeck.push(this.middleCardDeck[i]);
+      }
+      console.log('8 Middle=', this.middleCardDeck)
+      console.log('8 One', this.playerOneDeck)
+      console.log('8 Two=', this.playerTwoDeck)
     }
   }
   //slapOnDouble
   //slapOnSandwich
   //badSlap
+  slapOnBad() {
+    console.log('slap')
+    if (this.middleCardDeck[0] !== 10) {
+      // for (var i = 0; i < this.middleCardDeck.length; i++) {
+      //   // console.log()
+        this.playerOneDeck.push(this.middleCardDeck[i]);
+      // }
+      console.log('8 Middle=', this.middleCardDeck)
+      console.log('8 One', this.playerOneDeck)
+      console.log('8 Two=', this.playerTwoDeck)
+    }
+  }
 
   //9) Update Wins
   //Update wins logic
