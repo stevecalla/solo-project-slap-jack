@@ -1,20 +1,40 @@
+//Variables
+var newGame = document.querySelector('.title');
+var playerOne = document.querySelector('.one');
+var playerTwo = document.querySelector('.two');
+var middleDeck = document.querySelector('.middle');
+
+//Event Listeners
+//window.OnLoad
+newGame.addEventListener('click', startGame);
+playerOne.addEventListener('click', playerOneDeal);
+playerTwo.addEventListener('click', playerOneDeal);
+
+//Functions
 var startGame = new Game();
 
+function playerOneDeal() {
+  startGame.playerOneDealIntoMiddleDeck();
+  middleDeck.innerText = `${startGame.middleCardDeck}`
+  playerTwo.addEventListener('click', playerOneDeal);
+}
 
+function playerTwoDeal() {
+  startGame.playerTwoDealIntoMiddleDeck();
+  middleDeck.innerText = `${startGame.middleCardDeck}`
+}
 
-var listenOnSlapJack = document.querySelector('.title');
-listenOnSlapJack.addEventListener('click', test);
-
-function test() {
-  console.log('x')
+function startGame() {
+  // console.log('x')
   // console.log('a=', startGame);
   // console.log('b=', startGame.playerOneDeck);
   // console.log('c=', startGame.allCards);
   // console.log('d=', startGame.randomIndex(startGame.allCards.length));
   // console.log('e=', startGame.randomizeDeck(startGame.allCards));
-  console.log('f=', startGame.handForPlayers());
-  console.log('g=', startGame.playerOneDeck[0].value)
-  console.log('i=', startGame.dealIntoMiddleDeck());
+  // console.log('startGame=', startGame.handForPlayers());
+  startGame.handForPlayers();
+  // console.log('g=', startGame.playerOneDeck[0].value)
+  // console.log('i=', startGame.dealIntoMiddleDeck());
   // if(startGame.playerOneDeck[0].value === startGame.playerOneDeck[0].value) {
   //   console.log(true);
   // } else {

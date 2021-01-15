@@ -65,7 +65,7 @@ class Game {
 
   //3) Create random index generator
   randomIndex(numberOfCards) {
-    console.log('g=', numberOfCards)
+    // console.log('g=', numberOfCards)
     return Math.floor(Math.random() * numberOfCards)
   }
 
@@ -82,7 +82,7 @@ class Game {
     }
     randomDeck = holdCards;
     // randomDeck.sort()
-    console.log('x=', randomDeck)
+    // console.log('x=', randomDeck)
     return randomDeck
   }
 
@@ -91,18 +91,18 @@ class Game {
     this.playerOneDeck = [];
     this.playerTwoDeck = [];
     var playerDeck = this.randomizeDeck(dealDeck);
-    console.log('randomDeck=', playerDeck)
+    // console.log('randomDeck=', playerDeck)
     for (var i = 0; i < (Math.round(playerDeck.length * 0.5)); i++) {
       this.playerOneDeck.push(playerDeck[i]);
     } 
-    console.log(Math.round(playerDeck.length * 0.5))
+    // console.log(Math.round(playerDeck.length * 0.5))
     for (var i = 0; i < (Math.round(playerDeck.length * 0.5)); i++) {
       if ((this.playerOneDeck.length + this.playerTwoDeck.length < this.allCards.length)) {
         this.playerTwoDeck.push(playerDeck[i + (Math.round(playerDeck.length * 0.5))]);
       }
     }
-    console.table('1=', this.playerDeck, this.playerOneDeck, this.playerTwoDeck)
-    console.log('1=', this)
+    console.table('Step5=', playerDeck, this.playerOneDeck, this.playerTwoDeck)
+    // console.log('step5=', this)
     var playerOne = new Player(1, this.playerOneDeck)
     var playerTwo = new Player(1, this.playerTwoDeck)
     return (this.playerOneDeck, this.playerTwoDeck)
@@ -111,12 +111,25 @@ class Game {
   //6) Player turn - ?
 
   //7) Deal Into Middle Deck
-  dealIntoMiddleDeck() {
+  playerOneDealIntoMiddleDeck() {
     // happens upon click of the players respective keystroke
     // if keystroke === XXX then deal card to middle deck
     console.log('7a=', this.middleCardDeck)
     this.middleCardDeck.unshift(this.playerOneDeck[0])
     this.playerOneDeck.splice(0, 1);
+    // this.middleCardDeck.unshift(this.playerTwoDeck[0])
+    // this.playerTwoDeck.splice(0, 1);
+    console.log('7b=', this.middleCardDeck)
+    console.log('7=', this.playerOneDeck)
+    console.log(this)
+    return(this)
+  }
+
+  //7a) Deal Into Middle Deck
+  playerTwoDealIntoMiddleDeck() {
+    // happens upon click of the players respective keystroke
+    // if keystroke === XXX then deal card to middle deck
+    console.log('7a=', this.middleCardDeck)
     this.middleCardDeck.unshift(this.playerTwoDeck[0])
     this.playerTwoDeck.splice(0, 1);
     console.log('7b=', this.middleCardDeck)
