@@ -84,10 +84,10 @@ class Game {
   }
 
   //5) Assign initial cards to player #1 & 2
-  handForPlayers(unrandomizedDeck) {
+  handForPlayers(dealDeck) {
     this.playerOneDeck = [];
     this.playerTwoDeck = [];
-    var playerDeck = this.randomizeDeck(unrandomizedDeck);
+    var playerDeck = this.randomizeDeck(dealDeck);
     console.log('please=', playerDeck)
     for (var i = 0; i < (playerDeck.length * 0.5); i++) {
       this.playerOneDeck.push(playerDeck[i]);
@@ -102,5 +102,25 @@ class Game {
     var playerTwo = new Player(1, this.playerTwoDeck)
     return (this.playerOneDeck, this.playerTwoDeck)
   }
+
+  //6) Player turn - ?
+
+  //7) Deal Into Middle Deck
+  dealtoSlapJackDeck() {
+    // this.handForPlayers();
+    console.log('7a=', this.slapJackDeck)
+    // this.slapJackDeck.push(this.playerOneDeck[0])
+    console.log('7b=', this.slapJackDeck)
+    console.log('7=', this.playerOneDeck)
+    console.log(this)
+  }
+
+  //8) Attempt Slapping
+
+  //9) Update Wins
+
+  //10) Player Wins
+
+  //11) Reset Deck
 
 }
