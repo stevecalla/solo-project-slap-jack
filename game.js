@@ -4,6 +4,7 @@ class Game {
     this.player2 = new Player(2);
     this.middleCardDeck = [];
     this.handCount = 0;
+    this.slapped = 0;
     this.currentPlayer = this.player1;
     // this.allCards = [{value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "J", suit: "2"}, {value: "1", suit: "2"}, {value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "1", suit: "2"}, {value: "1", suit: "2"}];
     this.allCards = [{value: "J"}, {value: "A"}, {value: "J"}, {value: "1"}, {value: "J"}, {value: "A"}, {value: "1"}, {value: "1"}, {value: "1"}]
@@ -120,6 +121,7 @@ class Game {
     console.log(this.middleCardDeck)
     console.log(this.currentPlayer)
     this.assignTurn();
+    this.slapped = 0;
     this.winLogic();
   }
 
@@ -132,6 +134,7 @@ class Game {
     if(this.middleCardDeck.length > 2) {
       this.slapOnSandwich()
     }
+    this.badSlap();
   }
 
   // 7) Deal Into Middle Deck
@@ -153,9 +156,11 @@ class Game {
     if (this.currentPlayer === this.player1 && this.middleCardDeck[0].value === "J") {
       this.slapActionPlayerOne();
       console.log('jack-One');
+      this.slapped ++;
     } else if (this.middleCardDeck[0].value === "J") {
       this.slapActionPlayerTwo();
       console.log('jack-Two');
+      this.slapped ++;
     }
   // console.log(this.middleCardDeck)
   // console.log(this.currentPlayer)
@@ -170,9 +175,11 @@ class Game {
       && (this.middleCardDeck[0].value === this.middleCardDeck[1].value)) {
       this.slapActionPlayerOne();
       console.log('doubles-One')
+      this.slapped ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value) {
       this.slapActionPlayerTwo();
       console.log('doubles-Two');
+      this.slapped ++;
     } else {
       console.log('nodouble')
     }
@@ -186,11 +193,25 @@ class Game {
       && (this.middleCardDeck[0].value === this.middleCardDeck[2].value)) {
         this.slapActionPlayerOne();
         console.log('sandwich-One');
+        this.slapped ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[2].value) {
         this.slapActionPlayerTwo();
         console.log('sandwich-Two');
+        this.slapped ++;
     } else {
       console.log('nodouble')
+    }
+  }
+
+  badSlap() {
+    if (this.slapped > 0) {
+      console.log('badslap')
+      console.log(this.slapped);
+    }
+    if (this.currentPlayer === this.player1) {
+      this.player.playerDeck.push(this.middleCardDeck[i]);
+    } else if (this.currentPlayer === this.player2) {
+      xxxxx
     }
   }
 
@@ -209,20 +230,20 @@ class Game {
     this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
     this.middleCardDeck = []; 
   }
-
-}
     
   //9) Update Wins
   //Update wins logic
 
   //10) Player Wins
   winLogic() {
-    if (this.player1.playerDeck === 3) {
+    if (this.player1.playerDeck.length >= 6) {
       this.player1.wins ++;
-    } else if {
+    } else if (this.player2.playerDeck.length >= 6) {
       this.player2.wins ++;
     } 
   }
+
+}
 
   //11) Reset Deck
   //Hwo to rest the deck
