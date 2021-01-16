@@ -6,8 +6,8 @@ var middleDeck = document.querySelector('.middle');
 // var keydownQ = document.querySelector('event.which');
 
 //GLOBAL VARIABLES - ON PAGE LOAD
-var currentGame = new Game();
-console.log(currentGame)
+var x = new Game();
+console.log(x)
 
 // //Event Listeners
 // //window.OnLoad
