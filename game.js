@@ -1,14 +1,10 @@
 class Game {
   constructor() {
-    this.playerOneDeck = [];
-    this.playerTwoDeck = [];
+    this.player1 = new Player();
+    this.player2 = new Player();
     this.middleCardDeck = [];
-    // this.allCards = ["A", "2", "3", "9", "10", "J"];
+    this.currentPlayer = null;
     this.allCards = [{a: "J", b: "spades"}, {a: "A", b: "diamonds"}, {a: "1", b: "clubs"}, {a: "1", b: "diamonds"}, {a: "J", b: "spades"}, {a: "A", b: "diamonds"}, {a: "1", b: "clubs"}, {a: "1", b: "diamonds"}];
-    // this.allCards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    // this.allCards = ["A", "2", "3", "9", "10", "J", "1"];//jack
-    // this.allCards = ["A", "2", "2", "9", "9", "J"];//double
-    // this.allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];//sandwich
     this.allCards2 = [
       {value: "A", suit: "spades"},
       {value: "2", suit: "spades"},
@@ -65,70 +61,88 @@ class Game {
       ]
   }
 
-  //3) Create random index generator
+  startGame() {
+    this.handForPlayers();
+    this.currentPlayer = this.player1;
+  }
+
   randomIndex(numberOfCards) {
-    // console.log('g=', numberOfCards)
     return Math.floor(Math.random() * numberOfCards)
   }
 
-  //4) Randomize the allCards array
   randomizeDeck(randomDeck) {
-    var holdCards = []; //hold randomly generated cards
-    var index; //hold index to grab random card
+    var holdCards = [];
+    var index;
     for (var i = 0; holdCards.length < randomDeck.length; i++) {
       index =  this.randomIndex(randomDeck.length)
       if (!holdCards.includes(randomDeck[index])) {
         holdCards.push(randomDeck[index]);
-        // console.table(i, index, holdCards)
       }
     }
     randomDeck = holdCards;
     // randomDeck.sort()
-    // console.log('x=', randomDeck)
     return randomDeck
   }
 
-  //5) Assign initial cards to player #1 & 2
   handForPlayers() {
     this.playerOneDeck = [];
     this.playerTwoDeck = [];
     var playerDeck = this.randomizeDeck(this.allCards);
-    // console.log('randomDeck=', playerDeck)
     for (var i = 0; i < (Math.round(playerDeck.length * 0.5)); i++) {
       this.playerOneDeck.push(playerDeck[i]);
     } 
-    // console.log(Math.round(playerDeck.length * 0.5))
     for (var i = 0; i < (Math.round(playerDeck.length * 0.5)); i++) {
       if ((this.playerOneDeck.length + this.playerTwoDeck.length < this.allCards.length)) {
         this.playerTwoDeck.push(playerDeck[i + (Math.round(playerDeck.length * 0.5))]);
       }
     }
     console.table('Step5=', playerDeck, this.playerOneDeck, this.playerTwoDeck)
-    // console.log('step5=', this)
-    var playerOne = new Player(1, this.playerOneDeck)
-    var playerTwo = new Player(1, this.playerTwoDeck)
-    return (this.playerOneDeck, this.playerTwoDeck)
+    this.player1.playerDeck.push(this.playerOneDeck)
+    this.player2.playerDeck.push(this.playerTwoDeck)
   }
 
-  //6) Player turn - ?
+  assignTurn() {
+    if(this.currentPlayer === this.player1) {
+      this.currentPlayer = this.player2;
+    } else {
+      this.currentPlayer = this.player1;
+    }
+  }
 
   //7) Deal Into Middle Deck
-  playerOneDealIntoMiddleDeck() {
-    this.middleCardDeck.unshift(this.playerOneDeck[0])
-    this.playerOneDeck.splice(0, 1);
+  dealIntoMiddleDeck() {
+    if(this.currentPlayer === this.player1) {
+      this.middleCardDeck.unshift(this.playerOneDeck[0])
+      this.playerOneDeck.splice(0, 1);
+      this.assignTurn();
+    } else {
+      this.middleCardDeck.unshift(this.playerTwoDeck[0])
+      this.playerTwoDeck.splice(0, 1);
+      this.assignTurn();
+    }
+    // this.player1.playerDeck.splice(0,1); //NEW
     console.log('7 Middle=', this.middleCardDeck)
     console.log('7 One', this.playerOneDeck)
     // console.log(this)
   }
 
-  //7a) Deal Into Middle Deck
-  playerTwoDealIntoMiddleDeck() {
-    this.middleCardDeck.unshift(this.playerTwoDeck[0])
-    this.playerTwoDeck.splice(0, 1);
-    console.log('7a Middle=', this.middleCardDeck)
-    console.log('7a Two=', this.playerTwoDeck)
-    // console.log(this)
-  }
+  // playerOneDealIntoMiddleDeck() {
+  //   this.middleCardDeck.unshift(this.playerOneDeck[0])
+  //   this.playerOneDeck.splice(0, 1);
+  //   // this.player1.playerDeck.splice(0,1); //NEW
+  //   console.log('7 Middle=', this.middleCardDeck)
+  //   console.log('7 One', this.playerOneDeck)
+  //   // console.log(this)
+  // }
+
+  // //7a) Deal Into Middle Deck
+  // playerTwoDealIntoMiddleDeck() {
+  //   this.middleCardDeck.unshift(this.playerTwoDeck[0])
+  //   this.playerTwoDeck.splice(0, 1);
+  //   console.log('7a Middle=', this.middleCardDeck)
+  //   console.log('7a Two=', this.playerTwoDeck)
+  //   // console.log(this)
+  // }
 
   //8a) Attempt Slapping
   //Jack & Double & Sandwich ONE
