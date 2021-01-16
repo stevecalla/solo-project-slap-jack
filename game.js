@@ -6,8 +6,8 @@ class Game {
     this.handCount = 0;
     this.slapped = 0;
     this.currentPlayer = this.player1;
-    // this.allCards = [{value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "J", suit: "2"}, {value: "1", suit: "2"}, {value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "1", suit: "2"}, {value: "1", suit: "2"}];
-    this.allCards = [{value: "J"}, {value: "A"}, {value: "J"}, {value: "1"}, {value: "J"}, {value: "A"}, {value: "1"}, {value: "1"}, {value: "1"}]
+    // this.allCards2 = [{value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "J", suit: "2"}, {value: "1", suit: "2"}, {value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "1", suit: "2"}, {value: "1", suit: "2"}];
+    this.allCards = [{value: "J"}, {value: "A"}, {value: "1"}, {value: "2"}, {value: "3"}, {value: "A"}, {value: "5"}, {value: "4"}, {value: "8"}]
     this.allCards2 = [
       {value: "A", suit: "spades"},
       {value: "2", suit: "spades"},
@@ -91,8 +91,8 @@ class Game {
     this.player1.playerDeck = [];
     this.player2.playerDeck = [];
     var playerDeck = this.randomizeDeck(this.allCards);
-    console.log('a=', playerDeck.length)
-    console.log('b=', playerDeck)
+    // console.log('a=', playerDeck.length)
+    // console.log('b=', playerDeck)
     for (var i = 0; i < playerDeck.length * 0.5; i++) {
       this.player1.playerDeck.push(playerDeck[i]);
     } 
@@ -105,41 +105,35 @@ class Game {
   }
 
   assignTurn() {
-    if(this.currentPlayer === this.player1) {
+    if(this.currentPlayer === this.player1 && this.player2.playerDeck.length > 0) {
       this.currentPlayer = this.player2;
-    } else {
+    } else if (this.currentPlayer === this.player2 && this.player1.playerDeck.length > 0) {
       this.currentPlayer = this.player1;
     }
   }
 
   playGame() {
     this.handCount ++;
-    console.log('count=', this.handCount);
-    this.dealIntoMiddleDeck();
-    console.log('middleCardLength#1', this.middleCardDeck.length)
+    console.log('a) count=', this.handCount);
+    // console.log('b) middleCardLength#1', this.middleCardDeck.length)
+    this.dealBothPlayersHaveCards();
     this.slapLogic()
-    console.log(this.middleCardDeck)
-    console.log(this.currentPlayer)
-    this.assignTurn();
     this.slapped = 0;
+    this.assignTurn();
     this.winLogic();
-  }
-
-  slapLogic() {
-    this.slapOnJack();
-    console.log('middleCardLength#2', this.middleCardDeck.length)
-    if(this.middleCardDeck.length > 1) {
-      this.slapOnDouble()
+    // console.log('4', this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length);
+    if ((this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length) > 53) {
+      // console.log('all', this.allCards.length);
+      // alert('4', this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length)
+      // console.log('one', this.player1.playerDeck.length);
+      // console.log('two', this.player2.playerDeck.length);
+      // console.log('middle', this.middleCardDeck.length);
+      return "card limit"}
+      console.log('total', this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length);
     }
-    if(this.middleCardDeck.length > 2) {
-      this.slapOnSandwich()
-    }
-    this.badSlap();
-  }
 
-  // 7) Deal Into Middle Deck
-  dealIntoMiddleDeck() {
-    console.log('player', this.currentPlayer)
+  dealBothPlayersHaveCards() {
+    console.log('c) player', this.currentPlayer)
     if (this.currentPlayer === this.player1) {
       this.middleCardDeck.unshift(this.player1.playerDeck[0])
       this.player1.playerDeck.splice(0, 1);
@@ -147,30 +141,50 @@ class Game {
       this.middleCardDeck.unshift(this.player2.playerDeck[0])
       this.player2.playerDeck.splice(0, 1);
     }    
-    console.table('Deal=', "Middle=", this.middleCardDeck, "Middle1", 'One=', this.player1.playerDeck, "Two=", this.player2.playerDeck)
+    // console.table('d) Deal=', "Middle=", this.middleCardDeck, "Middle1", 'One=', this.player1.playerDeck, "Two=", this.player2.playerDeck)
     // console.log(this)
   }
 
+  slapLogic() {
+    console.log('jack 0=', this.middleCardDeck[0].value)
+    this.slapOnJack();
+    // console.log('f) middleCardLength#2', this.middleCardDeck.length)
+    if(this.middleCardDeck.length > 1) {
+      console.log('double 0=', this.middleCardDeck[0].value)
+      console.log('double 1=', this.middleCardDeck[1].value)
+      this.slapOnDouble()
+    }
+    if(this.middleCardDeck.length > 2) {
+      console.log('sandwich 0=', this.middleCardDeck[0].value)
+      console.log('sandwich 2=', this.middleCardDeck[2].value)
+      this.slapOnSandwich()
+    }
+    // if (this.slapped > 0) {
+    //   this.badSlap();
+    //   console.log('badslap')
+    //   console.log(this.slapped);
+    // }
+    // console.table('z) Slap=', "Middle=", this.middleCardDeck, "Middle1", 'One=', this.player1.playerDeck, "Two=", this.player2.playerDeck)
+    console.table('z) Slap=', "Middle=", this.middleCardDeck.length, "Middle1", 'One=', this.player1.playerDeck.length, "Two=", this.player2.playerDeck.length)
+  }
+
   slapOnJack() {
-    console.log(this.middleCardDeck[0].value)
+    // console.log('e) middle 0=', this.middleCardDeck[0].value)
     if (this.currentPlayer === this.player1 && this.middleCardDeck[0].value === "J") {
       this.slapActionPlayerOne();
       console.log('jack-One');
       this.slapped ++;
-    } else if (this.middleCardDeck[0].value === "J") {
+    } else if (this.currentPlayer === this.player2 && this.middleCardDeck[0].value === "J") {
       this.slapActionPlayerTwo();
       console.log('jack-Two');
       this.slapped ++;
-    }
-  // console.log(this.middleCardDeck)
-  // console.log(this.currentPlayer)
-  console.log('noSlap')
+    } 
   }
 
   slapOnDouble() {
     console.log('double');
-    console.log(this.middleCardDeck[0].value)
-    console.log(this.middleCardDeck[1].value)
+    // console.log(this.middleCardDeck[0].value)
+    // console.log(this.middleCardDeck[1].value)
     if (this.currentPlayer === this.player1
       && (this.middleCardDeck[0].value === this.middleCardDeck[1].value)) {
       this.slapActionPlayerOne();
@@ -180,15 +194,13 @@ class Game {
       this.slapActionPlayerTwo();
       console.log('doubles-Two');
       this.slapped ++;
-    } else {
-      console.log('nodouble')
     }
   }
 
   slapOnSandwich() {
     console.log('sandwich');
-    console.log(this.middleCardDeck[0].value)
-    console.log(this.middleCardDeck[2].value)
+    // console.log(this.middleCardDeck[0].value)
+    // console.log(this.middleCardDeck[2].value)
     if (this.currentPlayer === this.player1
       && (this.middleCardDeck[0].value === this.middleCardDeck[2].value)) {
         this.slapActionPlayerOne();
@@ -198,22 +210,18 @@ class Game {
         this.slapActionPlayerTwo();
         console.log('sandwich-Two');
         this.slapped ++;
-    } else {
-      console.log('nodouble')
     }
   }
 
-  badSlap() {
-    if (this.slapped > 0) {
-      console.log('badslap')
-      console.log(this.slapped);
-    }
-    if (this.currentPlayer === this.player1) {
-      this.player.playerDeck.push(this.middleCardDeck[i]);
-    } else if (this.currentPlayer === this.player2) {
-      xxxxx
-    }
-  }
+  // badSlap() {
+  //   if (this.currentPlayer === this.player1) {
+  //     this.player2.playerDeck.push(this.player1.playerDeck[0]);
+  //     this.player1.playerDeck.slice(0, 1);
+  //   } else if (this.currentPlayer === this.player2) {
+  //     this.player1.playerDeck.push(this.player2.playerDeck[0]);
+  //     this.player2.playerDeck.slice(0, 1);
+  //   }
+  // }
 
   slapActionPlayerOne() {
     for (var i = 0; i < this.middleCardDeck.length; i++) {
@@ -230,16 +238,19 @@ class Game {
     this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
     this.middleCardDeck = []; 
   }
-    
+
   //9) Update Wins
   //Update wins logic
 
   //10) Player Wins
   winLogic() {
-    if (this.player1.playerDeck.length >= 6) {
+    if (this.player1.playerDeck.length >= 52) {
       this.player1.wins ++;
-    } else if (this.player2.playerDeck.length >= 6) {
+    }
+
+    if (this.player2.playerDeck.length >= 52) {
       this.player2.wins ++;
+      // return ("player 2 wins ")
     } 
   }
 
