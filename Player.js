@@ -1,8 +1,8 @@
 class Player {
-  constructor(id, deck, wins) {
+  constructor(id) {
     this.id = id;
     this.playerDeck = []; //new deck
-    this.wins = wins || 0;
+    this.wins = 0;
     // console.table('Player=', this);
   }
 

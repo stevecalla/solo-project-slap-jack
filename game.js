@@ -1,10 +1,11 @@
 class Game {
   constructor() {
-    this.player1 = new Player();
-    this.player2 = new Player();
+    this.player1 = new Player(1);
+    this.player2 = new Player(2);
     this.middleCardDeck = [];
     this.currentPlayer = null;
-    this.allCards = [{a: "J", b: "spades"}, {a: "A", b: "diamonds"}, {a: "1", b: "clubs"}, {a: "1", b: "diamonds"}, {a: "J", b: "spades"}, {a: "A", b: "diamonds"}, {a: "1", b: "clubs"}, {a: "1", b: "diamonds"}];
+    // this.allCards = [{value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "J", suit: "2"}, {value: "1", suit: "2"}, {value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "1", suit: "2"}, {value: "1", suit: "2"}];
+    this.allCards = [{value: "J"}, {value: "A"}, {value: "J"}, {value: "1"}, {value: "J"}, {value: "A"}, {value: "1"}, {value: "1"}]
     this.allCards2 = [
       {value: "A", suit: "spades"},
       {value: "2", suit: "spades"},
@@ -96,7 +97,8 @@ class Game {
         this.playerTwoDeck.push(playerDeck[i + (Math.round(playerDeck.length * 0.5))]);
       }
     }
-    console.table('Step5=', playerDeck, this.playerOneDeck, this.playerTwoDeck)
+
+    console.table('MakeDeck=', this.middleCardDeck, this.playerOneDeck, this.playerTwoDeck)
     this.player1.playerDeck.push(this.playerOneDeck)
     this.player2.playerDeck.push(this.playerTwoDeck)
   }
@@ -121,8 +123,11 @@ class Game {
       this.assignTurn();
     }
     // this.player1.playerDeck.splice(0,1); //NEW
-    console.log('7 Middle=', this.middleCardDeck)
-    console.log('7 One', this.playerOneDeck)
+    // console.log('7 Middle=', this.middleCardDeck[0].value);
+    // console.log('7 One', this.playerOneDeck[0].value);
+    // console.log('7 Two', this.playerTwoDeck[0].value);
+    // console.table('Deal1=', this.middleCardDeck[0].value, this.playerOneDeck[0].value, this.playerTwoDeck[0].value)
+    console.table('Deal=', this.middleCardDeck, this.middleCardDeck[0].value, this.playerOneDeck, this.playerTwoDeck)
     // console.log(this)
   }
 
@@ -148,39 +153,33 @@ class Game {
   //Jack & Double & Sandwich ONE
   slapOnJackOne() {
     console.log('slap')
-    if (this.playerOneCard >= 0 && (this.middleCardDeck[0] === "J" 
-        || this.middleCardDeck[0] === this.middleCardDeck[1] 
-        || this.middleCardDeck[0] === this.middleCardDeck[2])) {
+    if (this.player1.playerDeck.length >= 0 
+        && (this.middleCardDeck[0].value === "J" 
+        || this.middleCardDeck[0].value === this.middleCardDeck[1].value
+        || this.middleCardDeck[0].value === this.middleCardDeck[2].value)) {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
-        // console.log()
-        this.playerOneDeck.push(this.middleCardDeck[i]);
+        // this.player1.playerDeck.push(this.middleCardDeck[i].value);
       }
       this.middleCardDeck = [];
-      this.playerOneDeck = this.randomizeDeck(this.playerOneDeck);
-      console.log('jack1 Middle=', this.middleCardDeck)
-      console.log('jack1 One', this.playerOneDeck)
-      console.log('jack1 Two=', this.playerTwoDeck)
+      this.player1.playerDeck = this.randomizeDeck(this.player1.playerDeck);
     }
+    console.table('Slap1=', this.middleCardDeck, this.playerOneDeck, this.playerTwoDeck)
   }
 
   //8a) Jack & Double & Sandwich TWO {
   slapOnJackTwo() {
     console.log('slap2')
-    if (this.playerTwoCard >= 0 
-          && (this.middleCardDeck[0] === "A" 
-          || this.middleCardDeck[0] === this.middleCardDeck[1] 
-          || this.middleCardDeck[0] === this.middleCardDeck[2])) {
+    if (this.player2.playerDeck.length >= 0 
+          && (this.middleCardDeck[0].value === "J" 
+          || this.middleCardDeck[0].value === this.middleCardDeck[1].value
+          || this.middleCardDeck[0].value === this.middleCardDeck[2].value)) {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
-        // console.log()
-        this.playerTwoDeck.push(this.middleCardDeck[i]);
+        this.player2.playerDeck.push(this.middleCardDeck[i].value);
       }
       this.middleCardDeck = [];
-      this.playerTwoDeck = this.randomizeDeck(this.playerTwoDeck);
-      console.log('jack2 Middle=', this.middleCardDeck)
-      console.log('jack2 One', this.playerOneDeck)
-      console.log('jack2 Two=', this.playerTwoDeck)
+      this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
     }
-      //turn off listener
+    console.table('Slap2=', this.middleCardDeck, this.playerOneDeck, this.playerTwoDeck)
   }
 }
 
