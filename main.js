@@ -46,23 +46,3 @@ switch (event.key) {
   // Cancel the default action to avoid it being handled twice
   event.preventDefault();
 }, true);
-
-
-//////------------MISC-------------------/////
-// document.addEventListener("keydown", function(event) {
-//   console.log(event.which);
-//   if (event.which === 81) {
-//     console.log('Q');
-//     takeTurn()//
-//     playerOneDeal();
-//   } else if (event.which === 80) {
-//     console.log('P');
-//     // playerTwoDeal();
-//   } else if (event.which === 70) {
-//     console.log('F');
-//     // slapMiddleDeckOne()
-//   } else if (event.which === 74) {
-//     console.log('J');
-//     // slapMiddleDeckOne()
-//   }
-// });

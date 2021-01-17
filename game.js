@@ -6,7 +6,7 @@ class Game {
     this.handCount = 0;
     this.slapped = 0;
     this.currentKeyStroke = 'q';
-    this.currentPlayer = this.player1;
+    this.currentPlayer = null;
     // this.allCards2 = [{value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "J", suit: "2"}, {value: "1", suit: "2"}, {value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "1", suit: "2"}, {value: "1", suit: "2"}];
     this.allCards = [{value: "J"}, {value: "A"}, {value: "1"}, {value: "2"}, {value: "3"}, {value: "A"}, {value: "5"}, {value: "4"}, {value: "8"}]
     this.allCards2 = [
@@ -105,35 +105,42 @@ class Game {
     console.table('MakeDeck=', this.middleCardDeck, 'one=', this.player1.playerDeck, 'two=', this.player2.playerDeck);
   }
 
-  assignTurn() {
-    console.log('assign) currentplayer', this.currentPlayer);
-    console.log('assign) currentKey', this.currentKeyStroke);
-    console.log('assign) player1 length', this.player1.playerDeck.length);
-    console.log('assign) player2 length', this.player2.playerDeck.length);
-    // this.currentKeyStroke = 'q';
-    if(this.currentPlayer === this.player1 && this.player1.playerDeck.length > 0 && this.currentKeyStroke === "q") {
-      this.currentPlayer = this.player1;
-      console.log('e) assign turn two')
-    } else if (this.currentPlayer === this.player2 && this.player1.playerDeck.length > 0 && this.currentKeyStroke === 'p') {
-      this.currentPlayer = this.player2;
-      console.log('f) assign turn one')
+
+  isEven(value) {
+    if (value%2 === 0) {
+      // console.log("true")
+      return true; //player 1
+    } else {
+      console.log(false)
+      return false; //player 2
     }
   }
 
-  switchTurn() {
-    console.log('assign) currentplayer', this.currentPlayer);
-    console.log('assign) currentKey', this.currentKeyStroke);
-    console.log('assign) player1 length', this.player1.playerDeck.length);
-    console.log('assign) player2 length', this.player2.playerDeck.length);
-    // this.currentKeyStroke = 'q';
-    if(this.currentPlayer === this.player1 && this.player1.playerDeck.length > 0) {
-      this.currentPlayer = this.player2;
-      console.log('e) assign turn two')
-    } else if (this.currentPlayer === this.player2 && this.player1.playerDeck.length > 0) {
+  assignTurn() {
+    console.log('handcount', this.handCount)
+    if (!this.isEven(this.handCount)) {
       this.currentPlayer = this.player1;
-      console.log('f) assign turn one')
+    } else if (this.isEven(this.handCount) && this.currentKeyStroke === 'p') {
+      this.currentPlayer = this.player2;
+    } else {
+      this.currentPlayer = null;
     }
   }
+
+  // assignTurn() {
+  //   console.log('assign) currentplayer', this.currentPlayer);
+  //   console.log('assign) currentKey', this.currentKeyStroke);
+  //   console.log('assign) player1 length', this.player1.playerDeck.length);
+  //   console.log('assign) player2 length', this.player2.playerDeck.length);
+  //   // this.currentKeyStroke = 'q';
+  //   if(this.currentPlayer === this.player1 && this.player1.playerDeck.length > 0 && this.currentKeyStroke === "q") {
+  //     this.currentPlayer = this.player1;
+  //     console.log('e) assign turn two')
+  //   } else if (this.currentPlayer === this.player2 && this.player1.playerDeck.length > 0 && this.currentKeyStroke === 'p') {
+  //     this.currentPlayer = this.player2;
+  //     console.log('f) assign turn one')
+  //   }
+  // }
 
   playGame() {
     this.handCount ++;
@@ -147,7 +154,6 @@ class Game {
     // this.slapLogic()
     // this.slapped = 0;
     // this.assignTurn();
-    this.switchTurn();
     this.winLogic();
     if ((this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length) > 53) {
       return "card limit"}
