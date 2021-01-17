@@ -22,23 +22,23 @@ window.addEventListener("keydown", function (event) {
 switch (event.key) {
   case "q":
   case "Q":
-    // alert('player 1 deal');
     x.currentKeyStroke = 'q';
     x.playGame();
     break;
   case "p": 
   case "P":
-    // alert('player 2 deal')
     x.currentKeyStroke = 'p';
     x.playGame();
     break;
   case "f":
   case "F":
-    alert('player 1 slap');
+    // alert('player 1 slap');
+    x.slapLogic();
     break;
   case "j":
   case "J":
-    alert('player 2 slap')
+    // alert('player 2 slap')
+    x.slapLogic();
     break;
   default:
     return; // Quit when this doesn't handle the key event.
