@@ -1,0 +1,36 @@
+* {
+  /* border: 1em solid red; */
+  /* height: 100%; */
+  /* width: 100%; */
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.main-container {
+  border: .5rem solid blue;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+}
+
+/* .card-container {
+  border: .5rem solid blue;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+} */
+
+img {
+  border: .5rem solid red;
+  height: 22vw;
+  width: 15vw;
+  /* object-fit: cover;
+}
