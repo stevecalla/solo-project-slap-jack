@@ -106,43 +106,71 @@ class Game {
   }
 
   assignTurn() {
-    console.log('currentplayer', this.currentPlayer);
-    console.log('currentKey', this.currentKeyStroke);
-    if(this.currentPlayer === this.player1 && this.player2.playerDeck.length > 0 && this.currentKeyStroke === 'q') {
-      this.currentPlayer = this.player2;
-      console.log('one')
-    } else if (this.currentPlayer === this.player2 && this.player1.playerDeck.length > 0 && this.currentKeyStroke === 'p') {
+    console.log('assign) currentplayer', this.currentPlayer);
+    console.log('assign) currentKey', this.currentKeyStroke);
+    console.log('assign) player1 length', this.player1.playerDeck.length);
+    console.log('assign) player2 length', this.player2.playerDeck.length);
+    // this.currentKeyStroke = 'q';
+    if(this.currentPlayer === this.player1 && this.player1.playerDeck.length > 0 && this.currentKeyStroke === "q") {
       this.currentPlayer = this.player1;
-      console.log('two')
+      console.log('e) assign turn two')
+    } else if (this.currentPlayer === this.player2 && this.player1.playerDeck.length > 0 && this.currentKeyStroke === 'p') {
+      this.currentPlayer = this.player2;
+      console.log('f) assign turn one')
+    }
+  }
+
+  switchTurn() {
+    console.log('assign) currentplayer', this.currentPlayer);
+    console.log('assign) currentKey', this.currentKeyStroke);
+    console.log('assign) player1 length', this.player1.playerDeck.length);
+    console.log('assign) player2 length', this.player2.playerDeck.length);
+    // this.currentKeyStroke = 'q';
+    if(this.currentPlayer === this.player1 && this.player1.playerDeck.length > 0) {
+      this.currentPlayer = this.player2;
+      console.log('e) assign turn two')
+    } else if (this.currentPlayer === this.player2 && this.player1.playerDeck.length > 0) {
+      this.currentPlayer = this.player1;
+      console.log('f) assign turn one')
     }
   }
 
   playGame() {
     this.handCount ++;
-    console.log('a) count=', this.allCards);
-    console.log('a) count=', this.handCount);
-    console.log('b) middleCardLength#1', this.middleCardDeck.length)
-    this.dealBothPlayersHaveCards();
+    console.log('a) play count=', this.allCards);
+    console.log('b) play count=', this.handCount);
+    console.log('c) play middleCardLength#1', this.middleCardDeck.length)
+    this.assignTurn();
+    console.log('s) play currentplayer', this.currentPlayer);
+    console.log('t) play currentKey', this.currentKeyStroke);
+    this.dealHandToMiddleDeck();
     // this.slapLogic()
     // this.slapped = 0;
-    this.assignTurn();
+    // this.assignTurn();
+    this.switchTurn();
     this.winLogic();
     if ((this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length) > 53) {
       return "card limit"}
     console.log('total', this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length);
     }
 
-  dealBothPlayersHaveCards() {
-    console.log('c) player', this.currentPlayer)
-    if (this.currentPlayer === this.player1 && this.currentkeyStroke === 'q') {
+  dealHandToMiddleDeck() {
+    console.log('c) deal', this.currentPlayer)
+    if (this.currentPlayer === this.player1 && this.currentKeyStroke === 'q') {
       this.middleCardDeck.unshift(this.player1.playerDeck[0])
       this.player1.playerDeck.splice(0, 1);
+      console.log('x) deal player 1')
+      console.log('x) deal middleCardLength#1', this.middleCardDeck.length)
     } else if (this.currentPlayer === this.player2 && this.currentKeyStroke === 'p') {
       this.middleCardDeck.unshift(this.player2.playerDeck[0])
       this.player2.playerDeck.splice(0, 1);
-    }    
+      console.log('y) deal player 2')
+      console.log('z) deal middleCardLength#1', this.middleCardDeck.length)
+    } else {
+      console.log('z) no deal')
+      console.log('z) deal middleCardLength#1', this.middleCardDeck.length)
+    }
     // console.table('d) Deal=', "Middle=", this.middleCardDeck, "Middle1", 'One=', this.player1.playerDeck, "Two=", this.player2.playerDeck)
-    // console.log(this)
   }
 
   slapLogic() {

@@ -6,9 +6,12 @@ var newGame = document.querySelector('.title');
 //Event Listeners
 window.onload = function() {
   var x = new Game();
-  x.startGame();
-  console.log(x)
+  // x.startGame();
 }
+
+var x = new Game();
+x.startGame();
+
 
 window.addEventListener("keydown", function (event) {
   if (event.defaultPrevented) {
@@ -19,13 +22,13 @@ window.addEventListener("keydown", function (event) {
 switch (event.key) {
   case "q":
   case "Q":
-    alert('player 1 deal');
+    // alert('player 1 deal');
     x.currentKeyStroke = 'q';
     x.playGame();
     break;
   case "p": 
   case "P":
-    alert('player 2 deal')
+    // alert('player 2 deal')
     x.currentKeyStroke = 'p';
     x.playGame();
     break;
