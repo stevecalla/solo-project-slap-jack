@@ -7,7 +7,65 @@ var middleDeck = document.querySelector('.middle');
 
 //GLOBAL VARIABLES - ON PAGE LOAD
 var x = new Game();
+x.startGame();
 console.log(x)
+
+
+window.addEventListener("keydown", function (event) {
+  if (event.defaultPrevented) {
+    return; // Do nothing if the event was already processed
+  }
+
+switch (event.key) {
+  case "q":
+  case "Q":
+    alert('player 1 deal');
+    x.currentKeyStroke = 'q';
+    // x.currentPlayer = x.player1;
+    x.playGame();
+    break;
+  case "p": 
+  case "P":
+    alert('player 2 deal')
+    x.currentKeyStroke = 'p';
+    // x.currentPlayer = x.player2;
+    x.playGame();
+    break;
+  case "f":
+  case "F":
+    alert('player 1 slap');
+    break;
+  case "j":
+  case "J":
+    alert('player 2 slap')
+    break;
+  default:
+    return; // Quit when this doesn't handle the key event.
+}
+
+  // Cancel the default action to avoid it being handled twice
+  event.preventDefault();
+}, true);
+
+
+// document.addEventListener("keydown", function(event) {
+//   console.log(event.which);
+//   if (event.which === 81) {
+//     console.log('Q');
+//     x.currentPlayer = x.player1
+//     x.playGame();
+//   } 
+//   // else if (event.which === 80) {
+//   //   console.log('P');
+//   //   x.currentPlayer = x.player2
+//   //   x.playGame();
+//   // } 
+//   else if (event.which === 70) {
+//     console.log('F');
+//   } else if (event.which === 74) {
+//     console.log('J');
+//   }
+// });
 
 // //Event Listeners
 // //window.OnLoad
@@ -15,25 +73,6 @@ console.log(x)
 // playerOne.addEventListener('click', playerOneDeal);
 // playerTwo.addEventListener('click', playerTwoDeal);
 // middleDeck.addEventListener('click', slapMiddleDeckOne);
-
-function playerOneDeal() {
-  console.log('a')
-  currentGame.playerOneDealIntoMiddleDeck();
-  middleDeck.innerText = `${currentGame.middleCardDeck[0].a}, ${currentGame.allCards.length}, ${currentGame.middleCardDeck.length}, ${currentGame.playerOneDeck.length}, ${currentGame.playerTwoDeck.length}`
-}
-
-function playerTwoDeal() {
-  currentGame.playerTwoDealIntoMiddleDeck();
-  middleDeck.innerText = `${currentGame.middleCardDeck[0].a}, ${currentGame.allCards.length}, ${currentGame.middleCardDeck.length}, ${currentGame.playerOneDeck.length}, ${currentGame.playerTwoDeck.length}`
-}
-
-function slapMiddleDeckOne() {
-  console.log('hello')
-  currentGame.slapOnJackOne();
-  currentGame.slapOnJackTwo();
-  console.log(currentGame.middleCardDeck[1])
-  console.log(currentGame.middleCardDeck[1])
-}
 
 function currentGame() {
   // console.log('x')

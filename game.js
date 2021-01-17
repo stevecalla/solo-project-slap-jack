@@ -5,6 +5,7 @@ class Game {
     this.middleCardDeck = [];
     this.handCount = 0;
     this.slapped = 0;
+    this.currentKeyStroke = 'q';
     this.currentPlayer = this.player1;
     // this.allCards2 = [{value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "J", suit: "2"}, {value: "1", suit: "2"}, {value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "1", suit: "2"}, {value: "1", suit: "2"}];
     this.allCards = [{value: "J"}, {value: "A"}, {value: "1"}, {value: "2"}, {value: "3"}, {value: "A"}, {value: "5"}, {value: "4"}, {value: "8"}]
@@ -105,39 +106,38 @@ class Game {
   }
 
   assignTurn() {
-    if(this.currentPlayer === this.player1 && this.player2.playerDeck.length > 0) {
+    console.log('currentplayer', this.currentPlayer);
+    console.log('currentKey', this.currentKeyStroke);
+    if(this.currentPlayer === this.player1 && this.player2.playerDeck.length > 0 && this.currentKeyStroke === 'q') {
       this.currentPlayer = this.player2;
-    } else if (this.currentPlayer === this.player2 && this.player1.playerDeck.length > 0) {
+      console.log('one')
+    } else if (this.currentPlayer === this.player2 && this.player1.playerDeck.length > 0 && this.currentKeyStroke === 'p') {
       this.currentPlayer = this.player1;
+      console.log('two')
     }
   }
 
   playGame() {
     this.handCount ++;
+    console.log('a) count=', this.allCards);
     console.log('a) count=', this.handCount);
-    // console.log('b) middleCardLength#1', this.middleCardDeck.length)
+    console.log('b) middleCardLength#1', this.middleCardDeck.length)
     this.dealBothPlayersHaveCards();
-    this.slapLogic()
-    this.slapped = 0;
+    // this.slapLogic()
+    // this.slapped = 0;
     this.assignTurn();
     this.winLogic();
-    // console.log('4', this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length);
     if ((this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length) > 53) {
-      // console.log('all', this.allCards.length);
-      // alert('4', this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length)
-      // console.log('one', this.player1.playerDeck.length);
-      // console.log('two', this.player2.playerDeck.length);
-      // console.log('middle', this.middleCardDeck.length);
       return "card limit"}
-      console.log('total', this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length);
+    console.log('total', this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length);
     }
 
   dealBothPlayersHaveCards() {
     console.log('c) player', this.currentPlayer)
-    if (this.currentPlayer === this.player1) {
+    if (this.currentPlayer === this.player1 && this.currentkeyStroke === 'q') {
       this.middleCardDeck.unshift(this.player1.playerDeck[0])
       this.player1.playerDeck.splice(0, 1);
-    } else {
+    } else if (this.currentPlayer === this.player2 && this.currentKeyStroke === 'p') {
       this.middleCardDeck.unshift(this.player2.playerDeck[0])
       this.player2.playerDeck.splice(0, 1);
     }    
