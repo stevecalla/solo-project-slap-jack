@@ -8,7 +8,6 @@ class Game {
     this.currentDealStroke = 'q';
     this.currentSlapStroke = null;
     this.currentPlayer = null;
-    // this.allCards2 = [{value: "J", suit: "2",}, {value: "A", suit: "2"}, {value: "J", suit: "2"}, {value: "1", suit: "2"}, {value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "1", suit: "2"}, {value: "1", suit: "2"}];
     this.allCards = [{value: "J", asset: "./assets/blue-10.png"}, {value: "J", asset: "./assets/woody.png"}, {value: "J", asset: "./assets/woody.png", asset: "./assets/blue-10.png"}, {value: "J", asset: "./assets/woody.png"}, {value: "3", asset: "./assets/back.png"}, {value: "A", asset: "./assets/blue-10.png"}, {value: "5", asset: "./assets/back.png"}, {value: "4", asset: "./assets/woody.png"}, {value: "8", asset: "./assets/blue-10.png"}]
     this.allCards2 = [
       {value: "A", suit: "spades"},
@@ -105,7 +104,6 @@ class Game {
     }
     console.table('MakeDeck=', this.middleCardDeck, 'one=', this.player1.playerDeck, 'two=', this.player2.playerDeck);
   }
-
 
   isEven(value) {
     // console.log('a.2) isEven', value)
@@ -267,10 +265,6 @@ class Game {
     this.middleCardDeck = []; 
   }
 
-  //9) Update Wins
-  //Update wins logic
-
-  //10) Player Wins
   winLogic() {
     console.log('WINS LOGIC')
     if (this.player1.playerDeck.length === this.allCards.length && this.player2.playerDeck.length === 0) {
@@ -306,3 +300,6 @@ class Game {
   //     console.log('f) assign turn one')
   //   }
   // }
+
+    //9) Update Wins
+  //Update wins logic
