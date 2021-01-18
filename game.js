@@ -8,8 +8,8 @@ class Game {
     this.currentDealStroke = 'q';
     this.currentSlapStroke = null;
     this.currentPlayer = null;
-    // this.allCards2 = [{value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "J", suit: "2"}, {value: "1", suit: "2"}, {value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "1", suit: "2"}, {value: "1", suit: "2"}];
-    this.allCards = [{value: "J"}, {value: "J"}, {value: "J"}, {value: "J"}, {value: "3"}, {value: "A"}, {value: "5"}, {value: "4"}, {value: "8"}]
+    // this.allCards2 = [{value: "J", suit: "2",}, {value: "A", suit: "2"}, {value: "J", suit: "2"}, {value: "1", suit: "2"}, {value: "J", suit: "2"}, {value: "A", suit: "2"}, {value: "1", suit: "2"}, {value: "1", suit: "2"}];
+    this.allCards = [{value: "J", asset: "./assets/blue-10.png"}, {value: "J", asset: "./assets/woody.png"}, {value: "J", asset: "./assets/woody.png", asset: "./assets/blue-10.png"}, {value: "J", asset: "./assets/woody.png"}, {value: "3", asset: "./assets/back.png"}, {value: "A", asset: "./assets/blue-10.png"}, {value: "5", asset: "./assets/back.png"}, {value: "4", asset: "./assets/woody.png"}, {value: "8", asset: "./assets/blue-10.png"}]
     this.allCards2 = [
       {value: "A", suit: "spades"},
       {value: "2", suit: "spades"},

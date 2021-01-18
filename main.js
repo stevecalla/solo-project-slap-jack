@@ -1,7 +1,7 @@
 // //Variables
 var newGame = document.querySelector('.title');
 var middleCard = document.querySelector('.middle-card');
-var replaceCard = document.querySelector('.middle-card2');
+var middleCardContainer = document.querySelector('.middle-card-container')
 
 //GLOBAL VARIABLES - ON PAGE LOAD
 
@@ -29,20 +29,16 @@ switch (event.key) {
     middleCard.classList.remove('hidden')
     middleCard.classList.remove('img')
     middleCard.classList.add('left-card')
-    replaceCard.innerHTML = `<img class="img" src="./assets/back.png" alt="player two deal into the middle">`
-    // replaceCard.classList.remove('img')
-    // replaceCard.classList.add('left-card')
+    middleCardContainer.innerHTML = `<img class="img" src=${x.middleCardDeck[0].asset} alt="player two deal into the middle">`
     break;
   case "p": 
   case "P":
     x.currentDealStroke = 'p';
     x.playGame();
     middleCard.classList.remove('hidden')
-    // middleCard.classList.add('img')
-    // middleCard.classList.remove('left-card')
-    replaceCard.innerHTML = `<img class="middle-card" src="./assets/blue-10.png" alt="middle deck of cards">`
-    // replaceCard.classList.add('img')
-    // replaceCard.classList.remove('left-card')
+    middleCard.classList.add('img')
+    middleCard.classList.remove('left-card')
+    middleCardContainer.innerHTML = `<img class="middle-card" src=${x.middleCardDeck[0].asset} alt="middle deck of cards">`
     break;
   case "f":
   case "F":
