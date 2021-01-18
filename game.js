@@ -17,7 +17,7 @@ class Game {
       {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
       {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
     ]
-    this.allCard2 = [
+    this.allCards2 = [
       {value: "1", suit: "blue", asset: "./assets/blue-01.png"},
       {value: "2", suit: "blue", asset: "./assets/blue-02.png"},
       {value: "3", suit: "blue", asset: "./assets/blue-03.png"},
@@ -70,7 +70,8 @@ class Game {
       {value: "J", suit: "red", asset: "./assets/red-jack.png"},
       {value: "K", suit: "red", asset: "./assets/red-king.png"},
       {value: "Q", suit: "red", asset: "./assets/red-queen.png"},
-      ]
+    ]
+
   }
 
   startGame() {
