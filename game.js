@@ -161,8 +161,8 @@ class Game {
     } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'p' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player2.playerDeck.length === 0 && this.priorTurn === this.player2) {
         for (var i = 0; i < this.allCards.length; i++) {
           this.player2.playerDeck.push(this.middleCardDeck[0]);
-          this.middleCardDeck.splice(0, 1);
         }
+      this.middleCardDeck = [];
       console.log('p2 gets hand')
       // console.log('p2 & p')
       // console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
@@ -190,19 +190,23 @@ class Game {
     if(this.middleCardDeck.length !== 0) {
       this.slapOnJack()
       this.winLogic();
+      console.log('jack hand', 'middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
     }
     if(this.middleCardDeck.length > 1) {
       console.log('double 0=', this.middleCardDeck[0].value, this.middleCardDeck[1].value)
       this.slapOnDouble()
+      console.log('double hand', 'middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
     }
     if(this.middleCardDeck.length > 2) {
       console.log('sandwich 0=', this.middleCardDeck[0].value, this.middleCardDeck[2].value)
       this.slapOnSandwich()
+      console.log('sandwich hand', 'middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
     }
-    if (this.slapped === 0) {
+    if (this.slapped === 0 && this.middleCardDeck.length !== 0) {
       this.badSlap();
       console.log('badslap')
       console.log(this.slapped);
+      console.log('bad hand', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
     }
     // console.log('slappedCount=', this.slapped, 'slapped key', this.currentSlapStroke)
     // console.table('d) play currentKey', this.currentDealStroke, 'MIDDLE=', this.middleCardDeck, 'ONE', this.player1.playerDeck, 'TWO', this.player2.playerDeck);
@@ -261,11 +265,11 @@ class Game {
   }
 
   badSlap() {
-    if (this.currentSlapStroke === 'f') {
+    if (this.currentSlapStroke === 'f' && this.player1.playerDeck.length > 0) {
       this.player2.playerDeck.push(this.player1.playerDeck[0]);
       this.player1.playerDeck.splice(0, 1);
       this.slapped ++;
-    } else if (this.currentSlapStroke === 'j') {
+    } else if (this.currentSlapStroke === 'j' & this.player2.playerDeck.length > 0) {
       this.player1.playerDeck.push(this.player2.playerDeck[0]);
       this.player2.playerDeck.splice(0, 1);
       this.slapped ++;
