@@ -128,37 +128,22 @@ class Game {
     }
   }
 
-  // assignTurn() {
-  //   console.log('assign) currentplayer', this.currentPlayer);
-  //   console.log('assign) currentKey', this.currentDealStroke);
-  //   console.log('assign) player1 length', this.player1.playerDeck.length);
-  //   console.log('assign) player2 length', this.player2.playerDeck.length);
-  //   // this.currentDealStroke = 'q';
-  //   if(this.currentPlayer === this.player1 && this.player1.playerDeck.length > 0 && this.currentDealStroke === "q") {
-  //     this.currentPlayer = this.player1;
-  //     console.log('e) assign turn two')
-  //   } else if (this.currentPlayer === this.player2 && this.player1.playerDeck.length > 0 && this.currentDealStroke === 'p') {
-  //     this.currentPlayer = this.player2;
-  //     console.log('f) assign turn one')
-  //   }
-  // }
-
   playGame() {
-    console.table('a) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
+    console.table('a) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
     this.assignTurn();
     console.table('b) play currentKey', this.currentDealStroke, 'b) ONE', this.player1.playerDeck, 'c) TWO', this.player2.playerDeck);
     this.dealHandToMiddleDeck();
     // console.log('b) play middleCardLength#1', this.middleCardDeck.length, this.middleCardDeck.value[0])
     // this.slapLogic()
     // this.assignTurn();
-    this.winLogic();
+    // this.winLogic();
     this.slapped = 0;
     if ((this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length) > 53) {
       return "card limit"}
     // console.log('total', this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length);
     console.table('d) play currentKey', this.currentDealStroke, 'b) ONE', this.player1.playerDeck, 'c) TWO', this.player2.playerDeck);
     // console.table('e) handcount', this.handCount, 'b) middle', this.middleCardDeck, 'b) middle', this.middleCardDeck.length);
-    console.table('f) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
+    console.table('f) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
     }
 
   dealHandToMiddleDeck() {
@@ -197,10 +182,11 @@ class Game {
       console.log('badslap')
       console.log(this.slapped);
     }
+    this.winLogic();
     console.log('slappedCount=', this.slapped, 'slapped key', this.currentSlapStroke)
     console.table('d) play currentKey', this.currentDealStroke, 'MIDDLE=', this.middleCardDeck, 'ONE', this.player1.playerDeck, 'TWO', this.player2.playerDeck);
     // console.table('e) handcount', this.handCount, 'b) middle', this.middleCardDeck, 'b) middle', this.middleCardDeck.length);
-    console.table('f) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
+    console.table('g) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
   }
 
   slapOnJack() {
@@ -286,13 +272,18 @@ class Game {
 
   //10) Player Wins
   winLogic() {
-    if (this.player1.playerDeck.length >= 52) {
+    console.log('WINS LOGIC')
+    if (this.player1.playerDeck.length === this.allCards.length && this.player2.playerDeck.length === 0) {
       this.player1.wins ++;
+      console.log('WINS LOGIC #1')
+      console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
     }
 
-    if (this.player2.playerDeck.length >= 52) {
+    if (this.player2.playerDeck.length === this.allCards.length && this.player1.playerDeck.length === 0) {
       this.player2.wins ++;
-      // return ("player 2 wins ")
+      console.log('WINS LOGIC #2')
+      console.table('wins2) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
+
     } 
   }
 
@@ -300,3 +291,18 @@ class Game {
 
   //11) Reset Deck
   //Hwo to rest the deck
+
+    // assignTurn() {
+  //   console.log('assign) currentplayer', this.currentPlayer);
+  //   console.log('assign) currentKey', this.currentDealStroke);
+  //   console.log('assign) player1 length', this.player1.playerDeck.length);
+  //   console.log('assign) player2 length', this.player2.playerDeck.length);
+  //   // this.currentDealStroke = 'q';
+  //   if(this.currentPlayer === this.player1 && this.player1.playerDeck.length > 0 && this.currentDealStroke === "q") {
+  //     this.currentPlayer = this.player1;
+  //     console.log('e) assign turn two')
+  //   } else if (this.currentPlayer === this.player2 && this.player1.playerDeck.length > 0 && this.currentDealStroke === 'p') {
+  //     this.currentPlayer = this.player2;
+  //     console.log('f) assign turn one')
+  //   }
+  // }
