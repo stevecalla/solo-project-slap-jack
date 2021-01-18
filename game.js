@@ -8,60 +8,68 @@ class Game {
     this.currentDealStroke = 'q';
     this.currentSlapStroke = null;
     this.currentPlayer = null;
-    this.allCards = [{value: "J", asset: "./assets/blue-10.png"}, {value: "J", asset: "./assets/woody.png"}, {value: "J", asset: "./assets/woody.png", asset: "./assets/blue-10.png"}, {value: "J", asset: "./assets/woody.png"}, {value: "3", asset: "./assets/back.png"}, {value: "A", asset: "./assets/blue-10.png"}, {value: "5", asset: "./assets/back.png"}, {value: "4", asset: "./assets/woody.png"}, {value: "8", asset: "./assets/blue-10.png"}]
-    this.allCards2 = [
-      {value: "A", suit: "spades"},
-      {value: "2", suit: "spades"},
-      {value: "3", suit: "spades"},
-      {value: "4", suit: "spades"},
-      {value: "5", suit: "spades"},
-      {value: "6", suit: "spades"},
-      {value: "7", suit: "spades"},
-      {value: "8", suit: "spades"},
-      {value: "9", suit: "spades"},
-      {value: "10", suit: "spades"},
-      {value: "J", suit: "spades"},
-      {value: "Q", suit: "spades"},
-      {value: "K", suit: "spades"},
-      {value: "A", suit: "diamonds"},
-      {value: "2", suit: "diamonds"},
-      {value: "3", suit: "diamonds"},
-      {value: "4", suit: "diamonds"},
-      {value: "5", suit: "diamonds"},
-      {value: "6", suit: "diamonds"}, 
-      {value: "7", suit: "diamonds"},
-      {value: "8", suit: "diamonds"},
-      {value: "9", suit: "diamonds"},
-      {value: "10", suit: "diamonds"}, 
-      {value: "J", suit: "diamonds"},
-      {value: "Q", suit: "diamonds"},
-      {value: "K", suit: "diamonds"},
-      {value: "A", suit: "clubs"},
-      {value: "2", suit: "clubs"},
-      {value: "3", suit: "clubs"},
-      {value: "4", suit: "clubs"},
-      {value: "5", suit: "clubs"},
-      {value: "6", suit: "clubs"},
-      {value: "7", Suit: "clubs"},
-      {value: "8", suit: "clubs"},
-      {value: "9", suit: "clubs"},
-      {value: "10", suit: "clubs"},
-      {value: "J", suit: "clubs"},
-      {value: "Q", suit: "clubs"},
-      {value: "K", suit: "clubs"},
-      {value: "A", suit: "hearts"},
-      {value: "2", suit: "hearts"},
-      {value: "3", suit: "hearts"},
-      {value: "4", suit: "hearts"},
-      {value: "5", suit: "hearts"},
-      {value: "6", suit: "hearts"},
-      {value: "7", suit: "hearts"},
-      {value: "8", suit: "hearts"},
-      {value: "9", suit: "hearts"},
-      {value: "10",suit: "hearts"},
-      {value: "J", suit: "hearts"},
-      {value: "Q", suit: "hearts"},
-      {value: "K", suit: "hearts"}
+    this.priorTurn = null;
+    this.allCards = [
+      {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
+      {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
+      {value: "J", suit: "blue", asset: "./assets/blue-jack.png"},
+      {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
+      {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
+      {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
+    ]
+    this.allCard2 = [
+      {value: "1", suit: "blue", asset: "./assets/blue-01.png"},
+      {value: "2", suit: "blue", asset: "./assets/blue-02.png"},
+      {value: "3", suit: "blue", asset: "./assets/blue-03.png"},
+      {value: "4", suit: "blue", asset: "./assets/blue-04.png"},
+      {value: "5", suit: "blue", asset: "./assets/blue-05.png"},
+      {value: "6", suit: "blue", asset: "./assets/blue-06.png"},
+      {value: "7", suit: "blue", asset: "./assets/blue-07.png"},
+      {value: "8", suit: "blue", asset: "./assets/blue-08.png"},
+      {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
+      {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
+      {value: "J", suit: "blue", asset: "./assets/blue-jack.png"},
+      {value: "K", suit: "blue", asset: "./assets/blue-king.png"},
+      {value: "Q", suit: "blue", asset: "./assets/blue-queen.png"},
+      {value: "1", suit: "gold", asset: "./assets/gold-01.png"},
+      {value: "2", suit: "gold", asset: "./assets/gold-02.png"},
+      {value: "3", suit: "gold", asset: "./assets/gold-03.png"},
+      {value: "4", suit: "gold", asset: "./assets/gold-04.png"},
+      {value: "5", suit: "gold", asset: "./assets/gold-05.png"},
+      {value: "6", suit: "gold", asset: "./assets/gold-06.png"},
+      {value: "7", suit: "gold", asset: "./assets/gold-07.png"},
+      {value: "8", suit: "gold", asset: "./assets/gold-08.png"},
+      {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
+      {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
+      {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
+      {value: "K", suit: "gold", asset: "./assets/gold-king.png"},
+      {value: "Q", suit: "gold", asset: "./assets/gold-queen.png"},
+      {value: "1", suit: "green", asset: "./assets/green-01.png"},
+      {value: "2", suit: "green", asset: "./assets/green-02.png"},
+      {value: "3", suit: "green", asset: "./assets/green-03.png"},
+      {value: "4", suit: "green", asset: "./assets/green-04.png"},
+      {value: "5", suit: "green", asset: "./assets/green-05.png"},
+      {value: "6", suit: "green", asset: "./assets/green-06.png"},
+      {value: "7", suit: "green", asset: "./assets/green-07.png"},
+      {value: "8", suit: "green", asset: "./assets/green-08.png"},
+      {value: "9", suit: "green", asset: "./assets/green-09.png"},
+      {value: "10", suit: "green", asset: "./assets/green-10.png"},
+      {value: "J", suit: "green", asset: "./assets/green-jack.png"},
+      {value: "K", suit: "green", asset: "./assets/green-king.png"},
+      {value: "Q", suit: "green", asset: "./assets/green-queen.png"},
+      {value: "1", suit: "red", asset: "./assets/red-01.png"},
+      {value: "2", suit: "red", asset: "./assets/red-02.png"},
+      {value: "3", suit: "red", asset: "./assets/red-03.png"},
+      {value: "4", suit: "red", asset: "./assets/red-04.png"},
+      {value: "5", suit: "red", asset: "./assets/red-05.png"},
+      {value: "6", suit: "red", asset: "./assets/red-06.png"},
+      {value: "7", suit: "red", asset: "./assets/red-07.png"},
+      {value: "8", suit: "red", asset: "./assets/red-08.png"},
+      {value: "9", suit: "red", asset: "./assets/red-09.png"},
+      {value: "10", suit: "red", asset: "./assets/red-10.png"},
+      {value: "J", suit: "red", asset: "./assets/red-jack.png"},
+      {value: "K", suit: "red", asset: "./assets/red-king.png"},
+      {value: "Q", suit: "red", asset: "./assets/red-queen.png"},
       ]
   }
 
@@ -84,7 +92,6 @@ class Game {
       }
     }
     randomDeck = holdCards;
-    // randomDeck.sort()
     return randomDeck
   }
 
@@ -92,8 +99,6 @@ class Game {
     this.player1.playerDeck = [];
     this.player2.playerDeck = [];
     var playerDeck = this.randomizeDeck(this.allCards);
-    // console.log('a=', playerDeck.length)
-    // console.log('b=', playerDeck)
     for (var i = 0; i < playerDeck.length * 0.5; i++) {
       this.player1.playerDeck.push(playerDeck[i]);
     } 
@@ -106,20 +111,17 @@ class Game {
   }
 
   isEven(value) {
-    // console.log('a.2) isEven', value)
     if (value%2 === 0) {
       return true; //player 1
     } else {
-      console.log(false)
       return false; //player 2
     }
   }
 
   assignTurn() {
-    // console.log('a.1) assign turn')
-    if (!this.isEven(this.handCount)) {
+    if ((!this.isEven(this.handCount) && this.currentDealStroke === 'q') || this.player2.playerDeck.length === 0) {
       this.currentPlayer = this.player1;
-    } else if (this.isEven(this.handCount) && this.currentDealStroke === 'p') {
+    } else if ((this.isEven(this.handCount) && this.currentDealStroke === 'p') || this.player1.playerDeck.length === 0) {
       this.currentPlayer = this.player2;
     } else {
       this.currentPlayer = null;
@@ -127,45 +129,67 @@ class Game {
   }
 
   playGame() {
-    console.table('a) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
     this.assignTurn();
-    console.table('b) play currentKey', this.currentDealStroke, 'b) ONE', this.player1.playerDeck, 'c) TWO', this.player2.playerDeck);
+
+    if (this.player2.playerDeck.length === 1 && this.player1.playerDeck.length === 0) {
+      this.priorTurn = this.player2;
+    } else if (this.player1.playerDeck.length === 1 && this.player2.playerDeck.length === 0) {
+      this.priorTurn = this.player1;
+    } 
+
     this.dealHandToMiddleDeck();
-    // console.log('b) play middleCardLength#1', this.middleCardDeck.length, this.middleCardDeck.value[0])
-    // this.slapLogic()
-    // this.assignTurn();
-    // this.winLogic();
     this.slapped = 0;
     if ((this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length) > 53) {
       return "card limit"}
-    // console.log('total', this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length);
-    console.table('d) play currentKey', this.currentDealStroke, 'b) ONE', this.player1.playerDeck, 'c) TWO', this.player2.playerDeck);
-    // console.table('e) handcount', this.handCount, 'b) middle', this.middleCardDeck, 'b) middle', this.middleCardDeck.length);
-    console.table('f) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
     }
 
   dealHandToMiddleDeck() {
-    // console.log('c) deal', this.currentPlayer)
     if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player1.playerDeck.length !== 0 && this.player1.playerDeck.length !== this.allCards.length) {
       this.middleCardDeck.unshift(this.player1.playerDeck[0])
       this.player1.playerDeck.splice(0, 1);
+      console.log('handcount= ', this.handCount);
       this.handCount ++;
-      // console.log('deal player 1', 'middleCardLength#1', this.middleCardDeck.length)
+      console.log('p1 & q')
+      console.log('p1= ', this.currentPlayer, 'q= ', this.currentDealStroke, 'p1L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
     } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.player2.playerDeck.length !== 0 && this.player2.playerDeck.length !== this.allCards.length) {
-      this.middleCardDeck.unshift(this.player2.playerDeck[0])
-      this.player2.playerDeck.splice(0, 1);
-      this.handCount ++;
-      console.log('deal player 1', 'middleCardLength#1', this.middleCardDeck.length)
+        this.middleCardDeck.unshift(this.player2.playerDeck[0])
+        this.player2.playerDeck.splice(0, 1);
+        console.log('handcount= ', this.handCount);
+        this.handCount ++;
+        console.log('p2 & p')
+        console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
+    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'p' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player2.playerDeck.length === 0 && this.priorTurn === this.player2) {
+        for (var i = 0; i < this.allCards.length; i++) {
+          this.player2.playerDeck.push(this.middleCardDeck[0]);
+          this.middleCardDeck.splice(0, 1);
+        }
+      console.log('p2 gets hand')
+      // console.log('p2 & p')
+      // console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
+    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player2.playerDeck.length === 0 && this.priorTurn === this.player1) {
+      for (var i = 0; i < this.middleCardDeck.length; i++) {
+        this.player1.playerDeck.push(this.middleCardDeck[i]);
+      }
+      this.middleCardDeck = [];
+      console.log('p1 gets hand')
+      // console.log('p2 & p')
+      // console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
     } else {
+      console.log('handcount= ', this.handCount);
       console.log('no deal')
-      // console.log('deal no deal', 'middleCardLength#1', this.middleCardDeck.length)
+      console.log('current player= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
+      // console.log('6=', this.middleCardDeck.length, 'p=', this.currentDealStroke, 'p1', this.currentPlayer)
     }
-    console.table('c) handcount', this.handCount, 'Deal Middle Card 0 =', this.middleCardDeck[0].value)
+    if (this.middleCardDeck.length > 0) {
+      console.log('middleCard Length', this.middleCardDeck.length, 'middleCard', this.middleCardDeck[0].value)
+    }
+    console.log('middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
   }
 
   slapLogic() {
     if(this.middleCardDeck.length !== 0) {
       this.slapOnJack()
+      this.winLogic();
     }
     if(this.middleCardDeck.length > 1) {
       console.log('double 0=', this.middleCardDeck[0].value, this.middleCardDeck[1].value)
@@ -180,11 +204,10 @@ class Game {
       console.log('badslap')
       console.log(this.slapped);
     }
-    this.winLogic();
-    console.log('slappedCount=', this.slapped, 'slapped key', this.currentSlapStroke)
-    console.table('d) play currentKey', this.currentDealStroke, 'MIDDLE=', this.middleCardDeck, 'ONE', this.player1.playerDeck, 'TWO', this.player2.playerDeck);
-    // console.table('e) handcount', this.handCount, 'b) middle', this.middleCardDeck, 'b) middle', this.middleCardDeck.length);
-    console.table('g) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
+    // console.log('slappedCount=', this.slapped, 'slapped key', this.currentSlapStroke)
+    // console.table('d) play currentKey', this.currentDealStroke, 'MIDDLE=', this.middleCardDeck, 'ONE', this.player1.playerDeck, 'TWO', this.player2.playerDeck);
+    // // console.table('e) handcount', this.handCount, 'b) middle', this.middleCardDeck, 'b) middle', this.middleCardDeck.length);
+    // console.table('g) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
   }
 
   slapOnJack() {

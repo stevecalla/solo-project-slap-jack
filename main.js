@@ -29,7 +29,7 @@ switch (event.key) {
     middleCard.classList.remove('hidden')
     middleCard.classList.remove('img')
     middleCard.classList.add('left-card')
-    middleCardContainer.innerHTML = `<img class="img" src=${x.middleCardDeck[0].asset} alt="player two deal into the middle">`
+    // middleCardContainer.innerHTML = `<img class="img" src=${x.middleCardDeck[0].asset} alt="player two deal into the middle">`
     break;
   case "p": 
   case "P":
@@ -38,7 +38,7 @@ switch (event.key) {
     middleCard.classList.remove('hidden')
     middleCard.classList.add('img')
     middleCard.classList.remove('left-card')
-    middleCardContainer.innerHTML = `<img class="middle-card" src=${x.middleCardDeck[0].asset} alt="middle deck of cards">`
+    // middleCardContainer.innerHTML = `<img class="middle-card" src=${x.middleCardDeck[0].asset} alt="middle deck of cards">`
     break;
   case "f":
   case "F":
