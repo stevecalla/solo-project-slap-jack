@@ -253,10 +253,12 @@ class Game {
     if (this.player1.playerDeck.length === 0 || this.player2.playerDeck.length === 0) {
       this.winLogicOnJack();
     } else if (this.middleCardDeck[0].value === 'J' && this.currentSlapStroke === 'f') {
+      this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
       this.slapActionPlayerOne();
       console.log('jack-One');
       this.slapped ++;
     } else if (this.middleCardDeck[0].value === "J" && this.currentSlapStroke === 'j') {
+      this.gameStatusMessage = "SLAPJACK! Player 2 takes the pile!";
       this.slapActionPlayerTwo();
       console.log('jack-Two');
       this.slapped ++;
@@ -273,11 +275,13 @@ class Game {
     if (this.currentPlayer === this.player1
           && (this.middleCardDeck[0].value === this.middleCardDeck[1].value
           && this.currentSlapStroke === 'f')) {
+      this.gameStatusMessage = "DOUBLE! Player 1 takes the pile";
       this.slapActionPlayerOne();
       // console.log('doubles-One')
       this.slapped ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
           && this.currentSlapStroke === 'j') {
+      this.gameStatusMessage = "DOUBLE! Player 2 takes the pile!";
       this.slapActionPlayerTwo();
       // console.log('doubles-Two');
       this.slapped ++;
@@ -293,11 +297,13 @@ class Game {
     } else if (this.currentPlayer === this.player1
           && (this.middleCardDeck[0].value === this.middleCardDeck[2].value)
           && this.currentSlapStroke === 'f') {
+      this.gameStatusMessage = "DOUBLE! Player 1 takes the pile!";
       this.slapActionPlayerOne();
       // console.log('sandwich-One');
       this.slapped ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[2].value
           && this.currentSlapStroke === 'j') {
+      this.gameStatusMessage = "DOUBLE! Player 2 pile!";
       this.slapActionPlayerTwo();
       // console.log('sandwich-Two');
       this.slapped ++;
@@ -310,10 +316,12 @@ class Game {
     } else if (this.currentSlapStroke === 'f' && this.player1.playerDeck.length > 0) {
       this.player2.playerDeck.push(this.player1.playerDeck[0]);
       this.player1.playerDeck.splice(0, 1);
+      this.gameStatusMessage = "BAD SLAP! Player 1 forfeits a card to Player2!";
       this.slapped ++;
     } else if (this.currentSlapStroke === 'j' & this.player2.playerDeck.length > 0) {
       this.player1.playerDeck.push(this.player2.playerDeck[0]);
       this.player2.playerDeck.splice(0, 1);
+      this.gameStatusMessage = "BAD SLAP! Player 1 forfeits a card to Player2!";
       this.slapped ++;
     }
   }
