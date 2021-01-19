@@ -13,13 +13,29 @@ class Game {
     this.deckOneCount = null;
     this.deckTwoCount = null;
     this.gameStatusMessage = "";
-    this.allCards = [
+    this.allCards2 = [
       {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
       {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
       {value: "J", suit: "blue", asset: "./assets/blue-jack.png"},
       {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
       {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
       {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
+    ]
+    this.allCards = [ //jack tester
+      {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
+      {value: "J", suit: "blue", asset: "./assets/blue-10.png"},
+      {value: "10", suit: "blue", asset: "./assets/blue-jack.png"},
+      {value: "J", suit: "gold", asset: "./assets/gold-09.png"},
+      {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
+      {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
+    ]
+    this.allCards2 = [ //sandwich tester
+      {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
+      {value: "9", suit: "blue", asset: "./assets/blue-10.png"},
+      {value: "10", suit: "blue", asset: "./assets/blue-jack.png"},
+      {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
+      {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
+      {value: "9", suit: "gold", asset: "./assets/gold-jack.png"},
     ]
     this.allCards2 = [
       {value: "1", suit: "blue", asset: "./assets/blue-01.png"},
@@ -250,7 +266,9 @@ class Game {
   }
 
   slapOnJack() {
-    if (this.player1.playerDeck.length === 0 || this.player2.playerDeck.length === 0) {
+    if (this.player1.playerDeck.length > 0 && this.player2.playerDeck.length === 0) {
+      this.winLogicOnJack();
+    } else if (this.player1.playerDeck.length === 0 && this.player2.playerDeck.length > 0) {
       this.winLogicOnJack();
     } else if (this.middleCardDeck[0].value === 'J' && this.currentSlapStroke === 'f') {
       this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
@@ -267,23 +285,24 @@ class Game {
 
   slapOnDouble() {
     console.log('double');
-    // console.log(this.middleCardDeck[0].value)
-    // console.log(this.middleCardDeck[1].value)
+    console.log(this.middleCardDeck[0].value)
+    console.log(this.middleCardDeck[1].value)
     if (this.player1.playerDeck.length === 0 || this.player2.playerDeck.length === 0) {
       //NO DOUBLE ALLOWED IF EITHER DECK === 0
     } 
-    if (this.currentPlayer === this.player1
-          && (this.middleCardDeck[0].value === this.middleCardDeck[1].value
+    if (//this.currentPlayer === this.player1
+          //&& 
+          (this.middleCardDeck[0].value === this.middleCardDeck[1].value
           && this.currentSlapStroke === 'f')) {
       this.gameStatusMessage = "DOUBLE! Player 1 takes the pile";
       this.slapActionPlayerOne();
-      // console.log('doubles-One')
+      console.log('doubles-One')
       this.slapped ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
           && this.currentSlapStroke === 'j') {
       this.gameStatusMessage = "DOUBLE! Player 2 takes the pile!";
       this.slapActionPlayerTwo();
-      // console.log('doubles-Two');
+      console.log('doubles-Two');
       this.slapped ++;
     }
   }
@@ -297,13 +316,13 @@ class Game {
     } else if (this.currentPlayer === this.player1
           && (this.middleCardDeck[0].value === this.middleCardDeck[2].value)
           && this.currentSlapStroke === 'f') {
-      this.gameStatusMessage = "DOUBLE! Player 1 takes the pile!";
+      this.gameStatusMessage = "SANDWICH! Player 1 takes the pile!";
       this.slapActionPlayerOne();
       // console.log('sandwich-One');
       this.slapped ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[2].value
           && this.currentSlapStroke === 'j') {
-      this.gameStatusMessage = "DOUBLE! Player 2 pile!";
+            this.gameStatusMessage = "SANDWICH! Player 2 takes the pile!";
       this.slapActionPlayerTwo();
       // console.log('sandwich-Two');
       this.slapped ++;
