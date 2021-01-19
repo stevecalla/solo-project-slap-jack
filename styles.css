@@ -1,5 +1,5 @@
 * {
-  /* border: 1em solid red; */
+  border: .0001rem solid black;
   /* height: 100%; */
   /* width: 100%; */
 }
@@ -42,6 +42,10 @@ body {
   width: 100%;
 } 
 
+p {
+  text-align: center;
+}
+
 .card-container {
   display: flex;
   justify-content: space-around;
@@ -68,10 +72,10 @@ img {
   box-shadow: 0px 0px 20px 5px #295;
 }
 
-.count-container {
-  /* border: .25rem solid black; */
+.footer {
+  border: .25rem solid black;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   width: 100%;
@@ -79,17 +83,21 @@ img {
   /* margin-bottom: 5rem; */
 }
 
-.hidden {
-  /* display: none; */
-  visibility: hidden;
-}
-
-
-/* .count-container {
+.count-container {
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  margin-bottom: 5rem;
-} */
+  margin: 0;
+}
+
+.boxes {
+  text-align: center;
+  width: 10rem;
+  margin: 0;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
