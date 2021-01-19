@@ -2,6 +2,8 @@
 var newGame = document.querySelector('.title');
 var middleCard = document.querySelector('.middle-card');
 var middleCardContainer = document.querySelector('.middle-card-container');
+var middleCardPlayer1 = document.querySelector('.middle-card-player1');
+var middleCardPlayer2 = document.querySelector('.middle-card-player2');
 var winsPlayerOne = document.querySelector('.win-box-player1');
 var winsPlayerTwo = document.querySelector('.win-box-player2');
 var cardCountOne = document.querySelector('.card-count-one');
@@ -32,9 +34,12 @@ switch (event.key) {
     newGame.currentDealStroke = 'q';
     newGame.playGame();
 
+    // middleCardContainer.classList.remove('img');
+    // middleCardContainer.classList.add('left-card');
+
+    middleCardContainer.classList.add('middle-card-player1');
+
     middleCardContainer.classList.remove('hidden');
-    middleCardContainer.classList.remove('img');
-    middleCardContainer.classList.add('left-card');
        
     // gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
 
@@ -66,9 +71,7 @@ switch (event.key) {
     newGame.currentDealStroke = 'p';
     newGame.playGame();
 
-    middleCardContainer.classList.add('img');
-    middleCardContainer.classList.remove('left-card');
-
+    middleCardContainer.classList.add('middle-card-player2');
 
     middleCardContainer.classList.remove('hidden');
     
