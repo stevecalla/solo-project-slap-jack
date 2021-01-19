@@ -259,28 +259,33 @@ class Game {
   }
 
   slapOnDouble() {
-    // console.log('double');
-    // // console.log(this.middleCardDeck[0].value)
-    // // console.log(this.middleCardDeck[1].value)
-    // if (this.currentPlayer === this.player1
-    //       && (this.middleCardDeck[0].value === this.middleCardDeck[1].value
-    //       && this.currentSlapStroke === 'f')) {
-    //   this.slapActionPlayerOne();
-    //   // console.log('doubles-One')
-    //   this.slapped ++;
-    // } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
-    //       && this.currentSlapStroke === 'j') {
-    //   this.slapActionPlayerTwo();
-    //   // console.log('doubles-Two');
-    //   this.slapped ++;
-    // }
+    console.log('double');
+    // console.log(this.middleCardDeck[0].value)
+    // console.log(this.middleCardDeck[1].value)
+    if (this.player1.playerDeck.length === 0 || this.player2.playerDeck.length === 0) {
+      //NO DOUBLE ALLOWED IF EITHER DECK === 0
+    } 
+    if (this.currentPlayer === this.player1
+          && (this.middleCardDeck[0].value === this.middleCardDeck[1].value
+          && this.currentSlapStroke === 'f')) {
+      this.slapActionPlayerOne();
+      // console.log('doubles-One')
+      this.slapped ++;
+    } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
+          && this.currentSlapStroke === 'j') {
+      this.slapActionPlayerTwo();
+      // console.log('doubles-Two');
+      this.slapped ++;
+    }
   }
 
   slapOnSandwich() {
     console.log('sandwich');
     // console.log(this.middleCardDeck[0].value)
     // console.log(this.middleCardDeck[2].value)
-    if (this.currentPlayer === this.player1
+    if (this.player1.playerDeck.length === 0 || this.player2.playerDeck.length === 0) {
+      //NO SANDWICH ALLOWED IF EITHER DECK === 0
+    } else if (this.currentPlayer === this.player1
           && (this.middleCardDeck[0].value === this.middleCardDeck[2].value)
           && this.currentSlapStroke === 'f') {
       this.slapActionPlayerOne();
