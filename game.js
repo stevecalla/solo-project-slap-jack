@@ -108,6 +108,7 @@ class Game {
         this.player2.playerDeck.push(playerDeck[i + (Math.round(playerDeck.length * 0.5))]);
       }
     }
+    this.middleCardDeck = [];
     console.table('MakeDeck=', this.middleCardDeck, 'one=', this.player1.playerDeck, 'two=', this.player2.playerDeck);
   }
 
@@ -228,9 +229,9 @@ class Game {
       console.log('jack hand', 'middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
     }
     if(this.middleCardDeck.length > 1) {
-      console.log('double 0=', this.middleCardDeck[0].value, this.middleCardDeck[1].value)
+      // console.log('double 0=', this.middleCardDeck[0].value, this.middleCardDeck[1].value)
       this.slapOnDouble()
-      console.log('double hand', 'middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
+      // console.log('double hand', 'middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
     }
     if(this.middleCardDeck.length > 2) {
       console.log('sandwich 0=', this.middleCardDeck[0].value, this.middleCardDeck[2].value)
@@ -239,6 +240,7 @@ class Game {
     }
     if (this.slapped === 0 && this.middleCardDeck.length !== 0) {
       this.badSlap();
+      this.winLogic();
       console.log('badslap')
       console.log(this.slapped);
       console.log('bad hand', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
@@ -264,21 +266,21 @@ class Game {
   }
 
   slapOnDouble() {
-    console.log('double');
-    // console.log(this.middleCardDeck[0].value)
-    // console.log(this.middleCardDeck[1].value)
-    if (this.currentPlayer === this.player1
-          && (this.middleCardDeck[0].value === this.middleCardDeck[1].value
-          && this.currentSlapStroke === 'f')) {
-      this.slapActionPlayerOne();
-      // console.log('doubles-One')
-      this.slapped ++;
-    } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
-          && this.currentSlapStroke === 'j') {
-      this.slapActionPlayerTwo();
-      // console.log('doubles-Two');
-      this.slapped ++;
-    }
+    // console.log('double');
+    // // console.log(this.middleCardDeck[0].value)
+    // // console.log(this.middleCardDeck[1].value)
+    // if (this.currentPlayer === this.player1
+    //       && (this.middleCardDeck[0].value === this.middleCardDeck[1].value
+    //       && this.currentSlapStroke === 'f')) {
+    //   this.slapActionPlayerOne();
+    //   // console.log('doubles-One')
+    //   this.slapped ++;
+    // } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
+    //       && this.currentSlapStroke === 'j') {
+    //   this.slapActionPlayerTwo();
+    //   // console.log('doubles-Two');
+    //   this.slapped ++;
+    // }
   }
 
   slapOnSandwich() {
@@ -329,14 +331,13 @@ class Game {
 
   winLogic() {
     console.log('WINS LOGIC')
-    if (this.player1.playerDeck.length === this.allCards.length && this.player2.playerDeck.length === 0) {
+    if (this.player1.playerDeck.length > 0 && this.player2.playerDeck.length === 0) {
       this.player1.wins ++;
       console.log('WINS LOGIC #1')
       console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
       this.startGame();
     }
-
-    if (this.player2.playerDeck.length === this.allCards.length && this.player1.playerDeck.length === 0) {
+    if (this.player2.playerDeck.length > 0 && this.player1.playerDeck.length === 0) {
       this.player2.wins ++;
       console.log('WINS LOGIC #2')
       console.table('wins2) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
