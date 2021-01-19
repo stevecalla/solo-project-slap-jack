@@ -4,7 +4,7 @@ class Game {
     this.player2 = new Player(2);
     this.middleCardDeck = [];
     this.handCount = 1;
-    this.slapped = 0;
+    this.slappedCount = 0;
     this.currentDealStroke = 'q';
     this.currentSlapStroke = null;
     this.currentPlayer = null;
@@ -161,7 +161,7 @@ class Game {
       this.priorTurn = this.player1;
     } 
     this.dealHandToMiddleDeck();
-    this.slapped = 0;
+    this.slappedCount = 0;
     if ((this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length) > 53) {
       return "card limit"}
     }
@@ -255,10 +255,10 @@ class Game {
       this.slapOnSandwich()
       console.log('sandwich hand', 'middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
     }
-    if (this.slapped === 0 && this.middleCardDeck.length !== 0) {
+    if (this.slappedCount === 0 && this.middleCardDeck.length !== 0) {
       this.badSlap();
       console.log('badslap')
-      console.log(this.slapped);
+      console.log(this.slappedCount);
       console.log('bad hand', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
     }
     this.deckMiddleCount = this.middleCardDeck.length;
@@ -277,12 +277,12 @@ class Game {
       this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
       this.slapActionPlayerOne();
       console.log('jack-One');
-      this.slapped ++;
+      this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === "J" && this.currentSlapStroke === 'j') {
       this.gameStatusMessage = "SLAPJACK! Player 2 takes the pile!";
       this.slapActionPlayerTwo();
       console.log('jack-Two');
-      this.slapped ++;
+      this.slappedCount ++;
     } 
   }
 
@@ -299,13 +299,13 @@ class Game {
       this.gameStatusMessage = "DOUBLE! Player 1 takes the pile";
       this.slapActionPlayerOne();
       console.log('doubles-One')
-      this.slapped ++;
+      this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
           && this.currentSlapStroke === 'j') {
       this.gameStatusMessage = "DOUBLE! Player 2 takes the pile!";
       this.slapActionPlayerTwo();
       console.log('doubles-Two');
-      this.slapped ++;
+      this.slappedCount ++;
     }
   }
 
@@ -321,13 +321,13 @@ class Game {
       this.gameStatusMessage = "SANDWICH! Player 1 takes the pile!";
       this.slapActionPlayerOne();
       // console.log('sandwich-One');
-      this.slapped ++;
+      this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[2].value
           && this.currentSlapStroke === 'j') {
             this.gameStatusMessage = "SANDWICH! Player 2 takes the pile!";
       this.slapActionPlayerTwo();
       // console.log('sandwich-Two');
-      this.slapped ++;
+      this.slappedCount ++;
     }
   }
 
@@ -344,12 +344,12 @@ class Game {
       this.player1.playerDeck.splice(0, 1);
       this.gameStatusMessage = "BAD SLAP! Player 1 forfeits a card to Player2!";
       console.log("BAD SLAP! Player 1 forfeits a card to Player2!");
-      this.slapped ++;
+      this.slappedCount ++;
     } else if (this.currentSlapStroke === 'j' & this.player2.playerDeck.length > 0) {
       this.player1.playerDeck.push(this.player2.playerDeck[0]);
       this.player2.playerDeck.splice(0, 1);
       this.gameStatusMessage = "BAD SLAP! Player 1 forfeits a card to Player2!";
-      this.slapped ++;
+      this.slappedCount ++;
     }
   }
 

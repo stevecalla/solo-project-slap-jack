@@ -105,6 +105,24 @@ switch (event.key) {
 
     gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
 
+    if (newGame.deckMiddleCount === 0 || newGame.deckMiddleCount > 1) {
+      cardCountMiddle.innerText = `${newGame.deckMiddleCount} Cards`
+    } else {
+      cardCountMiddle.innerText = `${newGame.deckMiddleCount} Card`
+    }   
+
+    if (newGame.deckOneCount === 0 || newGame.deckOneCount > 1) {
+      cardCountOne.innerText = `${newGame.deckOneCount} Cards`
+    } else {
+      cardCountOne.innerText = `${newGame.deckOneCount} Card`
+    }   
+
+    if (newGame.deckTwoCount === 0 || newGame.deckTwoCount > 1) {
+      cardCountTwo.innerText = `${newGame.deckTwoCount} Cards`
+    } else {
+      cardCountTwo.innerText = `${newGame.deckTwoCount} Card`
+    }
+
     if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
       winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
     } else {
@@ -116,13 +134,36 @@ switch (event.key) {
     } else {
       winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
     }    
+
+    if (newGame.slappedCount !== 1) {
+      middleCardContainer.classList.add('hidden');
+    }
 
     break;
   case "j":
   case "J":
     newGame.currentSlapStroke = 'j';
     newGame.slapLogic();
+
     gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
+
+    if (newGame.deckMiddleCount === 0 || newGame.deckMiddleCount > 1) {
+      cardCountMiddle.innerText = `${newGame.deckMiddleCount} Cards`
+    } else {
+      cardCountMiddle.innerText = `${newGame.deckMiddleCount} Card`
+    }   
+
+    if (newGame.deckOneCount === 0 || newGame.deckOneCount > 1) {
+      cardCountOne.innerText = `${newGame.deckOneCount} Cards`
+    } else {
+      cardCountOne.innerText = `${newGame.deckOneCount} Card`
+    }   
+
+    if (newGame.deckTwoCount === 0 || newGame.deckTwoCount > 1) {
+      cardCountTwo.innerText = `${newGame.deckTwoCount} Cards`
+    } else {
+      cardCountTwo.innerText = `${newGame.deckTwoCount} Card`
+    }
 
     if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
       winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
@@ -134,7 +175,13 @@ switch (event.key) {
       winsPlayerTwo.innerText = `${newGame.player2.wins} Wins`
     } else {
       winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
-    }    
+    }   
+    
+    // middleCardContainer.classList.add('hidden');
+
+    if (newGame.slappedCount !== 1) {
+      middleCardContainer.classList.add('hidden');
+    }
       
     break;
   default:
