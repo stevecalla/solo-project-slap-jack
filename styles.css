@@ -70,8 +70,8 @@ body {
 }
 
 .middle-card-container {
-  height: 30vw;
-  width: 21vw;
+  height: 27vw;
+  width: 20vw;
   border-radius: 5px;
   box-shadow:
     -.5rem -0.5rem rgba(0,0,0,0.15),
@@ -94,8 +94,8 @@ body {
 }
 
 img {
-  height: 30vw;
-  width: 21vw;
+  height: 27vw;
+  width: 20vw;
   border-radius: 5px;
   /* box-shadow:
   -.5rem -0.5rem rgba(0,0,0,0.15),
