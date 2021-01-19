@@ -1,18 +1,20 @@
 // //Variables
 var newGame = document.querySelector('.title');
 var middleCard = document.querySelector('.middle-card');
-var middleCardContainer = document.querySelector('.middle-card-container')
+var middleCardContainer = document.querySelector('.middle-card-container');
+var winsPlayerOne = document.querySelector('.win-box-player1');
+var winsPlayerTwo = document.querySelector('.win-box-player2');
 
 //GLOBAL VARIABLES - ON PAGE LOAD
 
 //Event Listeners
 window.onload = function() {
-  var x = new Game();
-  // x.startGame();
+  var newGame = new Game();
+  // newGame.startGame();
 }
 
-var x = new Game();
-x.startGame();
+var newGame = new Game();
+newGame.startGame();
 
 
 window.addEventListener("keydown", function (event) {
@@ -24,31 +26,33 @@ window.addEventListener("keydown", function (event) {
 switch (event.key) {
   case "q":
   case "Q":
-    x.currentDealStroke = 'q';
-    x.playGame();
+    newGame.currentDealStroke = 'q';
+    newGame.playGame();
     middleCardContainer.classList.remove('hidden')
     middleCardContainer.classList.remove('img')
     middleCardContainer.classList.add('left-card')
-    middleCardContainer.innerHTML = `<img class="img" src=${x.middleCardDeck[0].asset} alt="player two deal into the middle">`
+    middleCardContainer.innerHTML = `<img class="img" src=${newGame.middleCardDeck[0].asset} alt="player two deal into the middle">`
+    winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
     break;
   case "p": 
   case "P":
-    x.currentDealStroke = 'p';
-    x.playGame();
+    newGame.currentDealStroke = 'p';
+    newGame.playGame();
     middleCardContainer.classList.remove('hidden')
     middleCardContainer.classList.add('img')
     middleCardContainer.classList.remove('left-card')
-    middleCardContainer.innerHTML = `<img class="middle-card" src=${x.middleCardDeck[0].asset} alt="middle deck of cards">`
+    middleCardContainer.innerHTML = `<img class="middle-card" src=${newGame.middleCardDeck[0].asset} alt="middle deck of cards">`
+    winsPlayerTwo.innerText = `${newGame.player2.wins} Wins`
     break;
   case "f":
   case "F":
-    x.currentSlapStroke = 'f';
-    x.slapLogic();
+    newGame.currentSlapStroke = 'f';
+    newGame.slapLogic();
     break;
   case "j":
   case "J":
-    x.currentSlapStroke = 'j';
-    x.slapLogic();
+    newGame.currentSlapStroke = 'j';
+    newGame.slapLogic();
     break;
   default:
     return; // Quit when this doesn't handle the key event.

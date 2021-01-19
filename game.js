@@ -9,7 +9,7 @@ class Game {
     this.currentSlapStroke = null;
     this.currentPlayer = null;
     this.priorTurn = null;
-    this.allCards2 = [
+    this.allCards = [
       {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
       {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
       {value: "J", suit: "blue", asset: "./assets/blue-jack.png"},
@@ -17,7 +17,7 @@ class Game {
       {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
       {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
     ]
-    this.allCards = [
+    this.allCards2 = [
       {value: "1", suit: "blue", asset: "./assets/blue-01.png"},
       {value: "2", suit: "blue", asset: "./assets/blue-02.png"},
       {value: "3", suit: "blue", asset: "./assets/blue-03.png"},
@@ -337,7 +337,7 @@ class Game {
       console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
       this.startGame();
     }
-    if (this.player2.playerDeck.length > 0 && this.player1.playerDeck.length === 0) {
+    if (this.player2.playerDeck.length > 0 && this.player1.playerDeck.length === 0 && this.currentDealKeystroke === 'j') {
       this.player2.wins ++;
       console.log('WINS LOGIC #2')
       console.table('wins2) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
