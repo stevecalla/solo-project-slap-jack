@@ -104,6 +104,7 @@ switch (event.key) {
   case "F":
     newGame.currentSlapStroke = 'f';
     newGame.slapLogic();
+    newGame.player1.saveToStorage();
 
     gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
 
@@ -146,6 +147,7 @@ switch (event.key) {
   case "J":
     newGame.currentSlapStroke = 'j';
     newGame.slapLogic();
+    newGame.player1.saveToStorage();
 
     gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
 
