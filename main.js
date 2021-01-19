@@ -20,7 +20,6 @@ window.onload = function() {
 var newGame = new Game();
 newGame.startGame();
 
-
 window.addEventListener("keydown", function (event) {
   if (event.defaultPrevented) {
     return; // Do nothing if the event was already processed
@@ -177,8 +176,6 @@ switch (event.key) {
       winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
     }   
     
-    // middleCardContainer.classList.add('hidden');
-
     if (newGame.slappedCount !== 1) {
       middleCardContainer.classList.add('hidden');
     }

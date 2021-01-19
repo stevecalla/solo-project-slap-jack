@@ -7,6 +7,7 @@
 body {
   margin: 0;
   height: 100%;
+  font-family: 'Roboto:900', sans-serif;;
   box-sizing: border-box;
 }
 
@@ -40,6 +41,11 @@ body {
   margin-top: 0.5rem;
 }
 
+.game-status-message {
+  font-style: italic;
+  color: blue;
+}
+
 .main-container {
   /* border: 0.25rem solid black; */
   display: flex;
@@ -63,8 +69,9 @@ body {
 
 .middle-card-container {
   height: 30vw;
-  width: 20vw;    
-  box-shadow: 0px 0px 20px 5px #295;
+  width: 20vw;
+  border: 0.001rem solid black;
+  /* box-shadow: 0px 0px 20px 5px black; */
 }
 
 img {
@@ -91,6 +98,15 @@ img {
   /* margin-bottom: 5rem; */
 }
 
+.player-one{
+  box-shadow: 0px 0px 20px 5px red;
+}
+
+.player-two {
+  box-shadow: 0px 0px 20px 5px #295;
+  margin-bottom: 0.5rem;
+}
+
 .count-container {
   display: flex;
   justify-content: space-around;
@@ -103,6 +119,11 @@ img {
   text-align: center;
   width: 10rem;
   margin: 0;
+}
+
+.win-box-player1,
+.win-box-player2 {
+  font-style: italic;
 }
 
 .hidden {
