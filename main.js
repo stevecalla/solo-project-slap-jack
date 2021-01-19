@@ -35,7 +35,11 @@ switch (event.key) {
     middleCardContainer.classList.remove('hidden')
     middleCardContainer.classList.remove('img')
     middleCardContainer.classList.add('left-card')
-    middleCardContainer.innerHTML = `<img class="img" src=${newGame.middleCardDeck[0].asset} alt="player two deal into the middle">`
+
+    if (newGame.middleCardDeck.length !== 0) {
+      middleCardContainer.innerHTML = `<img class="middle-card" src=${newGame.middleCardDeck[0].asset} alt="middle deck of cards">`
+    }
+
     
     if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
       winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
@@ -76,7 +80,11 @@ switch (event.key) {
     middleCardContainer.classList.remove('hidden')
     middleCardContainer.classList.add('img')
     middleCardContainer.classList.remove('left-card')
-    middleCardContainer.innerHTML = `<img class="middle-card" src=${newGame.middleCardDeck[0].asset} alt="middle deck of cards">`
+    
+    if (newGame.middleCardDeck.length !== 0) {
+      middleCardContainer.innerHTML = `<img class="middle-card" src=${newGame.middleCardDeck[0].asset} alt="middle deck of cards">`
+    }
+      
     
     if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
       winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
