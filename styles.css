@@ -1,5 +1,5 @@
 * {
-  border: .0001rem solid black;
+  /* border: .0001rem solid black; */
   /* height: 100%; */
   /* width: 100%; */
 }
@@ -21,14 +21,26 @@ body {
   /* margin-bottom: 1em; */
 }
 
-.game-title {
+.game-title-container {
+  /* border: .25rem solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 6rem;
+  width: 100%;
+  margin: 0;
+  /* margin-bottom: 5rem; */
+}
+
+ {
   margin: 0;
 }
 
+.game-title,
 .game-status-message {
-  text-align: center;
   margin: 0;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .main-container {
@@ -72,7 +84,7 @@ img {
 }
 
 .footer {
-  border: .25rem solid black;
+  /* border: .25rem solid black; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
