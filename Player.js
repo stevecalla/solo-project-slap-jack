@@ -2,7 +2,13 @@ class Player {
   constructor(id) {
     this.id = id;
     this.playerDeck = []; //new deck
-    this.wins = 0;
+    this.wins = null;
+
+    // this.retrievedObject1 = 0;
+    // this.retrievedObject2 = 0;
+    // this.parsedObject11 = 0;
+    // this.parsedObject2 = 0;
+
     // console.table('Player=', this);
   }
 
@@ -11,23 +17,8 @@ class Player {
   }
 
   saveToStorage() {
-    localStorage.setItem(newGame.player1.id.toString(), JSON.stringify(newGame.player1.wins))
-    localStorage.setItem(newGame.player2.id.toString(), JSON.stringify(newGame.player2.wins))
+    localStorage.setItem(newGame.player1.id, newGame.player1.wins)
+    localStorage.setItem(newGame.player2.id, newGame.player2.wins)
   }
-
-  getFromStorage() {
-    var storedWins;
-    var keys = Object.keys(localStorage);
-    sortDescending(keys);
-    reviveWinsFromStorage(keys);
-  }
-
-  reviveWinsFromStorage(storedWins) {
-    for (var i = 0; i < storedWins.length; i++) {
-      var retrievedObject = localStorage.getItem(storedWins[i]);
-      var parsedObject = JSON.parse(retrievedObject);
-      // var revivedPastActivity = new Game(parsedObject.;
-      // pastActivities.push(revivedPastActivity);
-    }
 
 }

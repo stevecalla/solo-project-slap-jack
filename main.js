@@ -16,7 +16,7 @@ var gameStatusMessage = document.querySelector('.game-status-message')
 //Event Listeners
 window.onload = function() {
   var newGame = new Game();
-  // newGame.startGame();
+  getFromStorage();
 }
 
 var newGame = new Game();
@@ -126,18 +126,18 @@ switch (event.key) {
       cardCountTwo.innerText = `${newGame.deckTwoCount} Card`
     }
 
-    if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
+    if ((newGame.player1.wins === 0 || newGame.player1.wins > 1) && newGame.player1.wins !== null) {
       winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
     } else {
       winsPlayerOne.innerText = `${newGame.player1.wins} Win`
     }
 
-    if (newGame.player2.wins === 0 || newGame.player2.wins > 1) {
+    if ((newGame.player2.wins === 0 || newGame.player2.wins > 1) && newGame.player2.wins !== null) {
       winsPlayerTwo.innerText = `${newGame.player2.wins} Wins`
     } else {
       winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
     }    
-
+    
     if (newGame.slappedCount === 1) {
       middleCardContainer.classList.add('hidden');
     }
@@ -169,17 +169,17 @@ switch (event.key) {
       cardCountTwo.innerText = `${newGame.deckTwoCount} Card`
     }
 
-    if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
+    if ((newGame.player1.wins === 0 || newGame.player1.wins > 1) && newGame.player1.wins !== null) {
       winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
     } else {
       winsPlayerOne.innerText = `${newGame.player1.wins} Win`
     }
 
-    if (newGame.player2.wins === 0 || newGame.player2.wins > 1) {
+    if ((newGame.player2.wins === 0 || newGame.player2.wins > 1) && newGame.player2.wins !== null) {
       winsPlayerTwo.innerText = `${newGame.player2.wins} Wins`
     } else {
       winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
-    }   
+    }    
     
     if (newGame.slappedCount === 1) {
       middleCardContainer.classList.add('hidden');
@@ -193,9 +193,9 @@ switch (event.key) {
   event.preventDefault();
 }, true);
 
-// MESSAGES
-// - BAD SLAP! Player 2 forfeits a card to Player 1!
-// - DOUBLE! Player 2 takes the pile!
-// - SANDWICH! Player 2 takes the pile!
-// - SLAPJACK! Player 1 takes the pile!
-// - Player 1 WINS!
+  function getFromStorage() {
+    var retrievedObject1 = localStorage.getItem('1')
+    var retrievedObject2 = localStorage.getItem('2')
+    newGame.player1.wins = retrievedObject1;
+    newGame.player2.wins = retrievedObject2;
+  }
