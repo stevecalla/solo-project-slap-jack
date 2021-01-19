@@ -12,7 +12,7 @@ class Game {
     this.deckMiddleCount = null;
     this.deckOneCount = null;
     this.deckTwoCount = null;
-    this.gameStatusMessage = 'Player One - Hit Q to Start the Game';
+    this.gameStatusMessage = 'Player One --> Press Q to Start the Game';
     this.allCards2 = [
       {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
       {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
@@ -30,15 +30,15 @@ class Game {
       {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
       {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
     ]
-    this.allCards2 = [ //sandwich tester
+    this.allCards = [ //sandwich tester
       {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
-      {value: "9", suit: "blue", asset: "./assets/blue-10.png"},
-      {value: "10", suit: "blue", asset: "./assets/blue-jack.png"},
-      {value: "10", suit: "gold", asset: "./assets/gold-09.png"},
+      {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
+      {value: "J", suit: "blue", asset: "./assets/blue-jack.png"},
+      {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
       {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
-      {value: "9", suit: "gold", asset: "./assets/gold-jack.png"},
+      {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
     ]
-    this.allCards = [
+    this.allCard2 = [
       {value: "1", suit: "blue", asset: "./assets/blue-01.png"},
       {value: "2", suit: "blue", asset: "./assets/blue-02.png"},
       {value: "3", suit: "blue", asset: "./assets/blue-03.png"},
@@ -96,6 +96,7 @@ class Game {
 
   startGame() {
     this.handForPlayers();
+    this.slappedCount = 0;
     console.log('middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
   }
 
@@ -155,6 +156,7 @@ class Game {
 
   playGame() {
     this.assignTurn();
+    // this.slappedCount = 0;
     if (this.player2.playerDeck.length === 1 && this.player1.playerDeck.length === 0) {
       this.priorTurn = this.player2;
     } else if (this.player1.playerDeck.length === 1 && this.player2.playerDeck.length === 0) {
@@ -167,6 +169,7 @@ class Game {
     }
 
   dealHandToMiddleDeck() {
+    this.slappedCount = 0;
     if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player1.playerDeck.length !== 0 && this.player1.playerDeck.length !== this.allCards.length) {
       this.middleCardDeck.unshift(this.player1.playerDeck[0])
       this.player1.playerDeck.splice(0, 1);
@@ -348,7 +351,7 @@ class Game {
     } else if (this.currentSlapStroke === 'j' & this.player2.playerDeck.length > 0) {
       this.player1.playerDeck.push(this.player2.playerDeck[0]);
       this.player2.playerDeck.splice(0, 1);
-      this.gameStatusMessage = "BAD SLAP! Player 1 forfeits a card to Player2!";
+      this.gameStatusMessage = "BAD SLAP! Player 2 forfeits a card to Player1!";
       this.slappedCount ++;
     }
   }

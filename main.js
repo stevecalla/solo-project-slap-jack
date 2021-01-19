@@ -137,7 +137,7 @@ switch (event.key) {
       winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
     }    
 
-    if (newGame.slappedCount !== 1) {
+    if (newGame.slappedCount === 1) {
       middleCardContainer.classList.add('hidden');
     }
 
@@ -179,7 +179,7 @@ switch (event.key) {
       winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
     }   
     
-    if (newGame.slappedCount !== 1) {
+    if (newGame.slappedCount === 1) {
       middleCardContainer.classList.add('hidden');
     }
       
