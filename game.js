@@ -151,6 +151,7 @@ class Game {
       console.log('handcount= ', this.handCount);
       this.handCount ++;
       console.log('p1 & q')
+      console.log('prior turn= ', this.priorTurn)
       console.log('p1= ', this.currentPlayer, 'q= ', this.currentDealStroke, 'p1L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
     } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.player2.playerDeck.length !== 0 && this.player2.playerDeck.length !== this.allCards.length) {
         this.middleCardDeck.unshift(this.player2.playerDeck[0])
@@ -158,27 +159,60 @@ class Game {
         console.log('handcount= ', this.handCount);
         this.handCount ++;
         console.log('p2 & p')
+        console.log('prior turn= ', this.priorTurn)
         console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
-    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'p' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player2.playerDeck.length === 0 && this.priorTurn === this.player2) {
+    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'p' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {
         for (var i = 0; i < this.allCards.length; i++) {
-          this.player2.playerDeck.push(this.middleCardDeck[0]);
+          this.player2.playerDeck.push(this.middleCardDeck[i]);
         }
       this.middleCardDeck = [];
       console.log('p2 gets hand')
-      // console.log('p2 & p')
-      // console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
-    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player2.playerDeck.length === 0 && this.priorTurn === this.player1) {
+      console.log('prior turn= ', this.priorTurn)
+      console.log('p2 & p')
+      console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
+    
+    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player1) {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
         this.player1.playerDeck.push(this.middleCardDeck[i]);
       }
       this.middleCardDeck = [];
       console.log('p1 gets hand')
-      // console.log('p2 & p')
-      // console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
-    } else {
+      console.log('prior turn= ', this.priorTurn)
+      console.log('p2 & p')
+      console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
+////////
+///////
+      
+    } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.middleCardDeck.length === 0 && this.player2.playerDeck.length === this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {
+      this.middleCardDeck.unshift(this.player2.playerDeck[0])
+      this.player2.playerDeck.splice(0, 1);
+      console.log('handcount= ', this.handCount);
+      this.handCount ++;
+      console.log('new code')
+      console.log('prior turn= ', this.priorTurn)
+      console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
+      
+    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.middleCardDeck.length === 0 && this.player1.playerDeck.length === this.allCards.length && this.player2.playerDeck.length === 0 && this.priorTurn === this.player1) {
+      this.middleCardDeck.unshift(this.player1.playerDeck[0])
+      this.player1.playerDeck.splice(0, 1);
+      console.log('handcount= ', this.handCount);
+      this.handCount ++;
+      console.log('new code')
+      console.log('prior turn= ', this.priorTurn)
+      console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
+
+
+
+      
+////////
+///////    
+    
+    }  else {
       console.log('handcount= ', this.handCount);
       console.log('no deal')
-      console.log('current player= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
+      console.log('prior turn= ', this.priorTurn)
+      console.log('current player= ', this.currentPlayer, 'current deal stroke= ', this.currentDealStroke)
+      // console.log('current player= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
       // console.log('6=', this.middleCardDeck.length, 'p=', this.currentDealStroke, 'p1', this.currentPlayer)
     }
     if (this.middleCardDeck.length > 0) {
@@ -299,13 +333,14 @@ class Game {
       this.player1.wins ++;
       console.log('WINS LOGIC #1')
       console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
+      this.startGame();
     }
 
     if (this.player2.playerDeck.length === this.allCards.length && this.player1.playerDeck.length === 0) {
       this.player2.wins ++;
       console.log('WINS LOGIC #2')
       console.table('wins2) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
-
+      this.startGame();
     } 
   }
 
