@@ -32,7 +32,11 @@ switch (event.key) {
     middleCardContainer.classList.remove('img')
     middleCardContainer.classList.add('left-card')
     middleCardContainer.innerHTML = `<img class="img" src=${newGame.middleCardDeck[0].asset} alt="player two deal into the middle">`
-    winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
+    if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
+      winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
+    } else {
+      winsPlayerOne.innerText = `${newGame.player1.wins} Win`
+    }
     break;
   case "p": 
   case "P":
@@ -42,7 +46,12 @@ switch (event.key) {
     middleCardContainer.classList.add('img')
     middleCardContainer.classList.remove('left-card')
     middleCardContainer.innerHTML = `<img class="middle-card" src=${newGame.middleCardDeck[0].asset} alt="middle deck of cards">`
-    winsPlayerTwo.innerText = `${newGame.player2.wins} Wins`
+    if (newGame.player2.wins === 0 || newGame.player2.wins > 1) {
+      winsPlayerTwo.innerText = `${newGame.player2.wins} Wins`
+    } else {
+      winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
+    }
+      
     break;
   case "f":
   case "F":
