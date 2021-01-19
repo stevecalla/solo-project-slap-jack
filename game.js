@@ -9,7 +9,7 @@ class Game {
     this.currentSlapStroke = null;
     this.currentPlayer = null;
     this.priorTurn = null;
-    this.allCards = [
+    this.allCards2 = [
       {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
       {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
       {value: "J", suit: "blue", asset: "./assets/blue-jack.png"},
@@ -17,7 +17,7 @@ class Game {
       {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
       {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
     ]
-    this.allCards2 = [
+    this.allCards = [
       {value: "1", suit: "blue", asset: "./assets/blue-01.png"},
       {value: "2", suit: "blue", asset: "./assets/blue-02.png"},
       {value: "3", suit: "blue", asset: "./assets/blue-03.png"},
