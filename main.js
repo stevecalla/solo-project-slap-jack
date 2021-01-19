@@ -67,9 +67,11 @@ switch (event.key) {
     newGame.currentDealStroke = 'p';
     newGame.playGame();
 
-    middleCardContainer.classList.remove('hidden');
     middleCardContainer.classList.add('img');
     middleCardContainer.classList.remove('left-card');
+
+
+    middleCardContainer.classList.remove('hidden');
     
     if (newGame.middleCardDeck.length !== 0) {
       middleCardContainer.innerHTML = `<img class="middle-card" src=${newGame.middleCardDeck[0].asset} alt="middle deck of cards">`
