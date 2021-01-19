@@ -18,10 +18,11 @@ class Game {
       {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
       {value: "J", suit: "blue", asset: "./assets/blue-jack.png"},
       {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
+      {value: "J", suit: "gold", asset: "./assets/gold-09.png"},
       {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
       {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
     ]
-    this.allCards = [ //jack tester
+    this.allCards2 = [ //jack tester
       {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
       {value: "J", suit: "blue", asset: "./assets/blue-10.png"},
       {value: "10", suit: "blue", asset: "./assets/blue-jack.png"},
@@ -29,11 +30,11 @@ class Game {
       {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
       {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
     ]
-    this.allCards2 = [ //sandwich tester
+    this.allCards = [ //sandwich tester
       {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
       {value: "9", suit: "blue", asset: "./assets/blue-10.png"},
       {value: "10", suit: "blue", asset: "./assets/blue-jack.png"},
-      {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
+      {value: "10", suit: "gold", asset: "./assets/gold-09.png"},
       {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
       {value: "9", suit: "gold", asset: "./assets/gold-jack.png"},
     ]
@@ -266,10 +267,12 @@ class Game {
   }
 
   slapOnJack() {
-    if (this.player1.playerDeck.length > 0 && this.player2.playerDeck.length === 0) {
+    if (this.player1.playerDeck.length >= 0 && this.player2.playerDeck.length === 0 && this.middleCardDeck[0].value === 'J') {
       this.winLogicOnJack();
-    } else if (this.player1.playerDeck.length === 0 && this.player2.playerDeck.length > 0) {
+      console.log('YES')
+    } else if (this.player1.playerDeck.length === 0 && this.player2.playerDeck.length >= 0 && this.middleCardDeck[0].value === 'J') {
       this.winLogicOnJack();
+      console.log('YES YES')
     } else if (this.middleCardDeck[0].value === 'J' && this.currentSlapStroke === 'f') {
       this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
       this.slapActionPlayerOne();
@@ -289,8 +292,7 @@ class Game {
     console.log(this.middleCardDeck[1].value)
     if (this.player1.playerDeck.length === 0 || this.player2.playerDeck.length === 0) {
       //NO DOUBLE ALLOWED IF EITHER DECK === 0
-    } 
-    if (//this.currentPlayer === this.player1
+    } else if (//this.currentPlayer === this.player1
           //&& 
           (this.middleCardDeck[0].value === this.middleCardDeck[1].value
           && this.currentSlapStroke === 'f')) {
@@ -330,12 +332,18 @@ class Game {
   }
 
   badSlap() {
+    console.log('badslap', 'p1= ', this.player1.playerDeck.length, 'p2= ', this.player2.playerDeck.length)
+    console.log('slapstroke= ', this.currentSlapStroke)
     if (this.player1.playerDeck.length === 0 || this.player2.playerDeck.length === 0) {
       this.winLogicBadSlap();
-    } else if (this.currentSlapStroke === 'f' && this.player1.playerDeck.length > 0) {
+      return;
+    }
+    
+    if (this.currentSlapStroke === 'f' && this.player1.playerDeck.length > 0) {
       this.player2.playerDeck.push(this.player1.playerDeck[0]);
       this.player1.playerDeck.splice(0, 1);
       this.gameStatusMessage = "BAD SLAP! Player 1 forfeits a card to Player2!";
+      console.log("BAD SLAP! Player 1 forfeits a card to Player2!");
       this.slapped ++;
     } else if (this.currentSlapStroke === 'j' & this.player2.playerDeck.length > 0) {
       this.player1.playerDeck.push(this.player2.playerDeck[0]);
@@ -363,37 +371,60 @@ class Game {
 
   winLogicOnJack() {
     console.log('WINS LOGIC')
-    if (this.player1.playerDeck.length > 0 && this.player2.playerDeck.length === 0) {
+    console.log('p1', this.player1.playerDeck.length, 'p2', this.player2.playerDeck.length, 'key', this.currentSlapStroke)
+    if (this.player1.playerDeck.length >= 0 && this.player2.playerDeck.length === 0 && this.currentSlapStroke === 'f') {
       this.player1.wins ++;
-      this.gameStatusMessage = "Player 1 WINS!";
+      this.gameStatusMessage = "Player 1 WINS (on SLAPJACK)!";
+      console.log('p1', this.player1.playerDeck.length, 'p2', this.player2.playerDeck.length, 'key', this.currentSlapStroke)
       console.log('WINS LOGIC #1')
       console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
-      // this.startGame();
+      this.startGame();
     }
-    if (this.player2.playerDeck.length > 0 && this.player1.playerDeck.length === 0 && this.currentDealKeystroke === 'j') {
+
+    if (this.player2.playerDeck.length >= 0 && this.player1.playerDeck.length === 0 && this.currentSlapStroke === 'j') {
       this.player2.wins ++;
-      this.gameStatusMessage = "Player 2 WINS!";
+      this.gameStatusMessage = "Player 2 WINS (ON SLAPJACK)!";
       console.log('WINS LOGIC #2')
       console.table('wins2) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
-      // this.startGame();
+      this.startGame();
     } 
+
+    if (this.player1.playerDeck.length >= 0 && this.player2.playerDeck.length === 0 && this.currentSlapStroke === 'j') {
+      this.slapActionPlayerTwo();
+      this.gameStatusMessage = "SLAPJACK! Player 2 takes the pile!";
+      console.log('p1', this.player1.playerDeck.length, 'p2', this.player2.playerDeck.length, 'key', this.currentSlapStroke)
+      console.log('WINS LOGIC #1')
+      console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
+    }
+
+    if (this.player2.playerDeck.length >= 0 && this.player1.playerDeck.length === 0 && this.currentSlapStroke === 'f') {
+      this.slapActionPlayerOne();
+      this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
+      console.log('p1', this.player1.playerDeck.length, 'p2', this.player2.playerDeck.length, 'key', this.currentSlapStroke)
+      console.log('WINS LOGIC #1')
+      console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
+    }
+
   }
 
   winLogicBadSlap() {
     console.log('BAD SLAP WIN LOGIC')
     if (this.currentSlapStroke === 'f' && this.middleCardDeck[0].value !== "J" && this.player1.playerDeck.length === 0) {
       this.player2.wins ++;
-      this.gameStatusMessage = "BAD SLAP! Player 1 WINS!";
+      this.gameStatusMessage = "BAD SLAP! Player 2 WINS!";
       console.log('WINS LOGIC #1 BAD SLAP')
       console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
       this.startGame();
+      // return;
     }
+
     if (this.currentSlapStroke === 'j' && this.middleCardDeck[0].value !== "J" && this.player2.playerDeck.length === 0) {
       this.player1.wins ++;
-      this.gameStatusMessage = "BAD SLAP! Player 2 WINS!";
+      this.gameStatusMessage = "BAD SLAP! Player 1 WINS!";
       console.log('WINS LOGIC #2')
       console.table('wins2) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
       this.startGame();
+      // return;
     } 
   }
 
