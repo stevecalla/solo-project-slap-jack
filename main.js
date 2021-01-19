@@ -36,24 +36,12 @@ switch (event.key) {
     middleCardContainer.classList.remove('hidden');
     middleCardContainer.classList.remove('img');
     middleCardContainer.classList.add('left-card');
-
-    gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
+       
+    // gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
 
     if (newGame.middleCardDeck.length !== 0) {
       middleCardContainer.innerHTML = `<img class="middle-card" src=${newGame.middleCardDeck[0].asset} alt="middle deck of cards">`
     }
-
-    if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
-      winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
-    } else {
-      winsPlayerOne.innerText = `${newGame.player1.wins} Win`
-    }
-
-    if (newGame.player2.wins === 0 || newGame.player2.wins > 1) {
-      winsPlayerTwo.innerText = `${newGame.player2.wins} Wins`
-    } else {
-      winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
-    }    
 
     if (newGame.deckMiddleCount === 0 || newGame.deckMiddleCount > 1) {
       cardCountMiddle.innerText = `${newGame.deckMiddleCount} Cards`
@@ -82,24 +70,12 @@ switch (event.key) {
     middleCardContainer.classList.remove('hidden');
     middleCardContainer.classList.add('img');
     middleCardContainer.classList.remove('left-card');
-
-    gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
     
     if (newGame.middleCardDeck.length !== 0) {
       middleCardContainer.innerHTML = `<img class="middle-card" src=${newGame.middleCardDeck[0].asset} alt="middle deck of cards">`
     }
-      
-    if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
-      winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
-    } else {
-      winsPlayerOne.innerText = `${newGame.player1.wins} Win`
-    }
 
-    if (newGame.player2.wins === 0 || newGame.player2.wins > 1) {
-      winsPlayerTwo.innerText = `${newGame.player2.wins} Wins`
-    } else {
-      winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
-    }    
+    gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
 
     if (newGame.deckMiddleCount === 0 || newGame.deckMiddleCount > 1) {
       cardCountMiddle.innerText = `${newGame.deckMiddleCount} Cards`
@@ -124,11 +100,40 @@ switch (event.key) {
   case "F":
     newGame.currentSlapStroke = 'f';
     newGame.slapLogic();
+
+    gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
+
+    if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
+      winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
+    } else {
+      winsPlayerOne.innerText = `${newGame.player1.wins} Win`
+    }
+
+    if (newGame.player2.wins === 0 || newGame.player2.wins > 1) {
+      winsPlayerTwo.innerText = `${newGame.player2.wins} Wins`
+    } else {
+      winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
+    }    
+
     break;
   case "j":
   case "J":
     newGame.currentSlapStroke = 'j';
     newGame.slapLogic();
+    gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
+
+    if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
+      winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
+    } else {
+      winsPlayerOne.innerText = `${newGame.player1.wins} Win`
+    }
+
+    if (newGame.player2.wins === 0 || newGame.player2.wins > 1) {
+      winsPlayerTwo.innerText = `${newGame.player2.wins} Wins`
+    } else {
+      winsPlayerTwo.innerText = `${newGame.player2.wins} Win`
+    }    
+      
     break;
   default:
     return; // Quit when this doesn't handle the key event.

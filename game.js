@@ -12,7 +12,7 @@ class Game {
     this.deckMiddleCount = null;
     this.deckOneCount = null;
     this.deckTwoCount = null;
-    this.gameStatusMessage = "Game In Progress";
+    this.gameStatusMessage = "";
     this.allCards = [
       {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
       {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
