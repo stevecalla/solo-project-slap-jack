@@ -7,6 +7,7 @@ var winsPlayerTwo = document.querySelector('.win-box-player2');
 var cardCountOne = document.querySelector('.card-count-one');
 var cardCountTwo = document.querySelector('.card-count-two');
 var cardCountMiddle = document.querySelector('.card-count-middle');
+var gameStatusMessage = document.querySelector('.game-status-message')
 
 //GLOBAL VARIABLES - ON PAGE LOAD
 
@@ -32,15 +33,16 @@ switch (event.key) {
     newGame.currentDealStroke = 'q';
     newGame.playGame();
 
-    middleCardContainer.classList.remove('hidden')
-    middleCardContainer.classList.remove('img')
-    middleCardContainer.classList.add('left-card')
+    middleCardContainer.classList.remove('hidden');
+    middleCardContainer.classList.remove('img');
+    middleCardContainer.classList.add('left-card');
+
+    gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
 
     if (newGame.middleCardDeck.length !== 0) {
       middleCardContainer.innerHTML = `<img class="middle-card" src=${newGame.middleCardDeck[0].asset} alt="middle deck of cards">`
     }
 
-    
     if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
       winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
     } else {
@@ -77,15 +79,16 @@ switch (event.key) {
     newGame.currentDealStroke = 'p';
     newGame.playGame();
 
-    middleCardContainer.classList.remove('hidden')
-    middleCardContainer.classList.add('img')
-    middleCardContainer.classList.remove('left-card')
+    middleCardContainer.classList.remove('hidden');
+    middleCardContainer.classList.add('img');
+    middleCardContainer.classList.remove('left-card');
+
+    gameStatusMessage.innerText = `${newGame.gameStatusMessage}`;
     
     if (newGame.middleCardDeck.length !== 0) {
       middleCardContainer.innerHTML = `<img class="middle-card" src=${newGame.middleCardDeck[0].asset} alt="middle deck of cards">`
     }
       
-    
     if (newGame.player1.wins === 0 || newGame.player1.wins > 1) {
       winsPlayerOne.innerText = `${newGame.player1.wins} Wins`
     } else {
@@ -133,3 +136,10 @@ switch (event.key) {
   // Cancel the default action to avoid it being handled twice
   event.preventDefault();
 }, true);
+
+// MESSAGES
+// - BAD SLAP! Player 2 forfeits a card to Player 1!
+// - DOUBLE! Player 2 takes the pile!
+// - SANDWICH! Player 2 takes the pile!
+// - SLAPJACK! Player 1 takes the pile!
+// - Player 1 WINS!

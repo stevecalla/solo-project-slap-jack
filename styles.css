@@ -22,12 +22,10 @@ body {
 }
 
 .game-title {
-  /* text-align: center; */
-  /* margin-top: 0; */
   margin: 0;
 }
 
-.game-status-header {
+.game-status-message {
   text-align: center;
   margin: 0;
   margin-top: 1rem;

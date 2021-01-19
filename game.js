@@ -12,6 +12,7 @@ class Game {
     this.deckMiddleCount = null;
     this.deckOneCount = null;
     this.deckTwoCount = null;
+    this.gameStatusMessage = "";
     this.allCards = [
       {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
       {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
@@ -337,15 +338,17 @@ class Game {
     console.log('WINS LOGIC')
     if (this.player1.playerDeck.length > 0 && this.player2.playerDeck.length === 0) {
       this.player1.wins ++;
+      this.gameStatusMessage = "Player 1 WINS!";
       console.log('WINS LOGIC #1')
       console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
-      this.startGame();
+      // this.startGame();
     }
     if (this.player2.playerDeck.length > 0 && this.player1.playerDeck.length === 0 && this.currentDealKeystroke === 'j') {
       this.player2.wins ++;
+      this.gameStatusMessage = "Player 2 WINS!";
       console.log('WINS LOGIC #2')
       console.table('wins2) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
-      this.startGame();
+      // this.startGame();
     } 
   }
 
@@ -353,12 +356,14 @@ class Game {
     console.log('BAD SLAP WIN LOGIC')
     if (this.currentSlapStroke === 'f' && this.middleCardDeck[0].value !== "J" && this.player1.playerDeck.length === 0) {
       this.player2.wins ++;
+      this.gameStatusMessage = "BAD SLAP! Player 1 WINS!";
       console.log('WINS LOGIC #1 BAD SLAP')
       console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
       this.startGame();
     }
     if (this.currentSlapStroke === 'j' && this.middleCardDeck[0].value !== "J" && this.player2.playerDeck.length === 0) {
       this.player1.wins ++;
+      this.gameStatusMessage = "BAD SLAP! Player 2 WINS!";
       console.log('WINS LOGIC #2')
       console.table('wins2) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
       this.startGame();
