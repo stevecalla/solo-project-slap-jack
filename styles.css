@@ -13,9 +13,23 @@ body {
 .page-header {
   /* border: .25rem solid black; */
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  /* text-align: center; */
   height: 18vh;
+  /* margin-bottom: 1em; */
+}
+
+.game-title {
+  /* text-align: center; */
+  /* margin-top: 0; */
+  margin: 0;
+}
+
+.game-status-header {
+  text-align: center;
+  margin-top: 0;
 }
 
 .main-container {
