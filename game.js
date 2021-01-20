@@ -33,10 +33,11 @@ class Game {
     this.allCards = [ //sandwich tester
       {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
       {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
-      {value: "J", suit: "blue", asset: "./assets/blue-jack.png"},
+      {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
       {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
       {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
       {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
+      {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
     ]
     this.allCard2 = [
       {value: "1", suit: "blue", asset: "./assets/blue-01.png"},
@@ -339,20 +340,22 @@ class Game {
     console.log('slapstroke= ', this.currentSlapStroke)
     if (this.player1.playerDeck.length === 0 || this.player2.playerDeck.length === 0) {
       this.winLogicBadSlap();
-      return;
+      // return;
     }
     
-    if (this.currentSlapStroke === 'f' && this.player1.playerDeck.length > 0) {
+    if (this.currentSlapStroke === 'f' && this.player1.playerDeck.length > 0 && this.gameStatusMessage !== 'BAD SLAP! Player 2 WINS!') {
       this.player2.playerDeck.push(this.player1.playerDeck[0]);
       this.player1.playerDeck.splice(0, 1);
       this.gameStatusMessage = "BAD SLAP! Player 1 forfeits a card to Player2!";
       console.log("BAD SLAP! Player 1 forfeits a card to Player2!");
       this.slappedCount ++;
-    } else if (this.currentSlapStroke === 'j' & this.player2.playerDeck.length > 0) {
+    } else if (this.currentSlapStroke === 'j' & this.player2.playerDeck.length > 0 && this.gameStatusMessage !== "BAD SLAP! Player 1 WINS!") {
       this.player1.playerDeck.push(this.player2.playerDeck[0]);
       this.player2.playerDeck.splice(0, 1);
       this.gameStatusMessage = "BAD SLAP! Player 2 forfeits a card to Player1!";
       this.slappedCount ++;
+    } else {
+      console.log('what\'s going on?')
     }
   }
 
