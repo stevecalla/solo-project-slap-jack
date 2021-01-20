@@ -13,7 +13,7 @@ class Game {
     this.deckOneCount = null;
     this.deckTwoCount = null;
     this.gameStatusMessage = 'Player One --> Press Q to Start the Game';
-    // this.allCards = [ //sandwich tester
+    // this.allCards2 = [ //sandwich tester
     //   {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
     //   {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
     //   {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
