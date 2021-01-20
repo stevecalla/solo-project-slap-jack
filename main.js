@@ -112,8 +112,17 @@ function hideMiddleCardContainer() {
   if (newGame.slappedCount === 1 || this.gameStatusMessage === 'Player 2 WINS (ON SLAPJACK)!' || 'Player 1 WINS (ON SLAPJACK)!') {
     middleCardContainer.classList.add('hidden');
   }
+  renderMiddleCardIfBadSlap();
 }
 
+function renderMiddleCardIfBadSlap() {
+  if ((newGame.player1.playerDeck.length > 0 && newGame.player2.playerDeck.length > 0) && 
+        (newGame.gameStatusMessage === 'BAD SLAP! Player 1 forfeits a card to Player2!' 
+        || newGame.gameStatusMessage === 'BAD SLAP! Player 2 forfeits a card to Player1!')) {
+      middleCardContainer.classList.remove('hidden')
+    }
+  }
+  
 function renderCardCount() {
   if (newGame.deckMiddleCount === 0 || newGame.deckMiddleCount > 1) {
     cardCountMiddle.innerText = `${newGame.deckMiddleCount} Cards`;
