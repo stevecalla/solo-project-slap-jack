@@ -1,0 +1,152 @@
+body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Roboto:900', sans-serif;;
+  box-sizing: border-box;
+}
+
+/* --------------------- HEADER SECTION --------------- */
+.page-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 18vh;
+}
+
+.game-title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 6rem;
+  width: 100%;
+  margin: 0;
+}
+
+.game-title,
+.game-status-message {
+  text-align: center;
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.game-status-message {
+  font-style: italic;
+  color: blue;
+}
+
+
+/* --------------------- MAIN BODY --------------- */
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 80vh;
+  width: 100%;
+} 
+
+.card-rules {
+  font-weight: bolder;
+  font-style: italic;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border-radius: 10rem;
+}
+
+.middle-card-container {
+  height: 27vw;
+  width: 20vw;
+  border-radius: 5px;
+  box-shadow:
+    -.5rem -0.5rem rgba(0,0,0,0.15),
+    -.3rem -0.3rem rgba(0,0,0,0.15),
+    0px 0px 20px 1px grey;
+}
+
+.middle-card-player1 {
+  box-shadow:
+  -.5rem -0.5rem rgba(0,0,0,0.15),
+  -.3rem -0.3rem rgba(0,0,0,0.15),
+    0px 0px 20px 1px red;
+}
+
+.middle-card-player2   {
+  box-shadow:
+  -.5rem -0.5rem rgba(0,0,0,0.15),
+  -.3rem -0.3rem rgba(0,0,0,0.15),
+    0px 0px 20px 1px #295;
+}
+
+img {
+  height: 27vw;
+  width: 20vw;
+  border-radius: 5px;
+}
+
+.left-card {
+  box-shadow: 0px 0px 20px 1px red;
+}
+
+.right-card {   
+  box-shadow: 0px 0px 20px 1px #295;
+}
+
+/* --------------------- FOOTER SECTION --------------- */
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.player {
+  border-radius: 5px;
+  background-color: lightblue;
+  opacity: 85%;
+}
+
+.player-one {
+  box-shadow: 0px 0px 20px .1rem red;
+  width: 20vw;
+}
+
+.player-two {
+  box-shadow: 0px 0px 20px .1rem #295;
+  width: 20vw;
+}
+
+.count-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.boxes {
+  text-align: center;
+  width: 10rem;
+  margin: 0;
+}
+
+.win-box-player1,
+.win-box-player2 {
+  font-style: italic;
+}
+
+/* --------------------- HIDDEN CLASS --------------- */
+.hidden {
+  visibility: hidden;
+}
+
