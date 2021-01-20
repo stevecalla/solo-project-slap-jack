@@ -1,4 +1,4 @@
-// //Variables
+//Variables
 var newGame = document.querySelector('.title');
 var middleCard = document.querySelector('.middle-card');
 var middleCardContainer = document.querySelector('.middle-card-container');
@@ -9,9 +9,12 @@ var winsPlayerTwo = document.querySelector('.win-box-player2');
 var cardCountOne = document.querySelector('.card-count-one');
 var cardCountTwo = document.querySelector('.card-count-two');
 var cardCountMiddle = document.querySelector('.card-count-middle');
-var gameStatusMessage = document.querySelector('.game-status-message')
+var gameStatusMessage = document.querySelector('.game-status-message');
+var player = document.querySelector('.player');
+var playerOneTurn = document.querySelector('.player-one');
+var playerTwoTurn = document.querySelector('.player-two');
 
-//GLOBAL VARIABLES - ON PAGE LOAD
+//GLOBAL VARIABLE(S)
 var newGame;
 
 //Event Listeners
@@ -21,6 +24,7 @@ window.onload = function() {
   renderWins();
 }
 
+//Functions
 function startNewGame() {
   newGame = new Game();
   newGame.startGame();
@@ -42,6 +46,11 @@ switch (event.key) {
     renderCardCount();
     hideGameStatusMessage();
     renderMiddleCard();
+
+    // player.classList.remove('player');
+    playerOneTurn.classList.remove('player-one');
+    playerTwoTurn.classList.add('player-two');
+
     break;
   case "p": 
   case "P":
@@ -52,6 +61,11 @@ switch (event.key) {
     renderCardCount();
     hideGameStatusMessage();
     renderMiddleCard();
+
+    // player.classList.remove('player');
+    playerOneTurn.classList.add('player-one');
+    playerTwoTurn.classList.remove('player-two');
+
     break;
   case "f":
   case "F":
