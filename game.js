@@ -191,6 +191,7 @@ class Game {
         for (var i = 0; i < this.allCards.length; i++) {
           this.player2.playerDeck.push(this.middleCardDeck[i]);
         }
+      this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
       this.middleCardDeck = [];
       console.log('p2 gets hand')
       console.log('prior turn= ', this.priorTurn)
@@ -201,6 +202,7 @@ class Game {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
         this.player1.playerDeck.push(this.middleCardDeck[i]);
       }
+      this.player1.playerDeck = this.randomizeDeck(this.player1.playerDeck);
       this.middleCardDeck = [];
       console.log('p1 gets hand')
       console.log('prior turn= ', this.priorTurn)
