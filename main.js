@@ -100,8 +100,10 @@ function playerOneTurnStyling() {
 }
 
 function playerTwoTurnStyling() {
-  playerOneTurn.classList.add('player-one');
-  playerTwoTurn.classList.remove('player-two');
+  if (newGame.currentDealStroke === 'p' && newGame.player1.playerDeck.length !== 26 && newGame.player2.playerDeck.length !== 26) {
+    playerOneTurn.classList.add('player-one');
+    playerTwoTurn.classList.remove('player-two');
+  }
 }
 
 function showMiddleCardContainer() {
@@ -154,7 +156,11 @@ function renderGameStatusMessage() {
 }
 
 function hideGameStatusMessage() {
-  gameStatusMessage.classList.add('hidden');
+  if (newGame.currentDealStroke === 'p' && newGame.player1.playerDeck.length === 26 && newGame.player2.playerDeck.length === 26) {
+    gameStatusMessage.classList.remove('hidden');
+  } else {
+    gameStatusMessage.classList.add('hidden');
+  }
 }
 
 function renderWins() {
