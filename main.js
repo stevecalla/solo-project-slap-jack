@@ -41,13 +41,11 @@ switch (event.key) {
   case "Q":
     newGame.currentDealStroke = 'q';
     newGame.playGame();
-    middleCardContainer.classList.add('middle-card-player1');
+    renderBoxShawdowOne();
     showMiddleCardContainer()
     renderCardCount();
     hideGameStatusMessage();
     renderMiddleCard();
-
-    // player.classList.remove('player');
     playerOneTurn.classList.remove('player-one');
     playerTwoTurn.classList.add('player-two');
 
@@ -56,16 +54,13 @@ switch (event.key) {
   case "P":
     newGame.currentDealStroke = 'p';
     newGame.playGame();
-    middleCardContainer.classList.add('middle-card-player2');
+    renderBoxShawdowTwo();
     showMiddleCardContainer()
     renderCardCount();
     hideGameStatusMessage();
     renderMiddleCard();
-
-    // player.classList.remove('player');
     playerOneTurn.classList.add('player-one');
     playerTwoTurn.classList.remove('player-two');
-
     break;
   case "f":
   case "F":
@@ -75,7 +70,6 @@ switch (event.key) {
     renderCardCount();
     renderGameStatusMessage();
     renderWins();
-    hideMiddleCardContainer();
     newGame.player1.saveToStorage();
     break;
   case "j":
@@ -93,6 +87,16 @@ switch (event.key) {
 }
   event.preventDefault();
 }, true);
+
+function renderBoxShawdowOne() {
+  middleCardContainer.classList.add('middle-card-player1')
+  middleCardContainer.classList.remove('middle-card-player2')
+}
+
+function renderBoxShawdowTwo() {
+  middleCardContainer.classList.add('middle-card-player2')
+  middleCardContainer.classList.remove('middle-card-player1')
+}
 
 function showMiddleCardContainer() {
   middleCardContainer.classList.remove('hidden');
@@ -157,10 +161,8 @@ function getFromStorage() {
   var retrievedObject2 = localStorage.getItem('2');
 
   if(localStorage.getItem('1') === null) {
-    // console.log('null');
     retrievedObject1 = 0;
     retrievedObject2 = 0;
-    // console.log(retrievedObject1, retrievedObject2)
   } else {
     console.log('no');
   };
