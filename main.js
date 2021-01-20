@@ -122,7 +122,7 @@ function renderMiddleCardIfBadSlap() {
       middleCardContainer.classList.remove('hidden')
     }
   }
-  
+
 function renderCardCount() {
   if (newGame.deckMiddleCount === 0 || newGame.deckMiddleCount > 1) {
     cardCountMiddle.innerText = `${newGame.deckMiddleCount} Cards`;
@@ -178,9 +178,7 @@ function getFromStorage() {
   if(localStorage.getItem('1') === null) {
     retrievedObject1 = 0;
     retrievedObject2 = 0;
-  } else {
-    console.log('no');
-  };
+  }
 
   newGame.player1.wins = retrievedObject1;
   newGame.player2.wins = retrievedObject2;

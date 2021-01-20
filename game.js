@@ -13,15 +13,6 @@ class Game {
     this.deckOneCount = null;
     this.deckTwoCount = null;
     this.gameStatusMessage = 'Player One --> Press Q to Start the Game';
-    // this.allCards2 = [ //sandwich tester
-    //   {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
-    //   {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
-    //   {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
-    //   {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
-    //   {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
-    //   {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
-    //   {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
-    // ]
     this.allCards = [
       {value: "1", suit: "blue", asset: "./assets/blue-01.png"},
       {value: "2", suit: "blue", asset: "./assets/blue-02.png"},
@@ -81,7 +72,6 @@ class Game {
   startGame() {
     this.handForPlayers();
     this.slappedCount = 0;
-    console.log('middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
   }
 
   randomIndex(numberOfCards) {
@@ -117,7 +107,6 @@ class Game {
     this.deckMiddleCount = this.middleCardDeck.length;
     this.deckOneCount = this.player1.playerDeck.length;
     this.deckTwoCount = this.player2.playerDeck.length;
-    console.table('MakeDeck=', this.middleCardDeck, 'one=', this.player1.playerDeck, 'two=', this.player2.playerDeck);
   }
 
   isEven(value) {
@@ -140,7 +129,6 @@ class Game {
 
   playGame() {
     this.assignTurn();
-    // this.slappedCount = 0;
     if (this.player2.playerDeck.length === 1 && this.player1.playerDeck.length === 0) {
       this.priorTurn = this.player2;
     } else if (this.player1.playerDeck.length === 1 && this.player2.playerDeck.length === 0) {
@@ -157,98 +145,49 @@ class Game {
     if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player1.playerDeck.length !== 0 && this.player1.playerDeck.length !== this.allCards.length) {
       this.middleCardDeck.unshift(this.player1.playerDeck[0])
       this.player1.playerDeck.splice(0, 1);
-      console.log('handcount= ', this.handCount);
       this.handCount ++;
-      console.log('p1 & q')
-      console.log('prior turn= ', this.priorTurn)
-      console.log('p1= ', this.currentPlayer, 'q= ', this.currentDealStroke, 'p1L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
     } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.player2.playerDeck.length !== 0 && this.player2.playerDeck.length !== this.allCards.length) {
         this.middleCardDeck.unshift(this.player2.playerDeck[0])
         this.player2.playerDeck.splice(0, 1);
-        console.log('handcount= ', this.handCount);
         this.handCount ++;
-        console.log('p2 & p')
-        console.log('prior turn= ', this.priorTurn)
-        console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
     } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'p' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {
         for (var i = 0; i < this.allCards.length; i++) {
           this.player2.playerDeck.push(this.middleCardDeck[i]);
         }
-      this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
-      this.middleCardDeck = [];
-      console.log('p2 gets hand')
-      console.log('prior turn= ', this.priorTurn)
-      console.log('p2 & p')
-      console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
-    
+        this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
+        this.middleCardDeck = [];
     } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player1) {
-      for (var i = 0; i < this.middleCardDeck.length; i++) {
-        this.player1.playerDeck.push(this.middleCardDeck[i]);
-      }
-      this.player1.playerDeck = this.randomizeDeck(this.player1.playerDeck);
-      this.middleCardDeck = [];
-      console.log('p1 gets hand')
-      console.log('prior turn= ', this.priorTurn)
-      console.log('p2 & p')
-      console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
-////////
-///////
+        for (var i = 0; i < this.middleCardDeck.length; i++) {
+          this.player1.playerDeck.push(this.middleCardDeck[i]);
+        }
+        this.player1.playerDeck = this.randomizeDeck(this.player1.playerDeck);
+        this.middleCardDeck = [];
     } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.middleCardDeck.length === 0 && this.player2.playerDeck.length === this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {
-      this.middleCardDeck.unshift(this.player2.playerDeck[0])
-      this.player2.playerDeck.splice(0, 1);
-      console.log('handcount= ', this.handCount);
-      this.handCount ++;
-      console.log('new code')
-      console.log('prior turn= ', this.priorTurn)
-      console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
-      
+        this.middleCardDeck.unshift(this.player2.playerDeck[0]);
+        this.player2.playerDeck.splice(0, 1);
+        this.handCount ++;
     } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.middleCardDeck.length === 0 && this.player1.playerDeck.length === this.allCards.length && this.player2.playerDeck.length === 0 && this.priorTurn === this.player1) {
-      this.middleCardDeck.unshift(this.player1.playerDeck[0])
-      this.player1.playerDeck.splice(0, 1);
-      console.log('handcount= ', this.handCount);
-      this.handCount ++;
-      console.log('new code')
-      console.log('prior turn= ', this.priorTurn)
-      console.log('p2= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
-////////
-///////    
-    }  else {
-      console.log('handcount= ', this.handCount);
-      console.log('no deal')
-      console.log('prior turn= ', this.priorTurn)
-      console.log('current player= ', this.currentPlayer, 'current deal stroke= ', this.currentDealStroke)
-      // console.log('current player= ', this.currentPlayer, 'p= ', this.currentDealStroke, 'p2L!==0 ', this.player2.playerDeck.length, '&&p2L!==aL ', this.allCards.length)
-      // console.log('6=', this.middleCardDeck.length, 'p=', this.currentDealStroke, 'p1', this.currentPlayer)
-    }
-    if (this.middleCardDeck.length > 0) {
-      console.log('middleCard Length', this.middleCardDeck.length, 'middleCard', this.middleCardDeck[0].value)
+        this.middleCardDeck.unshift(this.player1.playerDeck[0]);
+        this.player1.playerDeck.splice(0, 1);
+        this.handCount ++;
     }
     this.deckMiddleCount = this.middleCardDeck.length;
     this.deckOneCount = this.player1.playerDeck.length;
     this.deckTwoCount = this.player2.playerDeck.length;
-    console.log('middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
   }
 
   slapLogic() {
     if(this.middleCardDeck.length !== 0) {
-      this.slapOnJack()
-      console.log('jack hand', 'middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
+      this.slapOnJack();
     }
     if(this.middleCardDeck.length > 1) {
-      // console.log('double 0=', this.middleCardDeck[0].value, this.middleCardDeck[1].value)
-      this.slapOnDouble()
-      // console.log('double hand', 'middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
+      this.slapOnDouble();
     }
     if(this.middleCardDeck.length > 2) {
-      console.log('sandwich 0=', this.middleCardDeck[0].value, this.middleCardDeck[2].value)
-      this.slapOnSandwich()
-      console.log('sandwich hand', 'middle', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
+      this.slapOnSandwich();
     }
     if (this.slappedCount === 0 && this.middleCardDeck.length !== 0) {
       this.badSlap();
-      console.log('badslap')
-      console.log(this.slappedCount);
-      console.log('bad hand', this.middleCardDeck.length, 'one', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length)
     }
     this.deckMiddleCount = this.middleCardDeck.length;
     this.deckOneCount = this.player1.playerDeck.length;
@@ -258,89 +197,66 @@ class Game {
   slapOnJack() {
     if (this.player1.playerDeck.length >= 0 && this.player2.playerDeck.length === 0 && this.middleCardDeck[0].value === 'J') {
       this.winLogicOnJack();
-      console.log('YES')
     } else if (this.player1.playerDeck.length === 0 && this.player2.playerDeck.length >= 0 && this.middleCardDeck[0].value === 'J') {
-      this.winLogicOnJack();
-      console.log('YES YES')
+        this.winLogicOnJack();
     } else if (this.middleCardDeck[0].value === 'J' && this.currentSlapStroke === 'f') {
-      this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
-      this.slapActionPlayerOne();
-      console.log('jack-One');
-      this.slappedCount ++;
+        this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
+        this.slapActionPlayerOne();
+        this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === "J" && this.currentSlapStroke === 'j') {
-      this.gameStatusMessage = "SLAPJACK! Player 2 takes the pile!";
-      this.slapActionPlayerTwo();
-      console.log('jack-Two');
-      this.slappedCount ++;
+        this.gameStatusMessage = "SLAPJACK! Player 2 takes the pile!";
+        this.slapActionPlayerTwo();
+        this.slappedCount ++;
     } 
   }
 
   slapOnDouble() {
-    console.log('double');
-    console.log(this.middleCardDeck[0].value)
-    console.log(this.middleCardDeck[1].value)
     if (this.player1.playerDeck.length === 0 || this.player2.playerDeck.length === 0) {
       //NO DOUBLE ALLOWED IF EITHER DECK === 0
-    } else if (//this.currentPlayer === this.player1
-          //&& 
-          (this.middleCardDeck[0].value === this.middleCardDeck[1].value
-          && this.currentSlapStroke === 'f')) {
-      this.gameStatusMessage = "DOUBLE! Player 1 takes the pile";
-      this.slapActionPlayerOne();
-      console.log('doubles-One')
-      this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
-          && this.currentSlapStroke === 'j') {
-      this.gameStatusMessage = "DOUBLE! Player 2 takes the pile!";
-      this.slapActionPlayerTwo();
-      console.log('doubles-Two');
-      this.slappedCount ++;
+        && this.currentSlapStroke === 'f') {
+        this.gameStatusMessage = "DOUBLE! Player 1 takes the pile";
+        this.slapActionPlayerOne();
+        this.slappedCount ++;
+    } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
+        && this.currentSlapStroke === 'j') {
+        this.gameStatusMessage = "DOUBLE! Player 2 takes the pile!";
+        this.slapActionPlayerTwo();
+        this.slappedCount ++;
     }
   }
 
   slapOnSandwich() {
-    console.log('sandwich');
-    // console.log(this.middleCardDeck[0].value)
-    // console.log(this.middleCardDeck[2].value)
     if (this.player1.playerDeck.length === 0 || this.player2.playerDeck.length === 0) {
       //NO SANDWICH ALLOWED IF EITHER DECK === 0
     } else if (this.currentPlayer === this.player1
-          && (this.middleCardDeck[0].value === this.middleCardDeck[2].value)
-          && this.currentSlapStroke === 'f') {
-      this.gameStatusMessage = "SANDWICH! Player 1 takes the pile!";
-      this.slapActionPlayerOne();
-      // console.log('sandwich-One');
+        && (this.middleCardDeck[0].value === this.middleCardDeck[2].value)
+        && this.currentSlapStroke === 'f') {
+        this.gameStatusMessage = "SANDWICH! Player 1 takes the pile!";
+        this.slapActionPlayerOne();
       this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[2].value
-          && this.currentSlapStroke === 'j') {
-            this.gameStatusMessage = "SANDWICH! Player 2 takes the pile!";
-      this.slapActionPlayerTwo();
-      // console.log('sandwich-Two');
-      this.slappedCount ++;
+        && this.currentSlapStroke === 'j') {
+        this.gameStatusMessage = "SANDWICH! Player 2 takes the pile!";
+        this.slapActionPlayerTwo();
+        this.slappedCount ++;
     }
   }
 
   badSlap() {
-    console.log('badslap', 'p1= ', this.player1.playerDeck.length, 'p2= ', this.player2.playerDeck.length)
-    console.log('slapstroke= ', this.currentSlapStroke)
     if (this.player1.playerDeck.length === 0 || this.player2.playerDeck.length === 0) {
       this.winLogicBadSlap();
-      // return;
     }
     
     if (this.currentSlapStroke === 'f' && this.player1.playerDeck.length > 0 && this.gameStatusMessage !== 'BAD SLAP! Player 2 WINS!') {
       this.player2.playerDeck.push(this.player1.playerDeck[0]);
       this.player1.playerDeck.splice(0, 1);
       this.gameStatusMessage = "BAD SLAP! Player 1 forfeits a card to Player2!";
-      console.log("BAD SLAP! Player 1 forfeits a card to Player2!");
       this.slappedCount ++;
     } else if (this.currentSlapStroke === 'j' & this.player2.playerDeck.length > 0 && this.gameStatusMessage !== "BAD SLAP! Player 1 WINS!") {
-      this.player1.playerDeck.push(this.player2.playerDeck[0]);
-      this.player2.playerDeck.splice(0, 1);
-      this.gameStatusMessage = "BAD SLAP! Player 2 forfeits a card to Player1!";
-      this.slappedCount ++;
-    } else {
-      console.log('what\'s going on?')
+        this.player1.playerDeck.push(this.player2.playerDeck[0]);
+        this.player2.playerDeck.splice(0, 1);
+        this.slappedCount ++;
     }
   }
 
@@ -361,61 +277,40 @@ class Game {
   }
 
   winLogicOnJack() {
-    console.log('WINS LOGIC')
-    console.log('p1', this.player1.playerDeck.length, 'p2', this.player2.playerDeck.length, 'key', this.currentSlapStroke)
     if (this.player1.playerDeck.length >= 0 && this.player2.playerDeck.length === 0 && this.currentSlapStroke === 'f') {
       this.player1.wins ++;
       this.gameStatusMessage = "Player 1 WINS (on SLAPJACK)!";
-      console.log('p1', this.player1.playerDeck.length, 'p2', this.player2.playerDeck.length, 'key', this.currentSlapStroke)
-      console.log('WINS LOGIC #1')
-      console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
       this.startGame();
     }
 
     if (this.player2.playerDeck.length >= 0 && this.player1.playerDeck.length === 0 && this.currentSlapStroke === 'j') {
       this.player2.wins ++;
       this.gameStatusMessage = "Player 2 WINS (ON SLAPJACK)!";
-      console.log('WINS LOGIC #2')
-      console.table('wins2) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
       this.startGame();
     } 
 
     if (this.player1.playerDeck.length >= 0 && this.player2.playerDeck.length === 0 && this.currentSlapStroke === 'j') {
       this.slapActionPlayerTwo();
       this.gameStatusMessage = "SLAPJACK! Player 2 takes the pile!";
-      console.log('p1', this.player1.playerDeck.length, 'p2', this.player2.playerDeck.length, 'key', this.currentSlapStroke)
-      console.log('WINS LOGIC #1')
-      console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
     }
 
     if (this.player2.playerDeck.length >= 0 && this.player1.playerDeck.length === 0 && this.currentSlapStroke === 'f') {
       this.slapActionPlayerOne();
       this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
-      console.log('p1', this.player1.playerDeck.length, 'p2', this.player2.playerDeck.length, 'key', this.currentSlapStroke)
-      console.log('WINS LOGIC #1')
-      console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
     }
-
   }
 
   winLogicBadSlap() {
-    console.log('BAD SLAP WIN LOGIC')
     if (this.currentSlapStroke === 'f' && this.middleCardDeck[0].value !== "J" && this.player1.playerDeck.length === 0) {
       this.player2.wins ++;
       this.gameStatusMessage = "BAD SLAP! Player 2 WINS!";
-      console.log('WINS LOGIC #1 BAD SLAP')
-      console.table('wins1) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
       this.startGame();
-      // return;
     }
 
     if (this.currentSlapStroke === 'j' && this.middleCardDeck[0].value !== "J" && this.player2.playerDeck.length === 0) {
       this.player1.wins ++;
       this.gameStatusMessage = "BAD SLAP! Player 1 WINS!";
-      console.log('WINS LOGIC #2')
-      console.table('wins2) handcount', this.handCount, 'middle=', this.middleCardDeck.length, 'one=', this.player1.playerDeck.length, 'two', this.player2.playerDeck.length, 'wins1', this.player1.wins, 'wins2', this.player2.wins)
       this.startGame();
-      // return;
     } 
   }
 
