@@ -1,8 +1,8 @@
 class Player {
   constructor(id) {
     this.id = id;
-    this.playerDeck = []; //new deck
-    this.wins = null;
+    this.playerDeck = [];
+    this.wins = 0;
 
     // this.retrievedObject1 = 0;
     // this.retrievedObject2 = 0;
@@ -10,10 +10,6 @@ class Player {
     // this.parsedObject2 = 0;
 
     // console.table('Player=', this);
-  }
-
-  playCard() {
-    // TBD
   }
 
   saveToStorage() {

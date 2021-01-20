@@ -155,6 +155,16 @@ function renderWins() {
 function getFromStorage() {
   var retrievedObject1 = localStorage.getItem('1');
   var retrievedObject2 = localStorage.getItem('2');
+
+  if(localStorage.getItem('1') === null) {
+    // console.log('null');
+    retrievedObject1 = 0;
+    retrievedObject2 = 0;
+    // console.log(retrievedObject1, retrievedObject2)
+  } else {
+    console.log('no');
+  };
+
   newGame.player1.wins = retrievedObject1;
   newGame.player2.wins = retrievedObject2;
   }
