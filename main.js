@@ -79,7 +79,7 @@ window.addEventListener("keydown", function (event) {
       newGame.player1.saveToStorage();
       break;
     default:
-      return;
+      return; 
   }
     event.preventDefault();
 }, true);
