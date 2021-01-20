@@ -1,4 +1,4 @@
-//Variables
+// *** Targeting Variables ***
 var newGame = document.querySelector('.title');
 var middleCard = document.querySelector('.middle-card');
 var middleCardContainer = document.querySelector('.middle-card-container');
@@ -14,17 +14,17 @@ var player = document.querySelector('.player');
 var playerOneTurn = document.querySelector('.player-one');
 var playerTwoTurn = document.querySelector('.player-two');
 
-//GLOBAL VARIABLE(S)
+// *** Global Variables ***
 var newGame;
 
-//Event Listeners
+// *** Event Listeners ***
 window.onload = function() {
   startNewGame();
   getFromStorage();
   renderWins();
 }
 
-//Functions
+// *** Functions ***
 function startNewGame() {
   newGame = new Game();
   newGame.startGame();
@@ -32,60 +32,56 @@ function startNewGame() {
 
 window.addEventListener("keydown", function (event) {
   if (event.defaultPrevented) {
-    return; // Do nothing if the event was already processed
-  }
-
-//Keystroke Tracking
-switch (event.key) {
-  case "q":
-  case "Q":
-    newGame.currentDealStroke = 'q';
-    newGame.playGame();
-    renderBoxShawdowOne();
-    showMiddleCardContainer()
-    renderCardCount();
-    hideGameStatusMessage();
-    renderMiddleCard();
-    playerOneTurn.classList.remove('player-one');
-    playerTwoTurn.classList.add('player-two');
-
-    break;
-  case "p": 
-  case "P":
-    newGame.currentDealStroke = 'p';
-    newGame.playGame();
-    renderBoxShawdowTwo();
-    showMiddleCardContainer()
-    renderCardCount();
-    hideGameStatusMessage();
-    renderMiddleCard();
-    playerOneTurn.classList.add('player-one');
-    playerTwoTurn.classList.remove('player-two');
-    break;
-  case "f":
-  case "F":
-    newGame.currentSlapStroke = 'f';
-    newGame.slapLogic();
-    hideMiddleCardContainer();
-    renderCardCount();
-    renderGameStatusMessage();
-    renderWins();
-    newGame.player1.saveToStorage();
-    break;
-  case "j":
-  case "J":
-    newGame.currentSlapStroke = 'j';
-    newGame.slapLogic();
-    hideMiddleCardContainer();
-    renderCardCount();
-    renderGameStatusMessage();
-    renderWins();
-    newGame.player1.saveToStorage();
-    break;
-  default:
     return;
-}
-  event.preventDefault();
+  }
+// *** Keystroke Tracking +***
+  switch (event.key) {
+    case "q":
+    case "Q":
+      newGame.currentDealStroke = 'q';
+      newGame.playGame();
+      renderBoxShawdowOne();
+      showMiddleCardContainer()
+      renderCardCount();
+      hideGameStatusMessage();
+      renderMiddleCard();
+      playerOneTurnStyling();
+      break;
+    case "p": 
+    case "P":
+      newGame.currentDealStroke = 'p';
+      newGame.playGame();
+      renderBoxShawdowTwo();
+      showMiddleCardContainer()
+      renderCardCount();
+      hideGameStatusMessage();
+      renderMiddleCard();
+      playerTwoTurnStyling();
+      break;
+    case "f":
+    case "F":
+      newGame.currentSlapStroke = 'f';
+      newGame.slapLogic();
+      hideMiddleCardContainer();
+      renderCardCount();
+      renderGameStatusMessage();
+      renderWins();
+      newGame.player1.saveToStorage();
+      break;
+    case "j":
+    case "J":
+      newGame.currentSlapStroke = 'j';
+      newGame.slapLogic();
+      hideMiddleCardContainer();
+      renderCardCount();
+      renderGameStatusMessage();
+      renderWins();
+      newGame.player1.saveToStorage();
+      break;
+    default:
+      return;
+  }
+    event.preventDefault();
 }, true);
 
 function renderBoxShawdowOne() {
@@ -96,6 +92,16 @@ function renderBoxShawdowOne() {
 function renderBoxShawdowTwo() {
   middleCardContainer.classList.add('middle-card-player2')
   middleCardContainer.classList.remove('middle-card-player1')
+}
+
+function playerOneTurnStyling() {
+  playerOneTurn.classList.remove('player-one');
+  playerTwoTurn.classList.add('player-two');
+}
+
+function playerTwoTurnStyling() {
+  playerOneTurn.classList.add('player-one');
+  playerTwoTurn.classList.remove('player-two');
 }
 
 function showMiddleCardContainer() {

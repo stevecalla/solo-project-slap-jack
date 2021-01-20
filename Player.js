@@ -3,13 +3,6 @@ class Player {
     this.id = id;
     this.playerDeck = [];
     this.wins = 0;
-
-    // this.retrievedObject1 = 0;
-    // this.retrievedObject2 = 0;
-    // this.parsedObject11 = 0;
-    // this.parsedObject2 = 0;
-
-    // console.table('Player=', this);
   }
 
   saveToStorage() {

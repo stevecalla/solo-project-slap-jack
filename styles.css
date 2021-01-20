@@ -1,9 +1,3 @@
-* {
-  /* border: .0001rem solid black; */
-  /* height: 100%; */
-  /* width: 100%; */
-}
-
 body {
   margin: 0;
   height: 100%;
@@ -11,19 +5,16 @@ body {
   box-sizing: border-box;
 }
 
+/* --------------------- HEADER SECTION --------------- */
 .page-header {
-  /* border: .25rem solid black; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* text-align: center; */
   height: 18vh;
-  /* margin-bottom: 1em; */
 }
 
 .game-title-container {
-  /* border: .25rem solid black; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -31,7 +22,6 @@ body {
   height: 6rem;
   width: 100%;
   margin: 0;
-  /* margin-bottom: 5rem; */
 }
 
 .game-title,
@@ -46,8 +36,10 @@ body {
   color: blue;
 }
 
+
+/* --------------------- MAIN BODY --------------- */
+
 .main-container {
-  /* border: 0.25rem solid black; */
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -65,7 +57,6 @@ body {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  /* margin-top: 2rem; */
   border-radius: 10rem;
 }
 
@@ -97,30 +88,24 @@ img {
   height: 27vw;
   width: 20vw;
   border-radius: 5px;
-  /* box-shadow:
-  -.5rem -0.5rem rgba(0,0,0,0.15),
-  0px 0px 20px 1px red; */
 }
 
 .left-card {
   box-shadow: 0px 0px 20px 1px red;
-  /* border-radius: 5px; */
 }
 
 .right-card {   
   box-shadow: 0px 0px 20px 1px #295;
-  /* border-radius: 5px; */
 }
 
+/* --------------------- FOOTER SECTION --------------- */
 .footer {
-  /* border: .25rem solid black; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   width: 100%;
   margin: 0;
-  /* margin-bottom: 5rem; */
 }
 
 .player {
@@ -158,6 +143,7 @@ img {
   font-style: italic;
 }
 
+/* --------------------- HIDDEN CLASS --------------- */
 .hidden {
   visibility: hidden;
 }
