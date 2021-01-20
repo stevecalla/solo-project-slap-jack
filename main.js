@@ -109,7 +109,7 @@ function showMiddleCardContainer() {
 }
 
 function hideMiddleCardContainer() {
-  if (newGame.slappedCount === 1 || this.gameStatusMessage === 'Player 2 WINS (ON SLAPJACK)!' || 'Player 1 WINS (ON SLAPJACK)!') {
+  if (newGame.slappedCount === 1 || newGame.gameStatusMessage === 'Player 2 WINS (ON SLAPJACK)!' || newGame.gameStatusMessage === 'Player 1 WINS (ON SLAPJACK)!') {
     middleCardContainer.classList.add('hidden');
   }
   renderMiddleCardIfBadSlap();
