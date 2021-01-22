@@ -189,3 +189,6 @@ function getFromStorage() {
   newGame.player1.wins = retrievedObject1;
   newGame.player2.wins = retrievedObject2;
   }
+
+
+  
