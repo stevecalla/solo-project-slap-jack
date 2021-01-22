@@ -20,16 +20,17 @@ var newGame = new Game();
 newGame.startGame();
 
 // // *** Event Listeners ***
-// window.onload = function() {
-//   startNewGame();
-//   getFromStorage();
-//   renderWins();
-// }
+window.onload = function() {
+  startNewGame();
+  getFromStorage();
+  renderWins();
+}
 
 // // *** Functions ***
-// function startNewGame() {
-
-// }
+function startNewGame() {
+var newGame = new Game();
+newGame.startGame();
+}
 
 window.addEventListener("keydown", function (event) {
   if (event.defaultPrevented) {
