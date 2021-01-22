@@ -15,9 +15,7 @@ var playerOneTurn = document.querySelector('.player-one');
 var playerTwoTurn = document.querySelector('.player-two');
 
 // *** Global Variables ***
-// var newGame;
-var newGame = new Game();
-newGame.startGame();
+var newGame;
 
 // // *** Event Listeners ***
 window.onload = function() {
@@ -28,8 +26,8 @@ window.onload = function() {
 
 // // *** Functions ***
 function startNewGame() {
-var newGame = new Game();
-newGame.startGame();
+  newGame = new Game();
+  newGame.startGame();
 }
 
 window.addEventListener("keydown", function (event) {
