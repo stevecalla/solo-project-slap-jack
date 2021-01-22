@@ -17,18 +17,19 @@ var playerTwoTurn = document.querySelector('.player-two');
 // *** Global Variables ***
 // var newGame;
 var newGame = new Game();
+newGame.startGame();
 
-// *** Event Listeners ***
-window.onload = function() {
-  startNewGame();
-  getFromStorage();
-  renderWins();
-}
+// // *** Event Listeners ***
+// window.onload = function() {
+//   startNewGame();
+//   getFromStorage();
+//   renderWins();
+// }
 
-// *** Functions ***
-function startNewGame() {
-  newGame.startGame();
-}
+// // *** Functions ***
+// function startNewGame() {
+
+// }
 
 window.addEventListener("keydown", function (event) {
   if (event.defaultPrevented) {
