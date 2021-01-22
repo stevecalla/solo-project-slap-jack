@@ -31,7 +31,7 @@ newGame.startGame();
 //   newGame.startGame();
 // }
 
-window.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", function (event) {
   if (event.defaultPrevented) {
     return;
   }
