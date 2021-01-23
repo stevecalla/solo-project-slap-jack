@@ -29,6 +29,8 @@ window.addEventListener('keydown', dealKeystrokePlayer1);
 
 window.addEventListener('keydown', dealKeystrokePlayer2);
 
+window.addEventListener('keydown', slapKeystrokePlayer1);
+
 window.addEventListener('keydown', slapKeystrokePlayer2);
 
 // *** Functions ***
