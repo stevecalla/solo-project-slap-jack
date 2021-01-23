@@ -25,10 +25,40 @@ window.onload = function() {
   renderWins();
 }
 
+window.addEventListener('keydown', dealKeystrokePlayer1);
+
+window.addEventListener('keydown', dealKeystrokePlayer2);
+
 // *** Functions ***
 function startNewGame() {
   newGame = new Game();
   newGame.startGame();
+}
+
+function dealKeystrokePlayer1(event) {
+  if (event.key === 'q' || event.key === 'Q') {
+    newGame.currentDealStroke = 'q';
+    newGame.playGame();
+    renderBoxShawdowOne();
+    showMiddleCardContainer()
+    renderCardCount();
+    hideGameStatusMessage();
+    renderMiddleCard();
+    playerOneTurnStyling();
+  }
+}
+
+function dealKeystrokePlayer2(event) {
+  if (event.key === 'p' || event.key === 'P') {
+    newGame.currentDealStroke = 'p';
+    newGame.playGame();
+    renderBoxShawdowOne();
+    showMiddleCardContainer()
+    renderCardCount();
+    hideGameStatusMessage();
+    renderMiddleCard();
+    playerOneTurnStyling();
+  }
 }
 
 window.addEventListener("keydown", function (event) {
@@ -37,28 +67,6 @@ window.addEventListener("keydown", function (event) {
   }
 // *** Keystroke Tracking +***
   switch (event.key) {
-    case "q":
-    case "Q":
-      newGame.currentDealStroke = 'q';
-      newGame.playGame();
-      renderBoxShawdowOne();
-      showMiddleCardContainer()
-      renderCardCount();
-      hideGameStatusMessage();
-      renderMiddleCard();
-      playerOneTurnStyling();
-      break;
-    case "p": 
-    case "P":
-      newGame.currentDealStroke = 'p';
-      newGame.playGame();
-      renderBoxShawdowTwo();
-      showMiddleCardContainer()
-      renderCardCount();
-      hideGameStatusMessage();
-      renderMiddleCard();
-      playerTwoTurnStyling();
-      break;
     case "f":
     case "F":
       newGame.currentSlapStroke = 'f';
