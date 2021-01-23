@@ -245,11 +245,11 @@ class Game {
         this.winLogicOnJack();
     } else if (this.middleCardDeck[0].value === 'J' && this.currentSlapStroke === 'f') {
         this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
-        this.slapActionPlayer(1);
+        this.giveMiddleDeckToPlayer(1);
         this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === "J" && this.currentSlapStroke === 'j') {
         this.gameStatusMessage = "SLAPJACK! Player 2 takes the pile!";
-        this.slapActionPlayer(2);
+        this.giveMiddleDeckToPlayer(2);
         this.slappedCount ++;
     } 
   }
@@ -260,12 +260,12 @@ class Game {
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
         && this.currentSlapStroke === 'f') {
         this.gameStatusMessage = "DOUBLE! Player 1 takes the pile";
-        this.slapActionPlayer(1);
+        this.giveMiddleDeckToPlayer(1);
         this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
         && this.currentSlapStroke === 'j') {
         this.gameStatusMessage = "DOUBLE! Player 2 takes the pile!";
-        this.slapActionPlayer(2);
+        this.giveMiddleDeckToPlayer(2);
         this.slappedCount ++;
     }
   }
@@ -277,12 +277,12 @@ class Game {
         && (this.middleCardDeck[0].value === this.middleCardDeck[2].value)
         && this.currentSlapStroke === 'f') {
         this.gameStatusMessage = "SANDWICH! Player 1 takes the pile!";
-        this.slapActionPlayer(1);
+        this.giveMiddleDeckToPlayer(1);
       this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[2].value
         && this.currentSlapStroke === 'j') {
         this.gameStatusMessage = "SANDWICH! Player 2 takes the pile!";
-        this.slapActionPlayer(2);
+        this.giveMiddleDeckToPlayer(2);
         this.slappedCount ++;
     }
   }
@@ -308,7 +308,7 @@ class Game {
     }
   }
 
-  slapActionPlayer(player) {
+  giveMiddleDeckToPlayer(player) {
     if (player === 1) {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
         this.player1.playerDeck.push(this.middleCardDeck[i]);
@@ -338,12 +338,12 @@ class Game {
     } 
 
     if (this.player1.playerDeck.length >= 0 && this.player2.playerDeck.length === 0 && this.currentSlapStroke === 'j') {
-      this.slapActionPlayer(2);
+      this.giveMiddleDeckToPlayer(2);
       this.gameStatusMessage = "SLAPJACK! Player 2 takes the pile!";
     }
 
     if (this.player2.playerDeck.length >= 0 && this.player1.playerDeck.length === 0 && this.currentSlapStroke === 'f') {
-      this.slapActionPlayer(1);
+      this.giveMiddleDeckToPlayer(1);
       this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
     }
   }
