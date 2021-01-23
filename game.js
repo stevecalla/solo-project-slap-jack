@@ -14,6 +14,19 @@ class Game {
     this.deckTwoCount = null;
     this.gameStatusMessage = 'Player One --> Press Q to Start the Game';
     this.allCards = [
+      {value: "8", suit: "blue", asset: "./assets/blue-08.png"},
+      {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
+      {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
+      {value: "J", suit: "blue", asset: "./assets/blue-jack.png"},
+      {value: "K", suit: "blue", asset: "./assets/blue-king.png"},
+      {value: "Q", suit: "blue", asset: "./assets/blue-queen.png"},
+      {value: "8", suit: "gold", asset: "./assets/gold-08.png"},
+      {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
+      {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
+      {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
+      {value: "K", suit: "gold", asset: "./assets/gold-king.png"},
+    ]
+    this.allCards2 = [
       {value: "1", suit: "blue", asset: "./assets/blue-01.png"},
       {value: "2", suit: "blue", asset: "./assets/blue-02.png"},
       {value: "3", suit: "blue", asset: "./assets/blue-03.png"},
