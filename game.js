@@ -141,13 +141,17 @@ class Game {
     }
   }
 
-  playGame() {
-    this.assignTurn();
+  trackPriorPlayerTurn() {
     if (this.player2.playerDeck.length === 1 && this.player1.playerDeck.length === 0) {
       this.priorTurn = this.player2;
     } else if (this.player1.playerDeck.length === 1 && this.player2.playerDeck.length === 0) {
       this.priorTurn = this.player1;
     } 
+  }
+  
+  playGame() {
+    this.assignTurn();
+    this.trackPriorPlayerTurn();
     this.dealHandToMiddleDeck();
     this.resetSlapCount();
     if ((this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length) > 53) {
