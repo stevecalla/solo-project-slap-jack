@@ -154,8 +154,6 @@ class Game {
     this.trackPriorPlayerTurn();
     this.dealHandToMiddleDeck();
     this.resetSlapCount();
-    if ((this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length) > 53) {
-      return "card limit"}
     }
 
   dealHandToMiddleDeck() {
