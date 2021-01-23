@@ -45,8 +45,8 @@ function dealKeystrokePlayer1(event) {
   if (event.key === 'q' || event.key === 'Q') {
     newGame.currentDealStroke = 'q';
     newGame.playGame();
-    renderBoxShawdowOne();
-    showMiddleCardContainer()
+    renderBoxShawdow(1);
+    showMiddleCardContainer();
     renderCardCount();
     hideGameStatusMessage();
     renderMiddleCard();
@@ -58,8 +58,8 @@ function dealKeystrokePlayer2(event) {
   if (event.key === 'p' || event.key === 'P') {
     newGame.currentDealStroke = 'p';
     newGame.playGame();
-    renderBoxShawdowOne();
-    showMiddleCardContainer()
+    renderBoxShawdow(2);
+    showMiddleCardContainer();
     renderCardCount();
     hideGameStatusMessage();
     renderMiddleCard();
@@ -91,14 +91,14 @@ function slapKeystrokePlayer2(event) {
   }
 }
 
-function renderBoxShawdowOne() {
-  middleCardContainer.classList.add('middle-card-player1')
-  middleCardContainer.classList.remove('middle-card-player2')
-}
-
-function renderBoxShawdowTwo() {
-  middleCardContainer.classList.add('middle-card-player2')
-  middleCardContainer.classList.remove('middle-card-player1')
+function renderBoxShawdow(player) {
+  if (player === 1) {
+    middleCardContainer.classList.add('middle-card-player1')
+    middleCardContainer.classList.remove('middle-card-player2')
+  } else if (player === 2) {
+    middleCardContainer.classList.remove('middle-card-player1')
+    middleCardContainer.classList.add('middle-card-player2')
+  }
 }
 
 function playerOneTurnStyling() {
