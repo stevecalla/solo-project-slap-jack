@@ -61,7 +61,7 @@ function dealKeystrokePlayer2(event) {
     renderCardCount();
     hideGameStatusMessage();
     renderMiddleCard();
-    playerOneTurnStyling();
+    playerTwoTurnStyling();
   }
 }
 
