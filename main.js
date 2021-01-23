@@ -42,6 +42,7 @@ function startNewGame() {
 }
 
 function dealKeystrokePlayer1(event) {
+  // console.log(event);
   if (event.key === 'q' || event.key === 'Q') {
     newGame.currentDealStroke = 'q';
     newGame.playGame();
@@ -50,7 +51,7 @@ function dealKeystrokePlayer1(event) {
     renderCardCount();
     hideGameStatusMessage();
     renderMiddleCard();
-    playerOneTurnStyling();
+    applyTurnStyling(1);
   }
 }
 
@@ -63,7 +64,7 @@ function dealKeystrokePlayer2(event) {
     renderCardCount();
     hideGameStatusMessage();
     renderMiddleCard();
-    playerTwoTurnStyling();
+    applyTurnStyling(2);
   }
 }
 
@@ -101,19 +102,17 @@ function renderBoxShawdow(player) {
   }
 }
 
-function playerOneTurnStyling() {
-  playerOneTurn.classList.remove('player-one');
-  playerTwoTurn.classList.add('player-two');
-  playerOneKeystroke.classList.remove('keystroke-player1');
-  playerTwoKeystroke.classList.add('keystroke-player2');
-}
-
-function playerTwoTurnStyling() {
-  if (newGame.currentDealStroke === 'p' && newGame.player1.playerDeck.length !== 26 && newGame.player2.playerDeck.length !== 26) {
-    playerOneTurn.classList.add('player-one');
-    playerTwoTurn.classList.remove('player-two');
-    playerOneKeystroke.classList.add('keystroke-player1');
-    playerTwoKeystroke.classList.remove('keystroke-player2');
+function applyTurnStyling(player) {
+  if (player === 1) {
+    playerOneTurn.classList.remove('player-one');
+    playerTwoTurn.classList.add('player-two');
+    playerOneKeystroke.classList.remove('keystroke-player1');
+    playerTwoKeystroke.classList.add('keystroke-player2');
+  } else if (newGame.currentDealStroke === 'p' && newGame.player1.playerDeck.length !== 26 && newGame.player2.playerDeck.length !== 26) {
+      playerOneTurn.classList.add('player-one');
+      playerTwoTurn.classList.remove('player-two');
+      playerOneKeystroke.classList.add('keystroke-player1');
+      playerTwoKeystroke.classList.remove('keystroke-player2');
   }
 }
 
