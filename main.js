@@ -29,6 +29,10 @@ window.addEventListener('keydown', dealKeystrokePlayer1);
 
 window.addEventListener('keydown', dealKeystrokePlayer2);
 
+window.addEventListener('keydown', slapKeystrokePlayer2);
+
+window.addEventListener('keydown', slapKeystrokePlayer1);
+
 // *** Functions ***
 function startNewGame() {
   newGame = new Game();
@@ -61,37 +65,29 @@ function dealKeystrokePlayer2(event) {
   }
 }
 
-window.addEventListener("keydown", function (event) {
-  if (event.defaultPrevented) {
-    return;
+function slapKeystrokePlayer1(event) {
+  if (event.key === 'f' || event.key === 'F') {
+    newGame.currentSlapStroke = 'f';
+    newGame.slapLogic();
+    hideMiddleCardContainer();
+    renderCardCount();
+    renderGameStatusMessage();
+    renderWins();
+    newGame.player1.saveToStorage();
   }
-// *** Keystroke Tracking +***
-  switch (event.key) {
-    case "f":
-    case "F":
-      newGame.currentSlapStroke = 'f';
-      newGame.slapLogic();
-      hideMiddleCardContainer();
-      renderCardCount();
-      renderGameStatusMessage();
-      renderWins();
-      newGame.player1.saveToStorage();
-      break;
-    case "j":
-    case "J":
-      newGame.currentSlapStroke = 'j';
-      newGame.slapLogic();
-      hideMiddleCardContainer();
-      renderCardCount();
-      renderGameStatusMessage();
-      renderWins();
-      newGame.player2.saveToStorage();
-      break;
-    default:
-      return; 
+}
+
+function slapKeystrokePlayer2(event) {
+  if (event.key === 'j' || event.key === 'J') {
+    newGame.currentSlapStroke = 'j';
+    newGame.slapLogic();
+    hideMiddleCardContainer();
+    renderCardCount();
+    renderGameStatusMessage();
+    renderWins();
+    newGame.player2.saveToStorage();
   }
-    event.preventDefault();
-}, true);
+}
 
 function renderBoxShawdowOne() {
   middleCardContainer.classList.add('middle-card-player1')
