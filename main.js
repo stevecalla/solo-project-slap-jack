@@ -19,8 +19,9 @@ var newGame;
 
 // *** Event Listeners ***
 window.onload = function() {
-  startNewGame();
-  getFromStorage();
+  startNewGame();  
+  newGame.player1.getFromStorage1();
+  newGame.player2.getFromStorage2();
   renderWins();
 }
 
@@ -66,7 +67,7 @@ window.addEventListener("keydown", function (event) {
       renderCardCount();
       renderGameStatusMessage();
       renderWins();
-      newGame.player1.saveToStorage(1);
+      newGame.player1.saveToStorage();
       break;
     case "j":
     case "J":
@@ -76,7 +77,7 @@ window.addEventListener("keydown", function (event) {
       renderCardCount();
       renderGameStatusMessage();
       renderWins();
-      newGame.player2.saveToStorage(2);
+      newGame.player2.saveToStorage();
       break;
     default:
       return; 
@@ -176,19 +177,6 @@ function renderWins() {
     winsPlayerTwo.innerText = `${newGame.player2.wins} Win`;
   }    
 }
-
-function getFromStorage() {
-  var retrievedObject1 = localStorage.getItem('1');
-  var retrievedObject2 = localStorage.getItem('2');
-
-  if(localStorage.getItem('1') === null) {
-    retrievedObject1 = 0;
-    retrievedObject2 = 0;
-  }
-
-  newGame.player1.wins = retrievedObject1;
-  newGame.player2.wins = retrievedObject2;
-  }
 
 
   
