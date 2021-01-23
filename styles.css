@@ -145,6 +145,24 @@ img {
   font-style: italic;
 }
 
+.keystoke-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.keystroke-image {
+  height: 5vw;
+  width: 5vw;
+}
+
+.keystroke-player1 {
+  box-shadow: 0px 0px 20px .1rem red;
+}
+
+.keystroke-player2 {
+  box-shadow: 0px 0px 20px .1rem #295;
+}
+
 /* --------------------- HIDDEN CLASS --------------- */
 .hidden {
   visibility: hidden;

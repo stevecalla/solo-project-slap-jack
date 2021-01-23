@@ -31,8 +31,6 @@ window.addEventListener('keydown', dealKeystrokePlayer2);
 
 window.addEventListener('keydown', slapKeystrokePlayer2);
 
-window.addEventListener('keydown', slapKeystrokePlayer1);
-
 // *** Functions ***
 function startNewGame() {
   newGame = new Game();
