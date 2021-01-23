@@ -149,13 +149,13 @@ class Game {
       this.priorTurn = this.player1;
     } 
     this.dealHandToMiddleDeck();
-    this.slappedCount = 0;
+    this.resetSlapCount();
     if ((this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length) > 53) {
       return "card limit"}
     }
 
   dealHandToMiddleDeck() {
-    this.slappedCount = 0;
+    this.resetSlapCount();
     if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player1.playerDeck.length !== 0 && this.player1.playerDeck.length !== this.allCards.length) {
       this.middleCardDeck.unshift(this.player1.playerDeck[0])
       this.player1.playerDeck.splice(0, 1);
@@ -255,6 +255,10 @@ class Game {
         this.slapActionPlayerTwo();
         this.slappedCount ++;
     }
+  }
+
+  resetSlapCount() {
+    this.slappedCount = 0;
   }
 
   badSlap() {
