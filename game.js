@@ -305,6 +305,7 @@ class Game {
     } else if (this.currentSlapStroke === 'j' & this.player2.playerDeck.length > 0 && this.gameStatusMessage !== "BAD SLAP! Player 1 WINS!") {
         this.player1.playerDeck.push(this.player2.playerDeck[0]);
         this.player2.playerDeck.splice(0, 1);
+        this.gameStatusMessage = "BAD SLAP! Player 2 forfeits a card to Player1!";
         this.slappedCount ++;
     }
   }
