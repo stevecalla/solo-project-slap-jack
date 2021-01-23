@@ -26,6 +26,10 @@ window.onload = function() {
   newGame.player2.getFromStorage2();
   renderWins();
 }
+window.addEventListener('keydown', playerOneDealKeystroke);
+window.addEventListener('keydown', playerTwoDealKeystroke);
+window.addEventListener('keydown', playerTwoSlapKeystroke);
+window.addEventListener('keydown', playerTwoSlapKeystroke);
 
 window.addEventListener('keydown', dealKeystrokePlayer1);
 
@@ -65,6 +69,56 @@ function dealKeystrokePlayer2(event) {
     hideGameStatusMessage();
     renderMiddleCard();
     applyTurnStyling(2);
+  }
+}
+=======
+function playerOneDealKeystroke(event) {
+  if(event.key === 'q' || event.key === 'Q') {
+    newGame.currentDealStroke = 'q';
+    newGame.playGame();
+    renderBoxShawdowOne();
+    showMiddleCardContainer()
+    renderCardCount();
+    hideGameStatusMessage();
+    renderMiddleCard();
+    playerOneTurnStyling();
+  }
+}
+
+function playerTwoDealKeystroke(event) {
+  if(event.key === 'p' || event.key === 'P') {
+    newGame.currentDealStroke = 'p';
+    newGame.playGame();
+    renderBoxShawdowTwo();
+    showMiddleCardContainer()
+    renderCardCount();
+    hideGameStatusMessage();
+    renderMiddleCard();
+    playerTwoTurnStyling();
+  }
+}
+
+function playerTwoSlapKeystroke(event) {
+  if(event.key === 'f' || event.key === 'F') {
+    newGame.currentSlapStroke = 'f';
+    newGame.slapLogic();
+    hideMiddleCardContainer();
+    renderCardCount();
+    renderGameStatusMessage();
+    renderWins();
+    newGame.player1.saveToStorage(1);
+  }
+}
+
+function playerTwoSlapKeystroke(event) {
+  if(event.key === 'j' || event.key === 'J') {
+    newGame.currentSlapStroke = 'j';
+    newGame.slapLogic();
+    hideMiddleCardContainer();
+    renderCardCount();
+    renderGameStatusMessage();
+    renderWins();
+    newGame.player2.saveToStorage(2);
   }
 }
 
