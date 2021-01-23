@@ -14,6 +14,20 @@ class Game {
     this.deckTwoCount = null;
     this.gameStatusMessage = 'Player One --> Press Q to Start the Game';
     this.allCards = [
+      {value: "8", suit: "blue", asset: "./assets/blue-08.png"},
+      {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
+      {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
+      {value: "J", suit: "blue", asset: "./assets/blue-jack.png"},
+      {value: "K", suit: "blue", asset: "./assets/blue-king.png"},
+      {value: "Q", suit: "blue", asset: "./assets/blue-queen.png"},
+      {value: "7", suit: "gold", asset: "./assets/gold-07.png"},
+      {value: "8", suit: "gold", asset: "./assets/gold-08.png"},
+      {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
+      {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
+      {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
+      {value: "K", suit: "gold", asset: "./assets/gold-king.png"},
+    ]
+    this.allCards2 = [
       {value: "1", suit: "blue", asset: "./assets/blue-01.png"},
       {value: "2", suit: "blue", asset: "./assets/blue-02.png"},
       {value: "3", suit: "blue", asset: "./assets/blue-03.png"},
@@ -135,45 +149,73 @@ class Game {
       this.priorTurn = this.player1;
     } 
     this.dealHandToMiddleDeck();
-    this.slappedCount = 0;
+    this.resetSlapCount();
     if ((this.player1.playerDeck.length + this.player2.playerDeck.length + this.middleCardDeck.length) > 53) {
       return "card limit"}
     }
 
   dealHandToMiddleDeck() {
-    this.slappedCount = 0;
+    this.resetSlapCount();
     if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player1.playerDeck.length !== 0 && this.player1.playerDeck.length !== this.allCards.length) {
-      this.middleCardDeck.unshift(this.player1.playerDeck[0])
-      this.player1.playerDeck.splice(0, 1);
-      this.handCount ++;
+        this.dealPlayer1ToMiddleDeck();
     } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.player2.playerDeck.length !== 0 && this.player2.playerDeck.length !== this.allCards.length) {
-        this.middleCardDeck.unshift(this.player2.playerDeck[0])
-        this.player2.playerDeck.splice(0, 1);
-        this.handCount ++;
+        this.dealPlayer2ToMiddleDeck();
+
     } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'p' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {
-        for (var i = 0; i < this.allCards.length; i++) {
-          this.player2.playerDeck.push(this.middleCardDeck[i]);
-        }
-        this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
-        this.middleCardDeck = [];
+        this.dealMiddleDeckToPlayer2();
+
     } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player1) {
-        for (var i = 0; i < this.middleCardDeck.length; i++) {
-          this.player1.playerDeck.push(this.middleCardDeck[i]);
-        }
-        this.player1.playerDeck = this.randomizeDeck(this.player1.playerDeck);
-        this.middleCardDeck = [];
-    } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.middleCardDeck.length === 0 && this.player2.playerDeck.length === this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {
-        this.middleCardDeck.unshift(this.player2.playerDeck[0]);
-        this.player2.playerDeck.splice(0, 1);
-        this.handCount ++;
+        this.dealMiddleDeckToPlayer1();
+
+    } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.middleCardDeck.length === 0 && this.player2.playerDeck.length === this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {        
+        this.dealOnlyPlayer2ToMiddleDeck();
+
     } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.middleCardDeck.length === 0 && this.player1.playerDeck.length === this.allCards.length && this.player2.playerDeck.length === 0 && this.priorTurn === this.player1) {
-        this.middleCardDeck.unshift(this.player1.playerDeck[0]);
-        this.player1.playerDeck.splice(0, 1);
-        this.handCount ++;
+        this.dealOnlyPlayer1ToMiddleDeck();
     }
     this.deckMiddleCount = this.middleCardDeck.length;
     this.deckOneCount = this.player1.playerDeck.length;
     this.deckTwoCount = this.player2.playerDeck.length;
+  }
+
+  dealPlayer1ToMiddleDeck() {
+    this.middleCardDeck.unshift(this.player1.playerDeck[0])
+    this.player1.playerDeck.splice(0, 1);
+    this.handCount ++;        
+  }
+
+  dealPlayer2ToMiddleDeck() {
+    this.middleCardDeck.unshift(this.player2.playerDeck[0])
+    this.player2.playerDeck.splice(0, 1);
+    this.handCount ++;      
+  }
+
+  dealMiddleDeckToPlayer1() {
+    for (var i = 0; i < this.middleCardDeck.length; i++) {
+      this.player1.playerDeck.push(this.middleCardDeck[i]);
+    }
+    this.player1.playerDeck = this.randomizeDeck(this.player1.playerDeck);
+    this.middleCardDeck = [];
+  }
+
+  dealMiddleDeckToPlayer2() {
+    for (var i = 0; i < this.allCards.length; i++) {
+      this.player2.playerDeck.push(this.middleCardDeck[i]);
+    }
+    this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
+    this.middleCardDeck = [];
+  }
+
+  dealOnlyPlayer1ToMiddleDeck() {
+    this.middleCardDeck.unshift(this.player1.playerDeck[0]);
+    this.player1.playerDeck.splice(0, 1);
+    this.handCount ++;
+  }
+
+  dealOnlyPlayer2ToMiddleDeck() {
+    this.middleCardDeck.unshift(this.player2.playerDeck[0]);
+    this.player2.playerDeck.splice(0, 1);
+    this.handCount ++;
   }
 
   slapLogic() {
@@ -241,6 +283,10 @@ class Game {
         this.slapActionPlayerTwo();
         this.slappedCount ++;
     }
+  }
+
+  resetSlapCount() {
+    this.slappedCount = 0;
   }
 
   badSlap() {

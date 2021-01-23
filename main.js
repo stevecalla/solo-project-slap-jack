@@ -15,75 +15,74 @@ var playerOneTurn = document.querySelector('.player-one');
 var playerTwoTurn = document.querySelector('.player-two');
 
 // *** Global Variables ***
-// var newGame;
-var newGame = new Game();
-newGame.startGame();
+var newGame;
 
-// // *** Event Listeners ***
-// window.onload = function() {
-//   startNewGame();
-//   getFromStorage();
-//   renderWins();
-// }
+// *** Event Listeners ***
+window.onload = function() {
+  startNewGame();
+  getFromStorage();
+  renderWins();
+}
+window.addEventListener('keydown', playerOneDealKeystroke);
+window.addEventListener('keydown', playerTwoDealKeystroke);
+window.addEventListener('keydown', playerTwoSlapKeystroke);
+window.addEventListener('keydown', playerTwoSlapKeystroke);
 
-// // *** Functions ***
-// function startNewGame() {
-//   newGame.startGame();
-// }
+// *** Functions ***
+function startNewGame() {
+  newGame = new Game();
+  newGame.startGame();
+}
 
-document.addEventListener("keydown", function (event) {
-  if (event.defaultPrevented) {
-    return;
+function playerOneDealKeystroke(event) {
+  if(event.key === 'q' || event.key === 'Q') {
+    newGame.currentDealStroke = 'q';
+    newGame.playGame();
+    renderBoxShawdowOne();
+    showMiddleCardContainer()
+    renderCardCount();
+    hideGameStatusMessage();
+    renderMiddleCard();
+    playerOneTurnStyling();
   }
-// *** Keystroke Tracking +***
-  switch (event.key) {
-    case "q":
-    case "Q":
-      newGame.currentDealStroke = 'q';
-      newGame.playGame();
-      renderBoxShawdowOne();
-      showMiddleCardContainer()
-      renderCardCount();
-      hideGameStatusMessage();
-      renderMiddleCard();
-      playerOneTurnStyling();
-      break;
-    case "p": 
-    case "P":
-      newGame.currentDealStroke = 'p';
-      newGame.playGame();
-      renderBoxShawdowTwo();
-      showMiddleCardContainer()
-      renderCardCount();
-      hideGameStatusMessage();
-      renderMiddleCard();
-      playerTwoTurnStyling();
-      break;
-    case "f":
-    case "F":
-      newGame.currentSlapStroke = 'f';
-      newGame.slapLogic();
-      hideMiddleCardContainer();
-      renderCardCount();
-      renderGameStatusMessage();
-      renderWins();
-      newGame.player1.saveToStorage();
-      break;
-    case "j":
-    case "J":
-      newGame.currentSlapStroke = 'j';
-      newGame.slapLogic();
-      hideMiddleCardContainer();
-      renderCardCount();
-      renderGameStatusMessage();
-      renderWins();
-      newGame.player1.saveToStorage();
-      break;
-    default:
-      return; 
+}
+
+function playerTwoDealKeystroke(event) {
+  if(event.key === 'p' || event.key === 'P') {
+    newGame.currentDealStroke = 'p';
+    newGame.playGame();
+    renderBoxShawdowTwo();
+    showMiddleCardContainer()
+    renderCardCount();
+    hideGameStatusMessage();
+    renderMiddleCard();
+    playerTwoTurnStyling();
   }
-    event.preventDefault();
-}, true);
+}
+
+function playerTwoSlapKeystroke(event) {
+  if(event.key === 'f' || event.key === 'F') {
+    newGame.currentSlapStroke = 'f';
+    newGame.slapLogic();
+    hideMiddleCardContainer();
+    renderCardCount();
+    renderGameStatusMessage();
+    renderWins();
+    newGame.player1.saveToStorage(1);
+  }
+}
+
+function playerTwoSlapKeystroke(event) {
+  if(event.key === 'j' || event.key === 'J') {
+    newGame.currentSlapStroke = 'j';
+    newGame.slapLogic();
+    hideMiddleCardContainer();
+    renderCardCount();
+    renderGameStatusMessage();
+    renderWins();
+    newGame.player2.saveToStorage(2);
+  }
+}
 
 function renderBoxShawdowOne() {
   middleCardContainer.classList.add('middle-card-player1')
