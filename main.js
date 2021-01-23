@@ -66,7 +66,7 @@ window.addEventListener("keydown", function (event) {
       renderCardCount();
       renderGameStatusMessage();
       renderWins();
-      newGame.player1.saveToStorage();
+      newGame.player1.saveToStorage(1);
       break;
     case "j":
     case "J":
@@ -76,7 +76,7 @@ window.addEventListener("keydown", function (event) {
       renderCardCount();
       renderGameStatusMessage();
       renderWins();
-      newGame.player1.saveToStorage();
+      newGame.player2.saveToStorage(2);
       break;
     default:
       return; 

@@ -6,13 +6,7 @@ class Player {
   }
 
   saveToStorage() {
-    localStorage.setItem(newGame.player1.id, newGame.player1.wins)
-    localStorage.setItem(newGame.player2.id, newGame.player2.wins)
+    localStorage.setItem(this.id, this.wins)
   }
-
-  // saveToStorage() {
-  //   localStorage.setItem(newGame.player1.id, newGame.player1.wins)
-  //   localStorage.setItem(newGame.player2.id, newGame.player2.wins)
-  // }
 
 }

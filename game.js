@@ -20,6 +20,7 @@ class Game {
       {value: "J", suit: "blue", asset: "./assets/blue-jack.png"},
       {value: "K", suit: "blue", asset: "./assets/blue-king.png"},
       {value: "Q", suit: "blue", asset: "./assets/blue-queen.png"},
+      {value: "7", suit: "gold", asset: "./assets/gold-07.png"},
       {value: "8", suit: "gold", asset: "./assets/gold-08.png"},
       {value: "9", suit: "gold", asset: "./assets/gold-09.png"},
       {value: "10", suit: "gold", asset: "./assets/gold-10.png"},
