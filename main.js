@@ -13,6 +13,8 @@ var gameStatusMessage = document.querySelector('.game-status-message');
 var player = document.querySelector('.player');
 var playerOneTurn = document.querySelector('.player-one');
 var playerTwoTurn = document.querySelector('.player-two');
+var playerOneKeystroke = document.querySelector('.keystroke-player1');
+var playerTwoKeystroke = document.querySelector('.keystroke-player2');
 
 // *** Global Variables ***
 var newGame;
@@ -102,12 +104,16 @@ function renderBoxShawdowTwo() {
 function playerOneTurnStyling() {
   playerOneTurn.classList.remove('player-one');
   playerTwoTurn.classList.add('player-two');
+  playerOneKeystroke.classList.remove('keystroke-player1');
+  playerTwoKeystroke.classList.add('keystroke-player2');
 }
 
 function playerTwoTurnStyling() {
   if (newGame.currentDealStroke === 'p' && newGame.player1.playerDeck.length !== 26 && newGame.player2.playerDeck.length !== 26) {
     playerOneTurn.classList.add('player-one');
     playerTwoTurn.classList.remove('player-two');
+    playerOneKeystroke.classList.add('keystroke-player1');
+    playerTwoKeystroke.classList.remove('keystroke-player2');
   }
 }
 

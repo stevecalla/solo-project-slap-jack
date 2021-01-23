@@ -145,11 +145,6 @@ img {
   font-style: italic;
 }
 
-.keystoke-container {
-  display: flex;
-  justify-content: space-between;
-}
-
 .keystroke-image {
   height: 5vw;
   width: 5vw;
