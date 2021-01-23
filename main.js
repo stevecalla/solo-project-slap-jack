@@ -116,6 +116,19 @@ function applyTurnStyling(player) {
   }
 }
 
+//   if (player === 1 && newGame.player1.playerDeck.length > 0 && newGame.player2.playerDeck.length > 0) {
+//     playerOneTurn.classList.remove('player-one');
+//     playerTwoTurn.classList.add('player-two');
+//     playerOneKeystroke.classList.remove('keystroke-player1');
+//     playerTwoKeystroke.classList.add('keystroke-player2');
+//   } else if (newGame.currentDealStroke === 'p' && newGame.player1.playerDeck.length !== 26 && newGame.player2.playerDeck.length !== 26) {
+//       playerOneTurn.classList.add('player-one');
+//       playerTwoTurn.classList.remove('player-two');
+//       playerOneKeystroke.classList.add('keystroke-player1');
+//       playerTwoKeystroke.classList.remove('keystroke-player2');
+//   }
+// }
+
 function showMiddleCardContainer() {
   middleCardContainer.classList.remove('hidden');
 }
