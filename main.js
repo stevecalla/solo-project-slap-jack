@@ -22,7 +22,7 @@ var newGame;
 
 // *** Event Listeners ***
 window.onload = function() {
-  newGame = new Game();
+  // newGame = new Game();
   startNewGame();  
   newGame.player1.getFromStorage1();
   newGame.player2.getFromStorage2();
