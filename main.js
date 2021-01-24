@@ -1,5 +1,5 @@
 // *** Targeting Variables ***
-var newGame = document.querySelector('.title');
+var newGame2 = document.querySelector('.title');
 var middleCard = document.querySelector('.middle-card');
 var middleCardContainer = document.querySelector('.middle-card-container');
 var middleCardPlayer1 = document.querySelector('.middle-card-player1');
