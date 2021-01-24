@@ -22,6 +22,7 @@ var newGame;
 
 // *** Event Listeners ***
 window.onload = function() {
+  newGame = new Game();
   startNewGame();  
   newGame.player1.getFromStorage1();
   newGame.player2.getFromStorage2();
@@ -40,7 +41,7 @@ window.addEventListener('keydown', slapKeystrokePlayer2);
 
 // *** Functions ***
 function startNewGame() {
-  newGame = new Game();
+  // newGame = new Game();
   newGame.startGame();
 }
 
