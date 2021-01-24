@@ -54,16 +54,6 @@ body {
   border-radius: 5px;
 }
 
-button {
-  align-items: center;
-  border-radius: 5px;
-  width: 8rem;
-  padding: 0.5rem;
-  font-weight: bolder;
-  font-style: italic;
-  text-align: center;
-}
-
 .card-container {
   display: flex;
   justify-content: space-around;

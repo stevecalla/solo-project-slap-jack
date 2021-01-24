@@ -14,7 +14,6 @@ var playerOneTurn = document.querySelector('.player-one');
 var playerTwoTurn = document.querySelector('.player-two');
 var playerOneKeystroke = document.querySelector('.keystroke-player1');
 var playerTwoKeystroke = document.querySelector('.keystroke-player2');
-// var startGameButton = document.querySelector('button');
 
 // *** Global Variables ***
 var newGame;
@@ -34,8 +33,6 @@ window.addEventListener('keydown', dealKeystrokePlayer2);
 window.addEventListener('keydown', slapKeystrokePlayer1);
 
 window.addEventListener('keydown', slapKeystrokePlayer2);
-
-// startGameButton.addEventListener('click', startNewGame);
 
 // *** Functions ***
 function startNewGame() {
