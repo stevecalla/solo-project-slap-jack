@@ -116,7 +116,7 @@ function applyTurnStyling(player) {
     playerOneKeystroke.classList.remove('keystroke-player1');
     playerTwoKeystroke.classList.add('keystroke-player2');
   } else if (player === 2 && newGame.player1.playerDeck.length !== 0 && newGame.player2.playerDeck.length !== 0) {
-      console.log('2')
+      console.log('2a')
       playerOneTurn.classList.add('player-one');
       playerTwoTurn.classList.remove('player-two');
       playerOneKeystroke.classList.add('keystroke-player1');
@@ -195,7 +195,7 @@ function renderGameStatusMessage() {
 }
 
 function hideGameStatusMessage() {
-  if (newGame.currentDealStroke === 'p' && newGame.player1.playerDeck.length === 26 && newGame.player2.playerDeck.length === 26) {
+  if (newGame.currentDealStroke === 'p' && newGame.player1.playerDeck.length === (newGame.allCards.length/2) && newGame.player2.playerDeck.length === (newGame.allCards.length/2)) {
     gameStatusMessage.classList.remove('hidden');
   } else {
     gameStatusMessage.classList.add('hidden');
