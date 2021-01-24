@@ -1,5 +1,4 @@
 // *** Targeting Variables ***
-// var newGame2 = document.querySelector('.title');
 var middleCard = document.querySelector('.middle-card');
 var middleCardContainer = document.querySelector('.middle-card-container');
 var middleCardPlayer1 = document.querySelector('.middle-card-player1');
@@ -15,19 +14,17 @@ var playerOneTurn = document.querySelector('.player-one');
 var playerTwoTurn = document.querySelector('.player-two');
 var playerOneKeystroke = document.querySelector('.keystroke-player1');
 var playerTwoKeystroke = document.querySelector('.keystroke-player2');
-var startGameButton = document.querySelector('button');
 
 // *** Global Variables ***
 var newGame;
 
 // *** Event Listeners ***
-// window.onload = function() {
-//   newGame = new Game();
-//   startNewGame();  
-//   newGame.player1.getFromStorage1();
-//   newGame.player2.getFromStorage2();
-//   renderWins();
-// }
+window.onload = function() {
+  startNewGame();  
+  newGame.player1.getFromStorage1();
+  newGame.player2.getFromStorage2();
+  renderWins();
+}
 
 window.addEventListener('keydown', dealKeystrokePlayer1);
 
@@ -37,20 +34,11 @@ window.addEventListener('keydown', slapKeystrokePlayer1);
 
 window.addEventListener('keydown', slapKeystrokePlayer2);
 
-startGameButton.addEventListener('click', startNewGame);
-
 // *** Functions ***
 function startNewGame() {
-  // newGame = new Game();
-  // newGame.startGame();
-  
-  console.log('yes')
-  
   newGame = new Game();
   newGame.startGame();
-  newGame.player1.getFromStorage1();
-  newGame.player2.getFromStorage2();
-  renderWins();
+  console.log('yes')
 }
 
 function dealKeystrokePlayer1(event) {
