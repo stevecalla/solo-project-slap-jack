@@ -159,65 +159,66 @@ class Game {
   dealHandToMiddleDeck() {
     this.resetSlapCount();
     if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player1.playerDeck.length !== 0 && this.player1.playerDeck.length !== this.allCards.length) {
-        this.dealPlayer1ToMiddleDeck();
+        this.dealPlayerToMiddleDeck(1);
     } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.player2.playerDeck.length !== 0 && this.player2.playerDeck.length !== this.allCards.length) {
-        this.dealPlayer2ToMiddleDeck();
+        this.dealPlayerToMiddleDeck(2);
 
     } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'p' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {
-        this.dealMiddleDeckToPlayer2();
+        // this.dealMiddleDeckToPlayer2();
+        this.dealMiddleDeckToPlayer(2)
 
     } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player1) {
-        this.dealMiddleDeckToPlayer1();
+        // this.dealMiddleDeckToPlayer1();
+        this.dealMiddleDeckToPlayer(1)
 
     } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.middleCardDeck.length === 0 && this.player2.playerDeck.length === this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {        
-        this.dealOnlyPlayer2ToMiddleDeck();
-
+        this.dealOnePlayerToMiddleDeck(2);
     } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.middleCardDeck.length === 0 && this.player1.playerDeck.length === this.allCards.length && this.player2.playerDeck.length === 0 && this.priorTurn === this.player1) {
-        this.dealOnlyPlayer1ToMiddleDeck();
+        this.dealOnePlayerToMiddleDeck(1);
     }
     this.deckMiddleCount = this.middleCardDeck.length;
     this.deckOneCount = this.player1.playerDeck.length;
     this.deckTwoCount = this.player2.playerDeck.length;
   }
 
-  dealPlayer1ToMiddleDeck() {
-    this.middleCardDeck.unshift(this.player1.playerDeck[0])
-    this.player1.playerDeck.splice(0, 1);
-    this.handCount ++;        
-  }
-
-  dealPlayer2ToMiddleDeck() {
-    this.middleCardDeck.unshift(this.player2.playerDeck[0])
-    this.player2.playerDeck.splice(0, 1);
-    this.handCount ++;      
-  }
-
-  dealMiddleDeckToPlayer1() {
-    for (var i = 0; i < this.middleCardDeck.length; i++) {
-      this.player1.playerDeck.push(this.middleCardDeck[i]);
+  dealPlayerToMiddleDeck(player) {
+    if (player === 1) {
+      this.middleCardDeck.unshift(this.player1.playerDeck[0])
+      this.player1.playerDeck.splice(0, 1);
+      this.handCount ++;        
+    } else if (player === 2) {
+        this.middleCardDeck.unshift(this.player2.playerDeck[0])
+        this.player2.playerDeck.splice(0, 1);
+        this.handCount ++;   
     }
-    this.player1.playerDeck = this.randomizeDeck(this.player1.playerDeck);
-    this.middleCardDeck = [];
   }
 
-  dealMiddleDeckToPlayer2() {
-    for (var i = 0; i < this.allCards.length; i++) {
-      this.player2.playerDeck.push(this.middleCardDeck[i]);
+  dealMiddleDeckToPlayer(player) {
+    if (player === 1) {
+      for (var i = 0; i < this.middleCardDeck.length; i++) {
+        this.player1.playerDeck.push(this.middleCardDeck[i]);
+      }
+      this.player1.playerDeck = this.randomizeDeck(this.player1.playerDeck);
+      this.middleCardDeck = [];
+    } else if (player === 2) {
+        for (var i = 0; i < this.allCards.length; i++) {
+          this.player2.playerDeck.push(this.middleCardDeck[i]);
+        }
+        this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
+        this.middleCardDeck = [];
+      }
+  }
+
+  dealOnePlayerToMiddleDeck(player) {
+    if (player === 1) {
+      this.middleCardDeck.unshift(this.player1.playerDeck[0]);
+      this.player1.playerDeck.splice(0, 1);
+      this.handCount ++;
+    } else if (player === 2) {
+        this.middleCardDeck.unshift(this.player2.playerDeck[0]);
+        this.player2.playerDeck.splice(0, 1);
+        this.handCount ++;
     }
-    this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
-    this.middleCardDeck = [];
-  }
-
-  dealOnlyPlayer1ToMiddleDeck() {
-    this.middleCardDeck.unshift(this.player1.playerDeck[0]);
-    this.player1.playerDeck.splice(0, 1);
-    this.handCount ++;
-  }
-
-  dealOnlyPlayer2ToMiddleDeck() {
-    this.middleCardDeck.unshift(this.player2.playerDeck[0]);
-    this.player2.playerDeck.splice(0, 1);
-    this.handCount ++;
   }
 
   slapLogic() {
@@ -245,11 +246,11 @@ class Game {
         this.winLogicOnJack();
     } else if (this.middleCardDeck[0].value === 'J' && this.currentSlapStroke === 'f') {
         this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
-        this.slapActionPlayerOne();
+        this.giveMiddleDeckToPlayer(1);
         this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === "J" && this.currentSlapStroke === 'j') {
         this.gameStatusMessage = "SLAPJACK! Player 2 takes the pile!";
-        this.slapActionPlayerTwo();
+        this.giveMiddleDeckToPlayer(2);
         this.slappedCount ++;
     } 
   }
@@ -260,12 +261,12 @@ class Game {
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
         && this.currentSlapStroke === 'f') {
         this.gameStatusMessage = "DOUBLE! Player 1 takes the pile";
-        this.slapActionPlayerOne();
+        this.giveMiddleDeckToPlayer(1);
         this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[1].value
         && this.currentSlapStroke === 'j') {
         this.gameStatusMessage = "DOUBLE! Player 2 takes the pile!";
-        this.slapActionPlayerTwo();
+        this.giveMiddleDeckToPlayer(2);
         this.slappedCount ++;
     }
   }
@@ -277,12 +278,12 @@ class Game {
         && (this.middleCardDeck[0].value === this.middleCardDeck[2].value)
         && this.currentSlapStroke === 'f') {
         this.gameStatusMessage = "SANDWICH! Player 1 takes the pile!";
-        this.slapActionPlayerOne();
+        this.giveMiddleDeckToPlayer(1);
       this.slappedCount ++;
     } else if (this.middleCardDeck[0].value === this.middleCardDeck[2].value
         && this.currentSlapStroke === 'j') {
         this.gameStatusMessage = "SANDWICH! Player 2 takes the pile!";
-        this.slapActionPlayerTwo();
+        this.giveMiddleDeckToPlayer(2);
         this.slappedCount ++;
     }
   }
@@ -304,24 +305,25 @@ class Game {
     } else if (this.currentSlapStroke === 'j' & this.player2.playerDeck.length > 0 && this.gameStatusMessage !== "BAD SLAP! Player 1 WINS!") {
         this.player1.playerDeck.push(this.player2.playerDeck[0]);
         this.player2.playerDeck.splice(0, 1);
+        this.gameStatusMessage = "BAD SLAP! Player 2 forfeits a card to Player1!";
         this.slappedCount ++;
     }
   }
 
-  slapActionPlayerOne() {
-    for (var i = 0; i < this.middleCardDeck.length; i++) {
-      this.player1.playerDeck.push(this.middleCardDeck[i]);
-    } 
-    this.player1.playerDeck = this.randomizeDeck(this.player1.playerDeck);
-    this.middleCardDeck = [];  
-  }
-
-  slapActionPlayerTwo() {
-    for (var i = 0; i < this.middleCardDeck.length; i++) {
-      this.player2.playerDeck.push(this.middleCardDeck[i]);
-    } 
-    this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
-    this.middleCardDeck = []; 
+  giveMiddleDeckToPlayer(player) {
+    if (player === 1) {
+      for (var i = 0; i < this.middleCardDeck.length; i++) {
+        this.player1.playerDeck.push(this.middleCardDeck[i]);
+      }
+      this.player1.playerDeck = this.randomizeDeck(this.player1.playerDeck);
+      this.middleCardDeck = [];  
+    } else if (player === 2) {
+      for (var i = 0; i < this.middleCardDeck.length; i++) {
+        this.player2.playerDeck.push(this.middleCardDeck[i]);
+      } 
+      this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
+      this.middleCardDeck = []; 
+    }
   }
 
   winLogicOnJack() {
@@ -338,12 +340,12 @@ class Game {
     } 
 
     if (this.player1.playerDeck.length >= 0 && this.player2.playerDeck.length === 0 && this.currentSlapStroke === 'j') {
-      this.slapActionPlayerTwo();
+      this.giveMiddleDeckToPlayer(2);
       this.gameStatusMessage = "SLAPJACK! Player 2 takes the pile!";
     }
 
     if (this.player2.playerDeck.length >= 0 && this.player1.playerDeck.length === 0 && this.currentSlapStroke === 'f') {
-      this.slapActionPlayerOne();
+      this.giveMiddleDeckToPlayer(1);
       this.gameStatusMessage = "SLAPJACK! Player 1 takes the pile!";
     }
   }
