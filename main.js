@@ -124,23 +124,23 @@ function applyTurnStyling(player) {
   if (player === 1 && newGame.player1.playerDeck.length !== 0 && newGame.player2.playerDeck.length !== 0) {
     playerOneTurn.classList.remove('player-one');
     playerTwoTurn.classList.add('player-two');
-    playerOneKeystroke.classList.remove('keystroke-player1');
-    playerTwoKeystroke.classList.add('keystroke-player2');
+    // playerOneKeystroke.classList.remove('keystroke-player1');
+    // playerTwoKeystroke.classList.add('keystroke-player2');
   } else if (player === 2 && newGame.player1.playerDeck.length !== 0 && newGame.player2.playerDeck.length !== 0) {
       playerOneTurn.classList.add('player-one');
       playerTwoTurn.classList.remove('player-two');
-      playerOneKeystroke.classList.add('keystroke-player1');
-      playerTwoKeystroke.classList.remove('keystroke-player2');
-  } else if (player === 1 && newGame.player1.playerDeck.length >= 0 && newGame.player2.playerDeck.length === 0 && newGame.priorTurn.id === 1) {
+      // playerOneKeystroke.classList.add('keystroke-player1');
+      // playerTwoKeystroke.classList.remove('keystroke-player2');
+  } else if (player === 1 && newGame.player1.playerDeck.length >= 0 && newGame.player2.playerDeck.length === 0 && newGame.priorTurn === newGame.player1) {
       playerOneTurn.classList.add('player-one');
       playerTwoTurn.classList.remove('player-two');
-      playerOneKeystroke.classList.add('keystroke-player1');
-      playerTwoKeystroke.classList.remove('keystroke-player2');
-  } else if (player === 2 && newGame.player1.playerDeck.length === 0 && newGame.player2.playerDeck.length >= 0 && newGame.priorTurn.id === 2) {
+      // playerOneKeystroke.classList.add('keystroke-player1');
+      // playerTwoKeystroke.classList.remove('keystroke-player2');
+  } else if (player === 2 && newGame.player1.playerDeck.length === 0 && newGame.player2.playerDeck.length >= 0 && newGame.priorTurn === newGame.player2) {
       playerOneTurn.classList.remove('player-one');
       playerTwoTurn.classList.add('player-two');
-      playerOneKeystroke.classList.remove('keystroke-player1');
-      playerTwoKeystroke.classList.add('keystroke-player2');
+      // playerOneKeystroke.classList.remove('keystroke-player1');
+      // playerTwoKeystroke.classList.add('keystroke-player2');
   }
 }
 
