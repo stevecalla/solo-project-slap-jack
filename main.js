@@ -1,5 +1,4 @@
 // *** Targeting Variables ***
-// var newGame2 = document.querySelector('.title');
 var middleCard = document.querySelector('.middle-card');
 var middleCardContainer = document.querySelector('.middle-card-container');
 var middleCardPlayer1 = document.querySelector('.middle-card-player1');
@@ -22,7 +21,6 @@ var newGame;
 
 // *** Event Listeners ***
 window.onload = function() {
-  // newGame = new Game();
   startNewGame();  
   newGame.player1.getFromStorage1();
   newGame.player2.getFromStorage2();
@@ -44,12 +42,6 @@ function startNewGame() {
   newGame = new Game();
   newGame.startGame();
   console.log('yes')
-  
-  // newGame = new Game();
-  // newGame.startGame();
-  // newGame.player1.getFromStorage1();
-  // newGame.player2.getFromStorage2();
-  // renderWins();
 }
 
 function dealKeystrokePlayer1(event) {
