@@ -13,7 +13,7 @@ class Game {
     this.deckOneCount = null;
     this.deckTwoCount = null;
     this.gameStatusMessage = 'Player One --> Press Q to Start the Game';
-    this.allCards = [
+    this.allCardsTestDeck = [
       {value: "8", suit: "blue", asset: "./assets/blue-08.png"},
       {value: "9", suit: "blue", asset: "./assets/blue-09.png"},
       {value: "10", suit: "blue", asset: "./assets/blue-10.png"},
@@ -27,7 +27,7 @@ class Game {
       {value: "J", suit: "gold", asset: "./assets/gold-jack.png"},
       {value: "K", suit: "gold", asset: "./assets/gold-king.png"},
     ]
-    this.allCards2 = [
+    this.allCards = [
       {value: "1", suit: "blue", asset: "./assets/blue-01.png"},
       {value: "2", suit: "blue", asset: "./assets/blue-02.png"},
       {value: "3", suit: "blue", asset: "./assets/blue-03.png"},
