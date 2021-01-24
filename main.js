@@ -15,17 +15,17 @@ var playerOneTurn = document.querySelector('.player-one');
 var playerTwoTurn = document.querySelector('.player-two');
 var playerOneKeystroke = document.querySelector('.keystroke-player1');
 var playerTwoKeystroke = document.querySelector('.keystroke-player2');
-var startGameButton = document.querySelector('button');
+// var startGameButton = document.querySelector('button');
 
 // *** Global Variables ***
 var newGame;
 
 // *** Event Listeners ***
 window.onload = function() {
-  // startNewGame();  
-  // newGame.player1.getFromStorage1();
-  // newGame.player2.getFromStorage2();
-  // renderWins();
+  startNewGame();  
+  newGame.player1.getFromStorage1();
+  newGame.player2.getFromStorage2();
+  renderWins();
 }
 
 window.addEventListener('keydown', dealKeystrokePlayer1);
@@ -36,7 +36,7 @@ window.addEventListener('keydown', slapKeystrokePlayer1);
 
 window.addEventListener('keydown', slapKeystrokePlayer2);
 
-startGameButton.addEventListener('click', startNewGame);
+// startGameButton.addEventListener('click', startNewGame);
 
 // *** Functions ***
 function startNewGame() {
