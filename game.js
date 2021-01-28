@@ -160,13 +160,12 @@ class Game {
     this.resetSlapCount();
     if (this.currentPlayer === player && player.playerDeck.length !== 0 && player.playerDeck.length !== this.allCards.length) {
         this.dealPlayerToMiddleDeck(player);
-    //removed currentDealStroke, added passing argument, replaced this.player1 w/ player
 
-    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'p' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {
-        this.dealMiddleDeckToPlayer(2)
+    } else if (this.currentPlayer === this.player1 && player === this.player2 && this.middleCardDeck.length === this.allCards.length && this.priorTurn === this.player2) {
+      this.dealMiddleDeckToPlayer(player)
 
-    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player1) {
-        this.dealMiddleDeckToPlayer(1)
+    } else if (this.currentPlayer === this.player1 && player === this.player1 && this.middleCardDeck.length === this.allCards.length && this.priorTurn === this.player1) {
+        this.dealMiddleDeckToPlayer(player)
 
     } else if (this.currentPlayer === player && this.middleCardDeck.length === 0 && player.playerDeck.length === this.allCards.length && this.priorTurn === player) {        
       this.dealOnePlayerToMiddleDeck(player);
@@ -187,19 +186,11 @@ class Game {
   }
 
   dealMiddleDeckToPlayer(player) {
-    if (player === 1) {
       for (var i = 0; i < this.middleCardDeck.length; i++) {
-        this.player1.playerDeck.push(this.middleCardDeck[i]);
+        player.playerDeck.push(this.middleCardDeck[i]);
       }
-      this.player1.playerDeck = this.randomizeDeck(this.player1.playerDeck);
+      player.playerDeck = this.randomizeDeck(player.playerDeck);
       this.middleCardDeck = [];
-    } else if (player === 2) {
-        for (var i = 0; i < this.allCards.length; i++) {
-          this.player2.playerDeck.push(this.middleCardDeck[i]);
-        }
-        this.player2.playerDeck = this.randomizeDeck(this.player2.playerDeck);
-        this.middleCardDeck = [];
-      }
   }
 
   dealOnePlayerToMiddleDeck(player) {
