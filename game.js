@@ -149,6 +149,61 @@ class Game {
     } 
   }
   
+  testassignTurn() {
+    if (!this.isEven(this.handCount) || this.player2.playerDeck.length === 0) {
+      this.currentPlayer = this.player1;
+    } else if (this.isEven(this.handCount) || this.player1.playerDeck.length === 0) {
+      this.currentPlayer = this.player2;
+    } else {
+      this.currentPlayer = null;
+    }
+  }
+
+  testplayGame(player) {
+    this.testassignTurn();
+    // this.trackPriorPlayerTurn();
+    console.log('a=', player)
+    this.testdealHandToMiddleDeck(player);
+    // this.resetSlapCount();
+    }
+
+  testdealHandToMiddleDeck(player) {
+    this.resetSlapCount();
+    console.log('b=', player)
+    console.log(this.currentPlayer)
+    if (this.currentPlayer === player && player.playerDeck.length !== 0 && player.playerDeck.length !== this.allCards.length) {
+        this.testdealPlayerToMiddleDeck(player); 
+        //removed currentDealStroke & added passing argument, replaced this.player1 w/ player
+    // } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.player2.playerDeck.length !== 0 && this.player2.playerDeck.length !== this.allCards.length) {
+    //     this.dealPlayerToMiddleDeck(2);
+
+    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'p' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {
+        // this.dealMiddleDeckToPlayer2();
+        this.dealMiddleDeckToPlayer(2)
+
+    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.player2.playerDeck.length === 0 && this.player2.playerDeck.length !== this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player1) {
+        // this.dealMiddleDeckToPlayer1();
+        this.dealMiddleDeckToPlayer(1)
+
+    } else if (this.currentPlayer === this.player2 && this.currentDealStroke === 'p' && this.middleCardDeck.length === 0 && this.player2.playerDeck.length === this.allCards.length && this.player1.playerDeck.length === 0 && this.priorTurn === this.player2) {        
+        this.dealOnePlayerToMiddleDeck(2);
+    } else if (this.currentPlayer === this.player1 && this.currentDealStroke === 'q' && this.middleCardDeck.length === 0 && this.player1.playerDeck.length === this.allCards.length && this.player2.playerDeck.length === 0 && this.priorTurn === this.player1) {
+        this.dealOnePlayerToMiddleDeck(1);
+    }
+    this.deckMiddleCount = this.middleCardDeck.length;
+    this.deckOneCount = this.player1.playerDeck.length;
+    this.deckTwoCount = this.player2.playerDeck.length;
+  } 
+
+  testdealPlayerToMiddleDeck(player) {
+    this.middleCardDeck.unshift(player.playerDeck[0])
+    player.playerDeck.splice(0, 1);
+    this.handCount ++; 
+    console.log('middle=', this.middleCardDeck);
+    console.log(this.player1);
+    console.log(this.player2);  
+  }
+
   playGame() {
     this.assignTurn();
     this.trackPriorPlayerTurn();
