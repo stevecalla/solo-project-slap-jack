@@ -60,7 +60,7 @@ function dealKeystrokePlayer1(event) {
   // console.log(event);
   if (event.key === 'q' || event.key === 'Q') {
     newGame.currentDealStroke = 'q';
-    newGame.playGame();
+    newGame.playGame(newGame.player1);
     renderBoxShawdow(1);
     showMiddleCardContainer();
     renderCardCount();
@@ -73,7 +73,7 @@ function dealKeystrokePlayer1(event) {
 function dealKeystrokePlayer2(event) {
   if (event.key === 'p' || event.key === 'P') {
     newGame.currentDealStroke = 'p';
-    newGame.playGame();
+    newGame.playGame(newGame.player2);
     renderBoxShawdow(2);
     showMiddleCardContainer();
     renderCardCount();
