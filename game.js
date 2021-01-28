@@ -179,10 +179,7 @@ class Game {
   dealPlayerToMiddleDeck(player) {
     this.middleCardDeck.unshift(player.playerDeck[0])
     player.playerDeck.splice(0, 1);
-    this.handCount ++;     
-    console.log('middle=', this.middleCardDeck);
-    console.log(this.player1);
-    console.log(this.player2);     
+    this.handCount ++;      
   }
 
   dealMiddleDeckToPlayer(player) {
