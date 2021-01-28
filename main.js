@@ -34,27 +34,11 @@ window.addEventListener('keydown', slapKeystrokePlayer1);
 
 window.addEventListener('keydown', slapKeystrokePlayer2);
 
-window.addEventListener('keydown', testPlayerKeystroke);
-
 // *** Functions ***
 function startNewGame() {
   newGame = new Game();
   newGame.startGame();
 }
-
-function testPlayerKeystroke(event) {
-  // console.log(event);
-  if (event.key === 't' || event.key === 'T') {
-    newGame.currentDealStroke = 't';
-    newGame.testplayGame(newGame.player1);
-  }
-
-  if (event.key === 'y' || event.key === 'Y') {
-    newGame.currentDealStroke = 'y';
-    newGame.testplayGame(newGame.player2);
-  }
-}
-
 
 function dealKeystrokePlayer1(event) {
   // console.log(event);
